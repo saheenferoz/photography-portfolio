@@ -7,9 +7,45 @@
   "gridColumns": 4,
   "photos": [
     {
-      "src": "photos/2025-06-18_Black_Canyon_Of_The_Gunnyson_National_Park.jpg",
+      "src": "photos/2025-09-02_Cleveland.JPG",
+      "caption": "The Thunderbirds airshow",
+      "location": "Cleveland",
+      "date": "2025-09-02"
+    },
+    {
+      "src": "photos/2025-09-02_Cleveland_2.JPG",
+      "caption": "The Thunderbirds airshow",
+      "location": "Cleveland",
+      "date": "2025-09-02"
+    },
+    {
+      "src": "photos/2025-09-02_Cleveland_3.JPG",
+      "caption": "The Thunderbirds airshow",
+      "location": "Cleveland",
+      "date": "2025-09-02"
+    },
+    {
+      "src": "photos/2025-07-05_Great_Smoky_Mountains_National_Park.JPG",
       "caption": "",
-      "location": "Black Canyon Of The Bunnyson National Park",
+      "location": "Great Smoky Mountains National Park",
+      "date": "2025-07-05"
+    },
+    {
+      "src": "photos/2025-06-20_Mesa_Verde_National_Park.JPG",
+      "caption": "",
+      "location": "Mesa Verde National Park",
+      "date": "2025-06-20"
+    },
+    {
+      "src": "photos/2025-06-18_Black_Canyon_Of_The_Gunnison_National_Park.jpg",
+      "caption": "",
+      "location": "Black Canyon of the Gunnison National Park",
+      "date": "2025-06-18"
+    },
+    {
+      "src": "photos/2025-06-18_Black_Canyon_Of_The_Gunnison_National_Park_2.JPG",
+      "caption": "",
+      "location": "Black Canyon of the Gunnison National Park",
       "date": "2025-06-18"
     },
     {
@@ -19,10 +55,160 @@
       "date": "2025-06-17"
     },
     {
+      "src": "photos/2025-06-17_Rocky_Mountain_National_Park_2.JPG",
+      "caption": "",
+      "location": "Rocky Mountain National Park",
+      "date": "2025-06-17"
+    },
+    {
+      "src": "photos/2025-06-17_Rocky_Mountain_National_Park_3.JPG",
+      "caption": "",
+      "location": "Rocky Mountain National Park",
+      "date": "2025-06-17"
+    },
+    {
+      "src": "photos/2025-06-16_Sky_Pond,_Rocky_Mountain_National_Park.JPG",
+      "caption": "",
+      "location": "Sky Pond, Rocky Mountain National Park",
+      "date": "2025-06-16"
+    },
+    {
+      "src": "photos/2024-12-30_Saguaro_National_Park.JPG",
+      "caption": "",
+      "location": "Saguaro National Park",
+      "date": "2024-12-30"
+    },
+    {
+      "src": "photos/2024-12-29_Arizona.JPG",
+      "caption": "",
+      "location": "Arizona",
+      "date": "2024-12-29"
+    },
+    {
+      "src": "photos/2024-12-28_Petrified_Forest_National_Park.JPG",
+      "caption": "",
+      "location": "Petrified Forest National Park",
+      "date": "2024-12-28"
+    },
+    {
+      "src": "photos/2024-12-28_Petrified_Forest_National_Park_2.JPG",
+      "caption": "",
+      "location": "Petrified Forest National Park",
+      "date": "2024-12-28"
+    },
+    {
+      "src": "photos/2024-12-23_Death_Valley_National_Park.JPG",
+      "caption": "",
+      "location": "Death Valley National Park",
+      "date": "2024-12-23"
+    },
+    {
+      "src": "photos/2024-12-22_Death_Valley_National_Park.JPG",
+      "caption": "",
+      "location": "Death Valley National Park",
+      "date": "2024-12-22"
+    },
+    {
+      "src": "photos/2024-12-22_Death_Valley_National_Park_2.JPG",
+      "caption": "",
+      "location": "Death Valley National Park",
+      "date": "2024-12-22"
+    },
+    {
+      "src": "photos/2024-12-22_Death_Valley_National_Park_3.JPG",
+      "caption": "",
+      "location": "Death Valley National Park",
+      "date": "2024-12-22"
+    },
+    {
+      "src": "photos/2024-10-20_Acadia_National_Park.JPG",
+      "caption": "",
+      "location": "Acadia National Park",
+      "date": "2024-10-20"
+    },
+    {
+      "src": "photos/2024-09-16_Redwood_National_Park.JPG",
+      "caption": "",
+      "location": "Redwood National Park",
+      "date": "2024-09-16"
+    },
+    {
+      "src": "photos/2024-09-13_Crater_Lake_National_Park.JPG",
+      "caption": "",
+      "location": "Crater Lake National Park",
+      "date": "2024-09-13"
+    },
+    {
+      "src": "photos/2024-09-13_Crater_Lake_National_Park_2.JPG",
+      "caption": "",
+      "location": "Crater Lake National Park",
+      "date": "2024-09-13"
+    },
+    {
+      "src": "photos/2024-09-13_Crater_Lake_National_Park_3.JPG",
+      "caption": "",
+      "location": "Crater Lake National Park",
+      "date": "2024-09-13"
+    },
+    {
+      "src": "photos/2024-09-12_Lassen_Volcanic_National_Park.JPG",
+      "caption": "",
+      "location": "Lassen Volcanic National Park",
+      "date": "2024-09-12"
+    },
+    {
+      "src": "photos/2024-09-11_Lassen_Volcanic_National_Park.JPG",
+      "caption": "",
+      "location": "Lassen Volcanic National Park",
+      "date": "2024-09-11"
+    },
+    {
+      "src": "photos/2024-09-08_Big_Sur.JPG",
+      "caption": "",
+      "location": "Big Sur",
+      "date": "2024-09-08"
+    },
+    {
       "src": "photos/2023-10-15_Great_Smoky_Mountains_National_Park.jpg",
       "caption": "",
       "location": "Great Smoky Mountains National Park",
       "date": "2023-10-15"
+    },
+    {
+      "src": "photos/2023-10-13_Great_Smoky_Mountains_National_Park.JPG",
+      "caption": "",
+      "location": "Great Smoky Mountains National Park",
+      "date": "2023-10-13"
+    },
+    {
+      "src": "photos/2023-06-20_Glacier_National_Park.JPG",
+      "caption": "",
+      "location": "Glacier National Park",
+      "date": "2023-06-20"
+    },
+    {
+      "src": "photos/2023-06-20_Glacier_National_Park_2.JPG",
+      "caption": "",
+      "location": "Glacier National Park",
+      "date": "2023-06-20"
+    },
+    {
+      "src": "photos/2022-06-04_Kolukkumalai.JPG",
+      "caption": "",
+      "location": "Kolukkumalai",
+      "date": "2022-06-04"
+    },
+    {
+      "src": "photos/2022-06-04_Kolukkumalai_2.JPG",
+      "caption": "",
+      "location": "Kolukkumalai",
+      "date": "2022-06-04"
+    },
+    {
+      "src": "photos/2022-05-17_Manali.JPG",
+      "caption": "",
+      "location": "Manali",
+      "date": "2022-05-17"
     },
     {
       "src": "photos/2022-05-15_Manali.jpg",
@@ -33,7 +219,7 @@
     {
       "src": "photos/2022-05-15_Manali_2.jpg",
       "caption": "",
-      "location": "Manali 2",
+      "location": "Manali",
       "date": "2022-05-15"
     },
     {
@@ -45,7 +231,7 @@
     {
       "src": "photos/2021-10-02_Zion_National_Park_2.jpg",
       "caption": "",
-      "location": "Zion National Park 2",
+      "location": "Zion National Park",
       "date": "2021-10-02"
     },
     {
@@ -55,7 +241,7 @@
       "date": "2021-09-29"
     },
     {
-      "src": "photos/2021-09-28_Capitol_Reef_National_park.jpeg",
+      "src": "photos/2021-09-28_Capitol_Reef_National_Park.jpeg",
       "caption": "",
       "location": "Capitol Reef National Park",
       "date": "2021-09-28"
@@ -89,6 +275,12 @@
       "caption": "",
       "location": "Madison Wisconsin",
       "date": "2020-02-18"
+    },
+    {
+      "src": "photos/2019-06-07_Munnar_Hill_Station.JPG",
+      "caption": "",
+      "location": "Munnar Hill Station",
+      "date": "2019-06-07"
     },
     {
       "src": "photos/2019-06-06_Munnar_Hill_Station.jpg",
