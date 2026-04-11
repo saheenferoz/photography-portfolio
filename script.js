@@ -45,6 +45,15 @@
       img.alt = photo.caption || "";
       img.loading = "lazy";
 
+      function markImageLoaded() {
+        item.classList.add("is-loaded");
+      }
+      img.addEventListener("load", markImageLoaded);
+      img.addEventListener("error", markImageLoaded);
+      if (img.complete && img.naturalWidth > 0) {
+        markImageLoaded();
+      }
+
       item.appendChild(img);
       item.addEventListener("click", function () {
         openLightbox(index);
