@@ -8,25 +8,25 @@
   "photos": [
     {
       "src": "photos/2026-03-29_Austin,_Texas.JPG",
-      "caption": "MotoGP 2026 - Circuit of the Americas (Marc Márquez)",
+      "caption": "MotoGP 2026 - Circuit of the Americas (Marc M\u00e1rquez)",
       "location": "Austin, Texas",
       "date": "2026-03-29"
     },
     {
       "src": "photos/2025-09-02_Cleveland.JPG",
-      "caption": "",
+      "caption": "The Thunderbirds Airshow",
       "location": "Cleveland",
       "date": "2025-09-02"
     },
     {
       "src": "photos/2025-09-02_Cleveland_2.JPG",
-      "caption": "",
+      "caption": "The Thunderbirds Airshow",
       "location": "Cleveland",
       "date": "2025-09-02"
     },
     {
       "src": "photos/2025-09-02_Cleveland_3.JPG",
-      "caption": "",
+      "caption": "The Thunderbirds Airshow",
       "location": "Cleveland",
       "date": "2025-09-02"
     },
@@ -140,7 +140,7 @@
     },
     {
       "src": "photos/2024-09-16_Redwood_National_Park.JPG",
-      "caption": "",
+      "caption": "Fern Canyon. Where dinosaurs roam...",
       "location": "Redwood National Park",
       "date": "2024-09-16"
     },
@@ -242,25 +242,49 @@
     },
     {
       "src": "photos/2021-10-02_Zion_National_Park_2.jpg",
+      "caption": "Atop Angel's Landing",
+      "location": "Zion National Park",
+      "date": "2021-10-02"
+    },
+    {
+      "src": "photos/2021-10-02_Zion_National_Park_3.JPG",
       "caption": "",
       "location": "Zion National Park",
       "date": "2021-10-02"
     },
     {
       "src": "photos/2021-09-29_Bryce_Canyon_National_Park.jpg",
+      "caption": "Fairyland Loop",
+      "location": "Bryce Canyon National Park",
+      "date": "2021-09-29"
+    },
+    {
+      "src": "photos/2021-09-29_Bryce_Canyon_National_Park_2.JPG",
+      "caption": "",
+      "location": "Bryce Canyon National Park",
+      "date": "2021-09-29"
+    },
+    {
+      "src": "photos/2021-09-29_Bryce_Canyon_National_Park_3.JPG",
       "caption": "",
       "location": "Bryce Canyon National Park",
       "date": "2021-09-29"
     },
     {
       "src": "photos/2021-09-28_Capitol_Reef_National_Park.jpg",
-      "caption": "",
+      "caption": "Capitol Gorge Trail",
       "location": "Capitol Reef National Park",
       "date": "2021-09-28"
     },
     {
       "src": "photos/2021-09-26_Arches_National_Park.jpg",
       "caption": "",
+      "location": "Arches National Park",
+      "date": "2021-09-26"
+    },
+    {
+      "src": "photos/2021-09-26_Arches_National_Park_2.JPG",
+      "caption": "Delicate Arch",
       "location": "Arches National Park",
       "date": "2021-09-26"
     },
