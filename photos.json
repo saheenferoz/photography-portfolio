@@ -8,19 +8,19 @@
   "photos": [
     {
       "src": "photos/2025-09-02_Cleveland.JPG",
-      "caption": "The Thunderbirds airshow",
+      "caption": "",
       "location": "Cleveland",
       "date": "2025-09-02"
     },
     {
       "src": "photos/2025-09-02_Cleveland_2.JPG",
-      "caption": "The Thunderbirds airshow",
+      "caption": "",
       "location": "Cleveland",
       "date": "2025-09-02"
     },
     {
       "src": "photos/2025-09-02_Cleveland_3.JPG",
-      "caption": "The Thunderbirds airshow",
+      "caption": "",
       "location": "Cleveland",
       "date": "2025-09-02"
     },
@@ -29,6 +29,12 @@
       "caption": "",
       "location": "Great Smoky Mountains National Park",
       "date": "2025-07-05"
+    },
+    {
+      "src": "photos/2025-06-20_Great_Sand_Dunes_National_Park.jpeg",
+      "caption": "",
+      "location": "Great Sand Dunes National Park",
+      "date": "2025-06-20"
     },
     {
       "src": "photos/2025-06-20_Mesa_Verde_National_Park.JPG",
@@ -263,12 +269,6 @@
       "caption": "",
       "location": "Cave of the Mounds",
       "date": "2020-07-24"
-    },
-    {
-      "src": "photos/2020-06-20_Great_Sand_Dunes_National_Park.jpeg",
-      "caption": "",
-      "location": "Great Sand Dunes National Park",
-      "date": "2020-06-20"
     },
     {
       "src": "photos/2020-02-18_Madison_Wisconsin.JPG",
