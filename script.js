@@ -93,7 +93,9 @@
     const photo = photos[currentIndex];
     lightboxImg.src = photo.src;
     lightboxImg.alt = photo.caption || "";
-    lightboxCaption.textContent = photo.caption || "";
+    var captionText = (photo.caption || "").trim();
+    lightboxCaption.textContent = captionText;
+    lightboxCaption.classList.toggle("is-empty", !captionText);
 
     if (photo.location) {
       lightboxLocation.style.display = "inline-flex";
