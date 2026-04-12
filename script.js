@@ -1,6 +1,7 @@
 (function () {
   let photos = [];
   let currentIndex = 0;
+  let lightboxLoadId = 0;
 
   const grid = document.getElementById("photo-grid");
   const lightbox = document.getElementById("lightbox");
@@ -23,6 +24,16 @@
     });
   }
 
+  /** Smaller file for the grid; optional per-photo `thumb` in JSON overrides. */
+  function thumbSrcFor(photo) {
+    if (photo.thumb) return photo.thumb;
+    var s = photo.src;
+    if (s.indexOf("photos/") === 0) {
+      return "photos/thumbs/" + s.slice("photos/".length);
+    }
+    return s;
+  }
+
   function renderProfile(profile) {
     document.getElementById("avatar").src = profile.avatar;
     document.getElementById("avatar").alt = profile.name;
@@ -41,7 +52,8 @@
       item.setAttribute("aria-label", photo.caption || "Photo " + (index + 1));
 
       const img = document.createElement("img");
-      img.src = photo.src;
+      var thumb = thumbSrcFor(photo);
+      img.src = thumb;
       img.alt = photo.caption || "";
       img.loading = "lazy";
 
@@ -49,7 +61,18 @@
         item.classList.add("is-loaded");
       }
       img.addEventListener("load", markImageLoaded);
-      img.addEventListener("error", markImageLoaded);
+      img.addEventListener("error", function () {
+        if (img.dataset.fallback === "1") {
+          markImageLoaded();
+          return;
+        }
+        if (thumb !== photo.src) {
+          img.dataset.fallback = "1";
+          img.src = photo.src;
+          return;
+        }
+        markImageLoaded();
+      });
       if (img.complete && img.naturalWidth > 0) {
         markImageLoaded();
       }
@@ -90,9 +113,33 @@
   }
 
   function updateLightboxContent() {
+    var loadId = ++lightboxLoadId;
+    function stale() {
+      return loadId !== lightboxLoadId;
+    }
+
     const photo = photos[currentIndex];
-    lightboxImg.src = photo.src;
+    var fullSrc = photo.src;
+    var thumb = thumbSrcFor(photo);
+
     lightboxImg.alt = photo.caption || "";
+
+    if (thumb !== fullSrc) {
+      lightboxImg.src = thumb;
+      var hi = new Image();
+      hi.onload = function () {
+        if (stale()) return;
+        lightboxImg.src = fullSrc;
+      };
+      hi.onerror = function () {
+        if (stale()) return;
+        lightboxImg.src = fullSrc;
+      };
+      hi.src = fullSrc;
+    } else {
+      lightboxImg.src = fullSrc;
+    }
+
     var captionText = (photo.caption || "").trim();
     lightboxCaption.textContent = captionText;
     lightboxCaption.classList.toggle("is-empty", !captionText);
