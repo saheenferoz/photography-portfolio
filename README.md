@@ -1,15 +1,19 @@
 https://saheenferoz.github.io/photography-portfolio/
 
-## Adding a photo
+## Gallery (GitHub)
 
-1. From the repo root:
+Use **`main`**.
 
-   ```bash
-   python3 upload_photo.py /path/to/image.JPG --date 2026-04-12 --location "Yosemite National Park"
-   ```
+### Add
 
-   Add `--caption "…"` if you want. Naming and thumbnails are handled by the script; see `upload_photo.py` for rules.
+1. Put the image in **`photos/`** with a name like **`2026-04-12_Yosemite_National_Park.JPG`**: `YYYY-MM-DD`, then the location with **underscores** instead of spaces. If you already have that date and location, use **`_2`**, **`_3`**, … before the extension (e.g. `…_Park_2.JPG`).
+2. **Commit and push** (GitHub’s “Add file” flow is fine).  
+   **GitHub Actions** then updates **`photos.json`**, creates **`photos/thumbs/<same filename>`**, re-sorts the list, and pushes a second commit with **`[skip ci]`**. Captions are empty until you edit them in **`photos.json`**.
 
-2. Commit and push (including `photos.json`, `photos/`, and `photos/thumbs/`).
+### Remove
 
-If you edit `photos.json` by hand, run `python3 sort_photos_json.py` before committing.
+1. Delete the file from **`photos/`**.
+2. **Commit and push.**  
+   Actions removes the matching **`photos.json`** entry and deletes **`photos/thumbs/<same filename>`**.
+
+If the filename does not follow the pattern above, Actions skips that file (check the workflow log).
