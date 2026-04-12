@@ -95,10 +95,11 @@ main {
   object-fit: cover;
   display: block;
   opacity: 0;
-  transition: opacity 0.5s ease, transform 0.2s ease, filter 0.2s ease;
+  transition: opacity 0.55s ease, transform 0.2s ease, filter 0.2s ease;
 }
 
-.grid-item.is-loaded img {
+/* Fade in once the image has loaded *and* the tile has entered the viewport */
+.grid-item.is-loaded.is-revealed img {
   opacity: 1;
 }
 

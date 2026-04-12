@@ -42,6 +42,37 @@
     document.title = profile.name + " — Photography";
   }
 
+  function setupGridScrollReveal() {
+    var items = grid.querySelectorAll(".grid-item");
+    if (!items.length) return;
+
+    function revealAll() {
+      items.forEach(function (el) {
+        el.classList.add("is-revealed");
+      });
+    }
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      revealAll();
+      return;
+    }
+
+    var io = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("is-revealed");
+          io.unobserve(entry.target);
+        });
+      },
+      { root: null, rootMargin: "60px 0px 60px 0px", threshold: 0.01 }
+    );
+
+    items.forEach(function (item) {
+      io.observe(item);
+    });
+  }
+
   function renderGrid(photoList) {
     grid.innerHTML = "";
     photoList.forEach(function (photo, index) {
@@ -89,6 +120,7 @@
       });
       grid.appendChild(item);
     });
+    setupGridScrollReveal();
   }
 
   function openLightbox(index) {
