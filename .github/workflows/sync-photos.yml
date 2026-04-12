@@ -1,0 +1,46 @@
+# After you push a new image into photos/ with the usual filename pattern,
+# this workflow adds a photos.json row (date/location parsed from the name),
+# writes the matching file under photos/thumbs/, sorts the list, and pushes.
+# Commit subject includes [skip ci] so this job does not re-trigger itself.
+
+name: Sync photo thumbnails and JSON
+
+on:
+  push:
+    branches: [master, main]
+    paths:
+      - "photos/**"
+      - "photos.json"
+      - ".github/workflows/sync-photos.yml"
+      - "scripts/**"
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install pillow
+
+      - name: Sync thumbnails and photos.json
+        run: python scripts/sync_photos.py
+
+      - name: Commit and push if needed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add photos.json photos/thumbs
+          if git diff --staged --quiet; then
+            echo "Nothing to commit."
+            exit 0
+          fi
+          git commit -m "chore: sync photo thumbnails and photos.json [skip ci]"
+          git push
