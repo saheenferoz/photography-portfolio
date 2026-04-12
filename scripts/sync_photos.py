@@ -3,10 +3,13 @@
 Scan photos/ for images, add missing entries to photos.json (from filename),
 ensure photos/thumbs/ exists for each, then sort the gallery list.
 
+Removes photos.json rows (and matching thumbs) when the full-size file was
+deleted from photos/ so the gallery stays in sync.
+
 Expected filenames match upload_photo.py: {YYYY-MM-DD}_{location}[_{n}].ext
 Location in JSON is underscores replaced by spaces (same as upload flow).
 
-Run locally or in GitHub Actions after pushing new files into photos/.
+Run locally or in GitHub Actions after pushing changes under photos/.
 """
 
 from __future__ import annotations
@@ -66,6 +69,40 @@ def main() -> None:
 
     orig_dump = json.dumps(data, indent=2, ensure_ascii=False) + "\n"
 
+    actual: set[str] = set()
+    for path in photos_dir.iterdir():
+        if path.is_file() and path.suffix.lower() in IMAGE_EXT:
+            actual.add(path.name)
+
+    pruned_entries = 0
+    kept: list = []
+    for p in photos:
+        if not isinstance(p, dict):
+            kept.append(p)
+            continue
+        src = p.get("src")
+        if not isinstance(src, str) or not src.startswith("photos/"):
+            kept.append(p)
+            continue
+        if Path(src).name in actual:
+            kept.append(p)
+        else:
+            pruned_entries += 1
+            print(f"removed json (file gone): {src}")
+    photos[:] = kept
+
+    thumbs_removed = 0
+    if thumbs_dir.is_dir():
+        for tpath in list(thumbs_dir.iterdir()):
+            if not tpath.is_file():
+                continue
+            if tpath.suffix.lower() not in IMAGE_EXT:
+                continue
+            if tpath.name not in actual:
+                tpath.unlink()
+                thumbs_removed += 1
+                print(f"removed thumb: {tpath.relative_to(root)}")
+
     by_src = {p.get("src"): p for p in photos if isinstance(p, dict) and p.get("src")}
     added = 0
     thumbs_written = 0
@@ -110,7 +147,10 @@ def main() -> None:
     if new_dump != orig_dump:
         json_path.write_text(new_dump, encoding="utf-8", newline="\n")
 
-    print(f"done: +{added} entries, {thumbs_written} thumbnails, json_updated={new_dump != orig_dump}")
+    print(
+        f"done: +{added} entries, {thumbs_written} thumbs written, "
+        f"-{pruned_entries} json, -{thumbs_removed} thumbs, json_updated={new_dump != orig_dump}"
+    )
 
 
 if __name__ == "__main__":
