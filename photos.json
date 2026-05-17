@@ -19,6 +19,12 @@
       "date": "2026-03-29"
     },
     {
+      "src": "photos/2026-03-21_Gettysburg.jpg",
+      "caption": "",
+      "location": "Gettysburg",
+      "date": "2026-03-21"
+    },
+    {
       "src": "photos/2025-09-02_Cleveland.JPG",
       "caption": "The Thunderbirds Airshow",
       "location": "Cleveland",
@@ -41,6 +47,12 @@
       "caption": "",
       "location": "Great Smoky Mountains National Park",
       "date": "2025-07-05"
+    },
+    {
+      "src": "photos/2025-07-04_Great_Smoky_Mountains_National_Park.JPG",
+      "caption": "",
+      "location": "Great Smoky Mountains National Park",
+      "date": "2025-07-04"
     },
     {
       "src": "photos/2025-06-20_Great_Sand_Dunes_National_Park.jpeg",
@@ -91,6 +103,12 @@
       "date": "2025-06-16"
     },
     {
+      "src": "photos/2025-04-04_Pittsburgh.JPG",
+      "caption": "",
+      "location": "Pittsburgh",
+      "date": "2025-04-04"
+    },
+    {
       "src": "photos/2024-12-30_Saguaro_National_Park.JPG",
       "caption": "",
       "location": "Saguaro National Park",
@@ -115,6 +133,12 @@
       "date": "2024-12-28"
     },
     {
+      "src": "photos/2024-12-27_Barringer_Crater.JPG",
+      "caption": "",
+      "location": "Barringer Crater",
+      "date": "2024-12-27"
+    },
+    {
       "src": "photos/2024-12-23_Death_Valley_National_Park.JPG",
       "caption": "",
       "location": "Death Valley National Park",
@@ -137,6 +161,12 @@
       "caption": "",
       "location": "Death Valley National Park",
       "date": "2024-12-22"
+    },
+    {
+      "src": "photos/2024-11-24_Yosemite_National_Park.JPG",
+      "caption": "",
+      "location": "Yosemite National Park",
+      "date": "2024-11-24"
     },
     {
       "src": "photos/2024-10-20_Acadia_National_Park.JPG",
