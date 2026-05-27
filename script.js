@@ -3,7 +3,7 @@
   let currentIndex = 0;
   let lightboxLoadId = 0;
 
-  const grid = document.getElementById("photo-grid");
+  const gallery = document.getElementById("photo-gallery");
   const lightbox = document.getElementById("lightbox");
   const lightboxImg = document.getElementById("lightbox-img");
   const lightboxCaption = document.getElementById("lightbox-caption");
@@ -42,8 +42,28 @@
     document.title = profile.name + " — Photography";
   }
 
+  function yearFromPhoto(photo) {
+    if (!photo.date) return "Unknown";
+    return photo.date.slice(0, 4);
+  }
+
+  function groupPhotosByYear(photoList) {
+    var groups = [];
+    var byYear = new Map();
+    photoList.forEach(function (photo, index) {
+      var year = yearFromPhoto(photo);
+      if (!byYear.has(year)) {
+        var group = { year: year, items: [] };
+        byYear.set(year, group);
+        groups.push(group);
+      }
+      byYear.get(year).items.push({ photo: photo, index: index });
+    });
+    return groups;
+  }
+
   function setupGridScrollReveal() {
-    var items = grid.querySelectorAll(".grid-item");
+    var items = gallery.querySelectorAll(".grid-item");
     if (!items.length) return;
 
     function revealAll() {
@@ -73,52 +93,114 @@
     });
   }
 
-  function renderGrid(photoList) {
-    grid.innerHTML = "";
-    photoList.forEach(function (photo, index) {
-      const item = document.createElement("div");
-      item.className = "grid-item";
-      item.setAttribute("role", "button");
-      item.setAttribute("tabindex", "0");
-      item.setAttribute("aria-label", photo.caption || "Photo " + (index + 1));
+  function gridItemAriaLabel(photo, index) {
+    var parts = [];
+    if (photo.caption) parts.push(photo.caption);
+    if (photo.location) parts.push(photo.location);
+    var dateLabel = formatDate(photo.date);
+    if (dateLabel) parts.push(dateLabel);
+    if (parts.length) return parts.join(", ");
+    return "Photo " + (index + 1);
+  }
 
-      const img = document.createElement("img");
-      var thumb = thumbSrcFor(photo);
-      img.src = thumb;
-      img.alt = photo.caption || "";
-      img.loading = "lazy";
+  function createGridItem(photo, index) {
+    const item = document.createElement("div");
+    item.className = "grid-item";
+    item.setAttribute("role", "button");
+    item.setAttribute("tabindex", "0");
+    item.setAttribute("aria-label", gridItemAriaLabel(photo, index));
 
-      function markImageLoaded() {
-        item.classList.add("is-loaded");
-      }
-      img.addEventListener("load", markImageLoaded);
-      img.addEventListener("error", function () {
-        if (img.dataset.fallback === "1") {
-          markImageLoaded();
-          return;
-        }
-        if (thumb !== photo.src) {
-          img.dataset.fallback = "1";
-          img.src = photo.src;
-          return;
-        }
+    const img = document.createElement("img");
+    var thumb = thumbSrcFor(photo);
+    img.src = thumb;
+    img.alt = photo.caption || "";
+    img.loading = "lazy";
+
+    function markImageLoaded() {
+      item.classList.add("is-loaded");
+    }
+    img.addEventListener("load", markImageLoaded);
+    img.addEventListener("error", function () {
+      if (img.dataset.fallback === "1") {
         markImageLoaded();
-      });
-      if (img.complete && img.naturalWidth > 0) {
-        markImageLoaded();
+        return;
+      }
+      if (thumb !== photo.src) {
+        img.dataset.fallback = "1";
+        img.src = photo.src;
+        return;
+      }
+      markImageLoaded();
+    });
+    if (img.complete && img.naturalWidth > 0) {
+      markImageLoaded();
+    }
+
+    item.appendChild(img);
+
+    var locationText = (photo.location || "").trim();
+    var dateText = formatDate(photo.date);
+    if (locationText || dateText) {
+      const overlay = document.createElement("div");
+      overlay.className = "grid-item-overlay";
+      overlay.setAttribute("aria-hidden", "true");
+
+      const meta = document.createElement("div");
+      meta.className = "grid-item-meta";
+
+      if (locationText) {
+        const locationEl = document.createElement("span");
+        locationEl.className = "grid-item-location";
+        locationEl.innerHTML =
+          '<svg class="grid-pin-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>' +
+          "<span></span>";
+        locationEl.lastElementChild.textContent = locationText;
+        meta.appendChild(locationEl);
       }
 
-      item.appendChild(img);
-      item.addEventListener("click", function () {
+      if (dateText) {
+        const dateEl = document.createElement("span");
+        dateEl.className = "grid-item-date";
+        dateEl.textContent = dateText;
+        meta.appendChild(dateEl);
+      }
+
+      overlay.appendChild(meta);
+      item.appendChild(overlay);
+    }
+
+    item.addEventListener("click", function () {
+      openLightbox(index);
+    });
+    item.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
         openLightbox(index);
+      }
+    });
+    return item;
+  }
+
+  function renderGrid(photoList) {
+    gallery.innerHTML = "";
+    groupPhotosByYear(photoList).forEach(function (group) {
+      const section = document.createElement("section");
+      section.className = "year-section";
+      section.setAttribute("aria-labelledby", "year-" + group.year);
+
+      const heading = document.createElement("h2");
+      heading.className = "year-heading";
+      heading.id = "year-" + group.year;
+      heading.textContent = group.year;
+      section.appendChild(heading);
+
+      const yearGrid = document.createElement("div");
+      yearGrid.className = "photo-grid";
+      group.items.forEach(function (entry) {
+        yearGrid.appendChild(createGridItem(entry.photo, entry.index));
       });
-      item.addEventListener("keydown", function (e) {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          openLightbox(index);
-        }
-      });
-      grid.appendChild(item);
+      section.appendChild(yearGrid);
+      gallery.appendChild(section);
     });
     setupGridScrollReveal();
   }
@@ -134,7 +216,7 @@
   function closeLightbox() {
     lightbox.classList.remove("active");
     document.body.classList.remove("lightbox-open");
-    const items = grid.querySelectorAll(".grid-item");
+    const items = gallery.querySelectorAll(".grid-item");
     if (items[currentIndex]) items[currentIndex].focus();
   }
 
@@ -217,7 +299,7 @@
     })
     .catch(function (err) {
       console.error("Failed to load photos.json:", err);
-      grid.innerHTML =
-        '<p style="color:var(--text-secondary);text-align:center;grid-column:1/-1;padding:40px;">Could not load photos. Make sure photos.json exists.</p>';
+      gallery.innerHTML =
+        '<p style="color:var(--text-secondary);text-align:center;padding:40px;">Could not load photos. Make sure photos.json exists.</p>';
     });
 })();
