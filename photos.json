@@ -8,13 +8,13 @@
   "photos": [
     {
       "src": "photos/2026-05-24_Indianapolis_1.jpg",
-      "caption": "",
+      "caption": "The 110th Indy 500",
       "location": "Indianapolis",
       "date": "2026-05-24"
     },
     {
       "src": "photos/2026-05-24_Indianapolis_2.jpg",
-      "caption": "",
+      "caption": "The 110th Indy 500",
       "location": "Indianapolis",
       "date": "2026-05-24"
     },
@@ -236,7 +236,7 @@
     },
     {
       "src": "photos/2024-03-29_Fujikawaguchiko,_Japan_2.JPG",
-      "caption": "",
+      "caption": "Mt. Fuji",
       "location": "Fujikawaguchiko, Japan",
       "date": "2024-03-29"
     },
@@ -284,7 +284,7 @@
     },
     {
       "src": "photos/2022-06-04_Idukki_Reservoir.jpg",
-      "caption": "",
+      "caption": "Anchuruli",
       "location": "Idukki Reservoir",
       "date": "2022-06-04"
     },
