@@ -7,6 +7,12 @@
   "gridColumns": 4,
   "photos": [
     {
+      "src": "photos/2026-07-09_Boston.jpg",
+      "caption": "",
+      "location": "Boston",
+      "date": "2026-07-09"
+    },
+    {
       "src": "photos/2026-07-04_Scotts_Bluff_National_Monument.JPG",
       "caption": "",
       "location": "Scotts Bluff National Monument",
