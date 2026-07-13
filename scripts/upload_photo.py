@@ -214,6 +214,11 @@ def main() -> None:
         help="Lightbox location; also used in the filename after the date",
     )
     parser.add_argument(
+        "--map",
+        default="",
+        help="Optional map URL; empty means the site links to a Google Maps search for the location",
+    )
+    parser.add_argument(
         "--thumb-size",
         type=int,
         default=900,
@@ -250,6 +255,7 @@ def main() -> None:
         "caption": args.caption,
         "location": args.location,
         "date": d,
+        "map": args.map,
     }
 
     photos_dir.mkdir(parents=True, exist_ok=True)

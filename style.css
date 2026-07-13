@@ -152,6 +152,20 @@ main {
   font-weight: 500;
   line-height: 1.35;
   color: var(--text-primary);
+  text-decoration: none;
+}
+
+/* Overlay disables pointer events; re-enable the map link only while the
+   overlay is visible so the invisible link can't intercept tile clicks. */
+.grid-item:hover .grid-item-location,
+.grid-item:focus-visible .grid-item-location {
+  pointer-events: auto;
+}
+
+.grid-item-location:hover span:last-child,
+.grid-item-location:focus-visible span:last-child {
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 .grid-item-location span:last-child {
@@ -273,6 +287,15 @@ main {
   display: inline-flex;
   align-items: center;
   gap: 5px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.lightbox-location:hover,
+.lightbox-location:focus-visible {
+  color: var(--text-primary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 .pin-icon {

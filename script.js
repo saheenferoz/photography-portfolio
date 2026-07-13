@@ -24,6 +24,15 @@
     });
   }
 
+  /** Optional per-photo `map` in JSON overrides the Google Maps name search. */
+  function mapUrlFor(photo) {
+    if (photo.map) return photo.map;
+    return (
+      "https://www.google.com/maps/search/?api=1&query=" +
+      encodeURIComponent(photo.location)
+    );
+  }
+
   /** Smaller file for the grid; optional per-photo `thumb` in JSON overrides. */
   function thumbSrcFor(photo) {
     if (photo.thumb) return photo.thumb;
@@ -149,8 +158,18 @@
       meta.className = "grid-item-meta";
 
       if (locationText) {
-        const locationEl = document.createElement("span");
+        const locationEl = document.createElement("a");
         locationEl.className = "grid-item-location";
+        locationEl.href = mapUrlFor(photo);
+        locationEl.target = "_blank";
+        locationEl.rel = "noopener";
+        locationEl.title = "Open in Google Maps";
+        // Overlay is aria-hidden, so keep the link out of the tab order;
+        // keyboard users can open the map from the lightbox instead.
+        locationEl.tabIndex = -1;
+        locationEl.addEventListener("click", function (e) {
+          e.stopPropagation();
+        });
         locationEl.innerHTML =
           '<svg class="grid-pin-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>' +
           "<span></span>";
@@ -260,6 +279,7 @@
 
     if (photo.location) {
       lightboxLocation.style.display = "inline-flex";
+      lightboxLocation.href = mapUrlFor(photo);
       lightboxLocationText.textContent = photo.location;
     } else {
       lightboxLocation.style.display = "none";

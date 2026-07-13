@@ -69,6 +69,12 @@ def main() -> None:
 
     orig_dump = json.dumps(data, indent=2, ensure_ascii=False) + "\n"
 
+    # Keep entries uniform: `map` (optional URL overriding the Google Maps
+    # name search) should exist on every row, defaulting to empty.
+    for p in photos:
+        if isinstance(p, dict):
+            p.setdefault("map", "")
+
     actual: set[str] = set()
     for path in photos_dir.iterdir():
         if path.is_file() and path.suffix.lower() in IMAGE_EXT:
@@ -125,6 +131,7 @@ def main() -> None:
                 "caption": meta["caption"],
                 "location": meta["location"],
                 "date": meta["date"],
+                "map": "",
             }
             photos.append(entry)
             by_src[rel] = entry
