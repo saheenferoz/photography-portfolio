@@ -191,7 +191,24 @@
 
   /* ---- Map ---- */
 
-  function drawMap(world, pins) {
+  function prefersReducedMotion() {
+    return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  }
+
+  /** Stagger rank per pin: oldest photo location pops first, replaying the travel history. */
+  function computePopOrder(pins) {
+    var sorted = pins.slice().sort(function (a, b) {
+      var da = a.photos[a.photos.length - 1].date || "";
+      var db = b.photos[b.photos.length - 1].date || "";
+      return da < db ? -1 : da > db ? 1 : 0;
+    });
+    sorted.forEach(function (pin, rank) {
+      pin.popRank = rank;
+    });
+  }
+
+  function drawMap(world, pins, animate) {
+    animate = animate && !prefersReducedMotion();
     mapWrap.innerHTML = "";
 
     var width = mapWrap.clientWidth;
@@ -217,16 +234,27 @@
 
     var root = svg.append("g");
 
-    root
+    var wireframe = root.append("g").attr("class", "map-wireframe");
+
+    wireframe
       .append("path")
       .attr("class", "map-sphere")
       .attr("d", path({ type: "Sphere" }));
 
     var countries = topojson.mesh(world, world.objects.countries);
-    root
+    wireframe
       .append("path")
       .attr("class", "map-borders")
       .attr("d", path(countries));
+
+    if (animate) {
+      wireframe
+        .attr("opacity", 0)
+        .transition()
+        .duration(900)
+        .ease(d3.easeCubicOut)
+        .attr("opacity", 1);
+    }
 
     var defs = svg.append("defs");
 
@@ -254,10 +282,21 @@
       var g = pinLayer
         .append("g")
         .attr("class", "map-pin")
-        .attr("transform", "translate(" + pin.x + "," + pin.y + ")")
+        .attr(
+          "transform",
+          "translate(" + pin.x + "," + pin.y + ")" + (animate ? " scale(0)" : "")
+        )
         .attr("role", "button")
         .attr("tabindex", 0)
         .attr("aria-label", label);
+
+      if (animate) {
+        g.transition()
+          .delay(500 + pin.popRank * 45)
+          .duration(550)
+          .ease(d3.easeBackOut.overshoot(2.2))
+          .attr("transform", "translate(" + pin.x + "," + pin.y + ") scale(1)");
+      }
 
       var newestThumb = thumbSrcFor(pin.photos[0]);
       var image = g
@@ -317,9 +356,11 @@
     });
 
     /* Zoom/pan: the root group scales, pins counter-scale so they stay a
-       constant screen size and dense clusters separate as you zoom in. */
+       constant screen size and dense clusters separate as you zoom in.
+       interrupt() cancels any still-running intro pops so they can't
+       overwrite the zoom-adjusted transforms. */
     function applyPinScale(k) {
-      pinLayer.selectAll("g.map-pin").attr("transform", function () {
+      pinLayer.selectAll("g.map-pin").interrupt().attr("transform", function () {
         var pin = this.__pin__;
         return (
           "translate(" + pin.x + "," + pin.y + ") scale(" + 1 / k + ")"
@@ -342,7 +383,7 @@
 
     svg.call(zoom);
 
-    applyPinScale(1);
+    if (!animate) applyPinScale(1);
   }
 
   /* ---- Boot ---- */
@@ -360,13 +401,14 @@
       renderProfile(data.profile);
 
       var pins = groupByLocation(data.photos, locations);
-      drawMap(world, pins);
+      computePopOrder(pins);
+      drawMap(world, pins, true);
 
       var resizeTimer = null;
       window.addEventListener("resize", function () {
         clearTimeout(resizeTimer);
         resizeTimer = setTimeout(function () {
-          drawMap(world, pins);
+          drawMap(world, pins, false);
         }, 150);
       });
     })
