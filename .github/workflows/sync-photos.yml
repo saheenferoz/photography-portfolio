@@ -1,6 +1,7 @@
 # After you push a new image into photos/ with the usual filename pattern,
 # this workflow adds a photos.json row (date/location parsed from the name),
-# writes the matching file under photos/thumbs/, sorts the list, and pushes.
+# writes the matching file under photos/thumbs/, sorts the list, geocodes any
+# new locations into locations.json (for the map page), and pushes.
 # Commit subject includes [skip ci] so this job does not re-trigger itself.
 
 name: Sync photo thumbnails and JSON
@@ -33,11 +34,14 @@ jobs:
       - name: Sync thumbnails and photos.json
         run: python scripts/sync_photos.py
 
+      - name: Geocode new locations
+        run: python scripts/geocode_locations.py
+
       - name: Commit and push if needed
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add photos.json photos/thumbs
+          git add photos.json photos/thumbs locations.json
           if git diff --staged --quiet; then
             echo "Nothing to commit."
             exit 0

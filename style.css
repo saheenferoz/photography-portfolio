@@ -67,6 +67,37 @@ body {
   line-height: 1.55;
 }
 
+/* ---- Site Nav ---- */
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  margin-top: 22px;
+}
+
+.site-nav-link {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.88rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding-bottom: 3px;
+  border-bottom: 1px solid transparent;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.site-nav-link:hover,
+.site-nav-link:focus-visible {
+  color: var(--text-primary);
+}
+
+.site-nav-link.is-active {
+  color: var(--text-primary);
+  border-bottom-color: rgba(255, 255, 255, 0.5);
+}
+
 /* ---- Photo Grid ---- */
 
 main {
@@ -418,4 +449,158 @@ main {
 /* Hide scrollbar when lightbox is open */
 body.lightbox-open {
   overflow: hidden;
+}
+
+/* ---- Map Page ---- */
+
+body.map-page {
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+  overflow: hidden;
+}
+
+body.map-page .profile-header {
+  padding-top: 40px;
+  padding-bottom: 28px;
+  flex-shrink: 0;
+}
+
+body.map-page .avatar {
+  width: 72px;
+  height: 72px;
+  margin-bottom: 14px;
+}
+
+.map-main {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+.map-wrap {
+  width: 100%;
+  height: 100%;
+}
+
+.map-svg {
+  display: block;
+  cursor: grab;
+  touch-action: none;
+}
+
+.map-svg:active {
+  cursor: grabbing;
+}
+
+.map-sphere {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.22);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+.map-borders {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.45);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.map-pin {
+  cursor: pointer;
+}
+
+.map-pin-ring {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.85);
+  stroke-width: 1.5;
+  transition: stroke 0.15s ease;
+}
+
+.map-pin:hover .map-pin-ring,
+.map-pin:focus-visible .map-pin-ring {
+  stroke: #ffffff;
+  stroke-width: 2.5;
+}
+
+.map-pin:focus {
+  outline: none;
+}
+
+.map-pin-badge circle {
+  fill: #000000;
+  stroke: rgba(255, 255, 255, 0.85);
+  stroke-width: 1;
+}
+
+.map-pin-badge text {
+  fill: var(--text-primary);
+  font-size: 9px;
+  font-weight: 600;
+  text-anchor: middle;
+  dominant-baseline: central;
+  pointer-events: none;
+}
+
+.map-tooltip {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 900;
+  background: rgba(20, 20, 20, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: var(--text-primary);
+  font-size: 0.8rem;
+  line-height: 1.35;
+  padding: 6px 10px;
+  border-radius: 4px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.12s ease;
+  white-space: nowrap;
+}
+
+.map-tooltip.visible {
+  opacity: 1;
+}
+
+.map-attribution {
+  position: absolute;
+  right: 10px;
+  bottom: 8px;
+  margin: 0;
+  font-size: 0.68rem;
+  color: rgba(255, 255, 255, 0.35);
+  pointer-events: none;
+}
+
+.map-attribution a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  pointer-events: auto;
+}
+
+.map-attribution a:hover,
+.map-attribution a:focus-visible {
+  color: var(--text-secondary);
+}
+
+@media (max-width: 599px) {
+  body.map-page .profile-header {
+    padding-top: 32px;
+    padding-bottom: 22px;
+  }
+
+  .site-nav {
+    gap: 22px;
+    margin-top: 18px;
+  }
 }

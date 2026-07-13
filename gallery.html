@@ -3,36 +3,31 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="google-site-verification" content="91hWo-KLIf22Oe8DgepBPAW7Q3AsirZHLwAqaSBdHmA" />
-  <title>Saheen Feroz — Photography</title>
+  <title>Saheen Feroz — Gallery</title>
   <meta name="description" content="Photography portfolio by Saheen Feroz." />
-  <link rel="canonical" href="https://saheenferoz.github.io/" />
+  <link rel="canonical" href="https://saheenferoz.github.io/gallery.html" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://saheenferoz.github.io/" />
-  <meta property="og:title" content="Saheen Feroz — Photography" />
+  <meta property="og:url" content="https://saheenferoz.github.io/gallery.html" />
+  <meta property="og:title" content="Saheen Feroz — Gallery" />
   <meta property="og:description" content="Photography portfolio by Saheen Feroz." />
   <meta property="og:image" content="https://saheenferoz.github.io/avatar.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="stylesheet" href="style.css">
 </head>
-<body class="map-page">
+<body>
 
   <header class="profile-header">
     <img class="avatar" id="avatar" src="" alt="Profile photo">
     <h1 class="name" id="profile-name">Saheen Feroz</h1>
     <p class="tagline" id="profile-tagline"></p>
     <nav class="site-nav" aria-label="Site">
-      <a class="site-nav-link is-active" href="./" aria-current="page">Map</a>
-      <a class="site-nav-link" href="gallery.html">Gallery</a>
+      <a class="site-nav-link" href="./">Map</a>
+      <a class="site-nav-link is-active" href="gallery.html" aria-current="page">Gallery</a>
     </nav>
   </header>
 
-  <main class="map-main">
-    <div class="map-wrap" id="map" aria-label="World map of photo locations"></div>
-    <div class="map-tooltip" id="map-tooltip" role="status" aria-hidden="true"></div>
-    <p class="map-attribution">
-      Geocoding © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors
-    </p>
+  <main>
+    <div class="photo-gallery" id="photo-gallery"></div>
   </main>
 
   <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
@@ -54,8 +49,6 @@
     </div>
   </div>
 
-  <script src="vendor/d3.v7.min.js"></script>
-  <script src="vendor/topojson-client.min.js"></script>
-  <script src="map.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>

@@ -1,0 +1,214 @@
+{
+  "Acadia National Park": {
+    "lat": 44.35631,
+    "lng": -68.21548
+  },
+  "Alabama": {
+    "lat": 33.25888,
+    "lng": -86.82953
+  },
+  "Alappuzha": {
+    "lat": 9.50034,
+    "lng": 76.41234
+  },
+  "Arches National Park": {
+    "lat": 38.72653,
+    "lng": -109.56305
+  },
+  "Arizona": {
+    "lat": 34.39534,
+    "lng": -111.76327
+  },
+  "Asambu Reserve Forest": {
+    "lat": 8.61667,
+    "lng": 77.35
+  },
+  "Austin, Texas": {
+    "lat": 30.27113,
+    "lng": -97.7437
+  },
+  "Badlands National Park": {
+    "lat": 43.52711,
+    "lng": -102.36166
+  },
+  "Barringer Crater": {
+    "lat": 35.02713,
+    "lng": -111.01838
+  },
+  "Big Sur": {
+    "lat": 36.1437,
+    "lng": -121.56459
+  },
+  "Black Canyon Of The Gunnison National Park": {
+    "lat": 38.57981,
+    "lng": -107.7437
+  },
+  "Black Hills, South Dakota": {
+    "lat": 43.86928,
+    "lng": -103.52649
+  },
+  "Boston": {
+    "lat": 42.35883,
+    "lng": -71.05783
+  },
+  "Bryce Canyon National Park": {
+    "lat": 37.57079,
+    "lng": -112.18559
+  },
+  "Capitol Reef National Park": {
+    "lat": 38.06703,
+    "lng": -111.15526
+  },
+  "Cave of the Mounds": {
+    "lat": 43.01674,
+    "lng": -89.81486
+  },
+  "Chicago": {
+    "lat": 41.87556,
+    "lng": -87.62442
+  },
+  "Cleveland": {
+    "lat": 41.49966,
+    "lng": -81.69368
+  },
+  "Colorado Springs": {
+    "lat": 38.83396,
+    "lng": -104.82535
+  },
+  "Crater Lake National Park": {
+    "lat": 42.93169,
+    "lng": -122.12789
+  },
+  "Dayton, Ohio": {
+    "lat": 39.75895,
+    "lng": -84.19161
+  },
+  "Death Valley National Park": {
+    "lat": 36.47024,
+    "lng": -117.08839
+  },
+  "Devil's Tower, Wyoming": {
+    "lat": 44.59051,
+    "lng": -104.7151
+  },
+  "Fujikawaguchiko, Japan": {
+    "lat": 35.50107,
+    "lng": 138.7653
+  },
+  "Gettysburg": {
+    "lat": 39.8309,
+    "lng": -77.23101
+  },
+  "Glacier National Park": {
+    "lat": 48.61749,
+    "lng": -113.76089
+  },
+  "Grand Teton National Park": {
+    "lat": 43.81057,
+    "lng": -110.64879
+  },
+  "Great Sand Dunes National Park": {
+    "lat": 37.79119,
+    "lng": -105.61227
+  },
+  "Great Smoky Mountains National Park": {
+    "lat": 35.63422,
+    "lng": -83.40237
+  },
+  "Idukki Reservoir": {
+    "lat": 9.7752,
+    "lng": 77.05278
+  },
+  "Indianapolis": {
+    "lat": 39.76833,
+    "lng": -86.15835
+  },
+  "Jungfrau, Switzerland": {
+    "lat": 46.53677,
+    "lng": 7.96259
+  },
+  "Kolukkumalai": {
+    "lat": 10.08265,
+    "lng": 77.22177
+  },
+  "Kovalam Beach": {
+    "lat": 8.3951,
+    "lng": 76.97299
+  },
+  "Lassen Volcanic National Park": {
+    "lat": 40.49378,
+    "lng": -121.40446
+  },
+  "Madison Wisconsin": {
+    "lat": 43.07305,
+    "lng": -89.40123
+  },
+  "Manali": {
+    "lat": 32.24546,
+    "lng": 77.18729
+  },
+  "Manjolai": {
+    "lat": 8.65861,
+    "lng": 77.39306
+  },
+  "Mesa Verde National Park": {
+    "lat": 37.25378,
+    "lng": -108.4556
+  },
+  "Mt. Rushmore": {
+    "lat": 43.88086,
+    "lng": -103.45382
+  },
+  "Munnar Hill Station": {
+    "lat": 10.08887,
+    "lng": 77.05953
+  },
+  "Petrified Forest National Park": {
+    "lat": 34.97448,
+    "lng": -109.70799
+  },
+  "Pittsburgh": {
+    "lat": 40.4407,
+    "lng": -80.00257
+  },
+  "Redwood National Park": {
+    "lat": 41.76807,
+    "lng": -124.0505
+  },
+  "Rocky Mountain National Park": {
+    "lat": 40.35539,
+    "lng": -105.7177
+  },
+  "Saguaro National Park": {
+    "lat": 32.16838,
+    "lng": -110.61835
+  },
+  "Scotts Bluff National Monument": {
+    "lat": 41.83388,
+    "lng": -103.70567
+  },
+  "Sky Pond, Rocky Mountain National Park": {
+    "lat": 40.2762,
+    "lng": -105.6689
+  },
+  "Theodore Roosevelt National Park": {
+    "lat": 46.95848,
+    "lng": -103.46501
+  },
+  "Yellowstone National Park": {
+    "lat": 44.62009,
+    "lng": -110.56069
+  },
+  "Yosemite National Park": {
+    "lat": 37.8393,
+    "lng": -119.51646
+  },
+  "Zion National Park": {
+    "lat": 37.32217,
+    "lng": -113.00479
+  },
+  "Zurich, Switzerland": {
+    "lat": 47.37445,
+    "lng": 8.54104
+  }
+}
