@@ -26,7 +26,7 @@ from pathlib import Path
 
 NOMINATIM_URL = "https://nominatim.openstreetmap.org/search"
 # Nominatim usage policy: identify the app and stay at <= 1 request/sec.
-USER_AGENT = "saheenferoz.github.io photo-map geocoder"
+USER_AGENT = "saheenferoz.github.io travel-portfolio geocoder"
 REQUEST_INTERVAL_SECONDS = 1.1
 
 

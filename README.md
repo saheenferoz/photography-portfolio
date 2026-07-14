@@ -1,4 +1,4 @@
-https://saheenferoz.github.io/photography-portfolio/
+https://saheenferoz.github.io/travel-portfolio/
 
 ## Gallery (GitHub)
 

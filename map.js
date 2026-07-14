@@ -54,7 +54,7 @@
     document.getElementById("avatar").alt = profile.name;
     document.getElementById("profile-name").textContent = profile.name;
     document.getElementById("profile-tagline").textContent = profile.tagline;
-    document.title = profile.name + " — Photography";
+    document.title = profile.name + " — Travel";
   }
 
   /** One entry per unique location that has coordinates; photos sorted newest first. */

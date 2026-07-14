@@ -48,7 +48,7 @@
     document.getElementById("avatar").alt = profile.name;
     document.getElementById("profile-name").textContent = profile.name;
     document.getElementById("profile-tagline").textContent = profile.tagline;
-    document.title = profile.name + " — Photography";
+    document.title = profile.name + " — Travel";
   }
 
   function yearFromPhoto(photo) {
