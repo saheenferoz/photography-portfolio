@@ -135,6 +135,10 @@
     "lat": 8.3951,
     "lng": 76.97299
   },
+  "Kudremukh": {
+    "lat": 13.21907,
+    "lng": 75.25103
+  },
   "Lassen Volcanic National Park": {
     "lat": 40.49378,
     "lng": -121.40446
@@ -190,6 +194,10 @@
   "Sky Pond, Rocky Mountain National Park": {
     "lat": 40.2762,
     "lng": -105.6689
+  },
+  "Switzerland": {
+    "lat": 46.79856,
+    "lng": 8.23197
   },
   "Theodore Roosevelt National Park": {
     "lat": 46.95848,
