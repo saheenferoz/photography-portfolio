@@ -30,6 +30,20 @@
   <main class="map-main">
     <div class="map-wrap" id="map" aria-label="World map of photo locations"></div>
     <div class="map-tooltip" id="map-tooltip" role="status" aria-hidden="true"></div>
+    <div class="map-timeline" id="map-timeline" role="group" aria-label="Filter pins by year">
+      <button class="timeline-play" id="timeline-play" type="button" aria-label="Play timeline">
+        <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+        <svg class="icon-stop" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 6h12v12H6z"/></svg>
+      </button>
+      <span class="timeline-year" id="timeline-label-start"></span>
+      <div class="timeline-track-wrap">
+        <div class="timeline-track" aria-hidden="true"></div>
+        <div class="timeline-fill" id="timeline-fill" aria-hidden="true"></div>
+        <input type="range" class="timeline-range" id="timeline-start" aria-label="Start year">
+        <input type="range" class="timeline-range" id="timeline-end" aria-label="End year">
+      </div>
+      <span class="timeline-year" id="timeline-label-end"></span>
+    </div>
     <p class="map-attribution">
       Geocoding © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors
     </p>

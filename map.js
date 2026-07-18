@@ -16,11 +16,28 @@
   var prevBtn = document.getElementById("lightbox-prev");
   var nextBtn = document.getElementById("lightbox-next");
 
+  var timelineEl = document.getElementById("map-timeline");
+  var playBtn = document.getElementById("timeline-play");
+  var startInput = document.getElementById("timeline-start");
+  var endInput = document.getElementById("timeline-end");
+  var fillEl = document.getElementById("timeline-fill");
+  var labelStartEl = document.getElementById("timeline-label-start");
+  var labelEndEl = document.getElementById("timeline-label-end");
+
   // Photos for the currently open pin; lightbox nav cycles within these only.
   var activePhotos = [];
   var currentIndex = 0;
   var lightboxLoadId = 0;
   var lastFocusedPin = null;
+
+  // Year-range filter state; pinFilterFn is (re)created by each drawMap call.
+  var minYear = null;
+  var maxYear = null;
+  var selStartYear = null;
+  var selEndYear = null;
+  var playTimeout = null;
+  var playRaf = null;
+  var pinFilterFn = null;
 
   function formatDate(dateStr) {
     if (!dateStr) return "";
@@ -30,6 +47,19 @@
       month: "long",
       day: "numeric",
     });
+  }
+
+  function photoYear(photo) {
+    var y = photo.date ? parseInt(photo.date.slice(0, 4), 10) : NaN;
+    return isNaN(y) ? null : y;
+  }
+
+  /** Photos without a parseable date are never filtered out. */
+  function photoInRange(photo) {
+    if (selStartYear === null) return true;
+    var y = photoYear(photo);
+    if (y === null) return true;
+    return y >= selStartYear && y <= selEndYear;
   }
 
   function mapUrlFor(photo) {
@@ -189,6 +219,147 @@
     tooltip.setAttribute("aria-hidden", "true");
   }
 
+  /* ---- Timeline (year-range filter + playback) ---- */
+
+  var playbackEndYear = null;
+
+  function renderSlider(s, e) {
+    labelStartEl.textContent = s;
+    labelEndEl.textContent = e;
+    var span = maxYear - minYear;
+    var left = ((s - minYear) / span) * 100;
+    var right = ((e - minYear) / span) * 100;
+    fillEl.style.left = left + "%";
+    fillEl.style.width = right - left + "%";
+  }
+
+  function updateSliderUI() {
+    renderSlider(selStartYear, selEndYear);
+  }
+
+  function onSliderInput(isStart) {
+    stopPlayback(false);
+    var s = parseInt(startInput.value, 10);
+    var e = parseInt(endInput.value, 10);
+    // Thumbs may not cross; the one being dragged pushes the other's value.
+    if (s > e) {
+      if (isStart) {
+        e = s;
+        endInput.value = e;
+      } else {
+        s = e;
+        startInput.value = s;
+      }
+    }
+    selStartYear = s;
+    selEndYear = e;
+    updateSliderUI();
+    if (pinFilterFn) pinFilterFn(false);
+  }
+
+  function isPlaying() {
+    return timelineEl.classList.contains("is-playing");
+  }
+
+  /** Clears the stage, then replays the whole range as one continuous
+      oldest-first stagger — the same feel as the intro animation. The
+      slider fill and end label glide along for the duration. */
+  function startPlayback() {
+    if (!pinFilterFn || isPlaying()) return;
+    var startY = selStartYear;
+    var endY = selEndYear;
+    playbackEndYear = endY;
+    timelineEl.classList.add("is-playing");
+    playBtn.setAttribute("aria-label", "Stop timeline playback");
+
+    selEndYear = startY - 1;
+    pinFilterFn(false);
+
+    // Give the hide animation a beat to finish before the reveal starts.
+    playTimeout = setTimeout(function () {
+      playTimeout = null;
+      selEndYear = endY;
+      var appearing = pinFilterFn(true);
+      var duration = Math.max(600, (appearing - 1) * 45 + 550);
+      var t0 = performance.now();
+
+      function frame(now) {
+        var progress = Math.min(1, (now - t0) / duration);
+        var year = Math.round(startY + (endY - startY) * progress);
+        endInput.value = year;
+        renderSlider(startY, year);
+        if (progress < 1) {
+          playRaf = requestAnimationFrame(frame);
+        } else {
+          playRaf = null;
+          stopPlayback(true);
+        }
+      }
+      playRaf = requestAnimationFrame(frame);
+    }, 350);
+  }
+
+  function stopPlayback(restoreEnd) {
+    if (playTimeout !== null) {
+      clearTimeout(playTimeout);
+      playTimeout = null;
+    }
+    if (playRaf !== null) {
+      cancelAnimationFrame(playRaf);
+      playRaf = null;
+    }
+    if (!isPlaying()) return;
+    timelineEl.classList.remove("is-playing");
+    playBtn.setAttribute("aria-label", "Play timeline");
+    if (restoreEnd && playbackEndYear !== null) {
+      selEndYear = playbackEndYear;
+      endInput.value = selEndYear;
+      updateSliderUI();
+      if (pinFilterFn) pinFilterFn(false);
+    }
+    playbackEndYear = null;
+  }
+
+  function initTimeline(photos) {
+    var years = [];
+    photos.forEach(function (p) {
+      var y = photoYear(p);
+      if (y !== null) years.push(y);
+    });
+    if (!years.length) {
+      timelineEl.style.display = "none";
+      return;
+    }
+    minYear = Math.min.apply(null, years);
+    maxYear = Math.max.apply(null, years);
+    if (minYear === maxYear) {
+      timelineEl.style.display = "none";
+      return;
+    }
+    selStartYear = minYear;
+    selEndYear = maxYear;
+
+    [startInput, endInput].forEach(function (input) {
+      input.min = minYear;
+      input.max = maxYear;
+      input.step = 1;
+    });
+    startInput.value = minYear;
+    endInput.value = maxYear;
+    updateSliderUI();
+
+    startInput.addEventListener("input", function () {
+      onSliderInput(true);
+    });
+    endInput.addEventListener("input", function () {
+      onSliderInput(false);
+    });
+    playBtn.addEventListener("click", function () {
+      if (isPlaying()) stopPlayback(true);
+      else startPlayback();
+    });
+  }
+
   /* ---- Map ---- */
 
   function prefersReducedMotion() {
@@ -260,6 +431,27 @@
 
     var pinLayer = root.append("g").attr("class", "map-pins");
 
+    /** Refresh thumbnail, badge, and label from the pin's filtered photos. */
+    function updatePinAppearance(sel, pin) {
+      var photos = pin.visiblePhotos;
+      if (!photos.length) return;
+      sel.attr(
+        "aria-label",
+        pin.name +
+          " — " +
+          photos.length +
+          (photos.length === 1 ? " photo" : " photos")
+      );
+      var image = sel.select("image");
+      var thumb = thumbSrcFor(photos[0]);
+      if (image.attr("href") !== thumb) image.attr("href", thumb);
+      var badge = sel.select("g.map-pin-badge");
+      badge.style("display", photos.length > 1 ? null : "none");
+      badge
+        .select("text")
+        .text(photos.length > 99 ? "99+" : String(photos.length));
+    }
+
     pins.forEach(function (pin, i) {
       var p = projection([pin.lng, pin.lat]);
       if (!p) return;
@@ -273,24 +465,22 @@
         .append("circle")
         .attr("r", PIN_RADIUS);
 
-      var label =
-        pin.name +
-        " — " +
-        pin.photos.length +
-        (pin.photos.length === 1 ? " photo" : " photos");
+      pin.visiblePhotos = pin.photos.filter(photoInRange);
+      pin.visible = pin.visiblePhotos.length > 0;
 
       var g = pinLayer
         .append("g")
         .attr("class", "map-pin")
+        .classed("is-hidden", !pin.visible)
         .attr(
           "transform",
-          "translate(" + pin.x + "," + pin.y + ")" + (animate ? " scale(0)" : "")
+          "translate(" + pin.x + "," + pin.y + ")" +
+            (!pin.visible || animate ? " scale(0)" : "")
         )
         .attr("role", "button")
-        .attr("tabindex", 0)
-        .attr("aria-label", label);
+        .attr("tabindex", pin.visible ? 0 : -1);
 
-      if (animate) {
+      if (animate && pin.visible) {
         g.transition()
           .delay(500 + pin.popRank * 45)
           .duration(550)
@@ -298,7 +488,7 @@
           .attr("transform", "translate(" + pin.x + "," + pin.y + ") scale(1)");
       }
 
-      var newestThumb = thumbSrcFor(pin.photos[0]);
+      var newestThumb = thumbSrcFor(pin.visiblePhotos[0] || pin.photos[0]);
       var image = g
         .append("image")
         .attr("href", newestThumb)
@@ -311,7 +501,7 @@
 
       image.node().addEventListener("error", function () {
         // Thumb missing: fall back to the full-size photo.
-        var full = pin.photos[0].src;
+        var full = (pin.visiblePhotos[0] || pin.photos[0]).src;
         if (image.attr("href") !== full) image.attr("href", full);
       });
 
@@ -319,31 +509,29 @@
         .attr("class", "map-pin-ring")
         .attr("r", PIN_RADIUS);
 
-      if (pin.photos.length > 1) {
-        var badge = g.append("g").attr("class", "map-pin-badge");
-        badge
-          .append("circle")
-          .attr("cx", PIN_RADIUS * 0.75)
-          .attr("cy", -PIN_RADIUS * 0.75)
-          .attr("r", 7.5);
-        badge
-          .append("text")
-          .attr("x", PIN_RADIUS * 0.75)
-          .attr("y", -PIN_RADIUS * 0.75)
-          .text(pin.photos.length > 99 ? "99+" : String(pin.photos.length));
-      }
+      var badge = g.append("g").attr("class", "map-pin-badge");
+      badge
+        .append("circle")
+        .attr("cx", PIN_RADIUS * 0.75)
+        .attr("cy", -PIN_RADIUS * 0.75)
+        .attr("r", 7.5);
+      badge
+        .append("text")
+        .attr("x", PIN_RADIUS * 0.75)
+        .attr("y", -PIN_RADIUS * 0.75);
+      updatePinAppearance(g, pin);
 
       var node = g.node();
       node.__pin__ = pin;
       node.addEventListener("click", function () {
         hideTooltip();
-        openLightbox(pin.photos, node);
+        openLightbox(pin.visiblePhotos, node);
       });
       node.addEventListener("keydown", function (e) {
         if (e.key === "Enter" || e.key === " ") {
           e.preventDefault();
           hideTooltip();
-          openLightbox(pin.photos, node);
+          openLightbox(pin.visiblePhotos, node);
         }
       });
       node.addEventListener("pointerenter", function (e) {
@@ -357,16 +545,94 @@
 
     /* Zoom/pan: the root group scales, pins counter-scale so they stay a
        constant screen size and dense clusters separate as you zoom in.
-       interrupt() cancels any still-running intro pops so they can't
-       overwrite the zoom-adjusted transforms. */
+       Filtered-out pins keep scale(0). interrupt() cancels any still-running
+       pop transitions so they can't overwrite the zoom-adjusted transforms. */
+    var currentK = 1;
+
+    function pinTransform(pin) {
+      return (
+        "translate(" + pin.x + "," + pin.y + ") scale(" +
+        (pin.visible ? 1 / currentK : 0) + ")"
+      );
+    }
+
     function applyPinScale(k) {
+      currentK = k;
       pinLayer.selectAll("g.map-pin").interrupt().attr("transform", function () {
-        var pin = this.__pin__;
-        return (
-          "translate(" + pin.x + "," + pin.y + ") scale(" + 1 / k + ")"
-        );
+        return pinTransform(this.__pin__);
       });
     }
+
+    function showPin(node, pin, delay) {
+      var sel = d3
+        .select(node)
+        .classed("is-hidden", false)
+        .attr("tabindex", 0);
+      if (prefersReducedMotion()) {
+        sel.interrupt().attr("transform", pinTransform(pin));
+        return;
+      }
+      sel
+        .interrupt()
+        .attr("transform", "translate(" + pin.x + "," + pin.y + ") scale(0)")
+        .transition()
+        .delay(delay)
+        .duration(550)
+        .ease(d3.easeBackOut.overshoot(2.2))
+        .attr("transform", pinTransform(pin));
+    }
+
+    function hidePin(node, pin) {
+      var sel = d3
+        .select(node)
+        .classed("is-hidden", true)
+        .attr("tabindex", -1);
+      var target = "translate(" + pin.x + "," + pin.y + ") scale(0)";
+      if (prefersReducedMotion()) {
+        sel.interrupt().attr("transform", target);
+        return;
+      }
+      sel
+        .interrupt()
+        .transition()
+        .duration(250)
+        .ease(d3.easeCubicIn)
+        .attr("transform", target);
+    }
+
+    function oldestVisibleDate(pin) {
+      // Photos are sorted newest first, so the oldest is last.
+      var ps = pin.visiblePhotos;
+      return ps.length ? ps[ps.length - 1].date || "" : "";
+    }
+
+    /** Re-evaluate every pin against the year range; animate the ones that
+        changed. When staggered, newly visible pins pop oldest-first.
+        Returns how many pins appeared so playback can size its duration. */
+    function applyYearFilter(staggered) {
+      var appearing = [];
+      pinLayer.selectAll("g.map-pin").each(function () {
+        var pin = this.__pin__;
+        var wasVisible = pin.visible;
+        pin.visiblePhotos = pin.photos.filter(photoInRange);
+        pin.visible = pin.visiblePhotos.length > 0;
+        updatePinAppearance(d3.select(this), pin);
+        if (pin.visible === wasVisible) return;
+        if (pin.visible) appearing.push(this);
+        else hidePin(this, pin);
+      });
+      appearing.sort(function (a, b) {
+        var da = oldestVisibleDate(a.__pin__);
+        var db = oldestVisibleDate(b.__pin__);
+        return da < db ? -1 : da > db ? 1 : 0;
+      });
+      appearing.forEach(function (node, i) {
+        showPin(node, node.__pin__, staggered ? i * 45 : 0);
+      });
+      return appearing.length;
+    }
+
+    pinFilterFn = applyYearFilter;
 
     var zoom = d3
       .zoom()
@@ -402,6 +668,7 @@
 
       var pins = groupByLocation(data.photos, locations);
       computePopOrder(pins);
+      initTimeline(data.photos);
       drawMap(world, pins, true);
 
       var resizeTimer = null;

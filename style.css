@@ -571,6 +571,177 @@ body.map-page .avatar {
   opacity: 1;
 }
 
+/* ---- Map Timeline ---- */
+
+.map-timeline {
+  position: absolute;
+  left: 50%;
+  bottom: 22px;
+  transform: translateX(-50%);
+  z-index: 800;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: min(460px, calc(100% - 32px));
+  padding: 10px 16px;
+  background: rgba(15, 15, 15, 0.82);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.timeline-play {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 50%;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.timeline-play:hover,
+.timeline-play:focus-visible {
+  border-color: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.timeline-play svg {
+  width: 13px;
+  height: 13px;
+}
+
+.timeline-play .icon-stop {
+  display: none;
+}
+
+.map-timeline.is-playing .timeline-play .icon-play {
+  display: none;
+}
+
+.map-timeline.is-playing .timeline-play .icon-stop {
+  display: block;
+}
+
+.timeline-year {
+  flex-shrink: 0;
+  min-width: 2.9em;
+  font-size: 0.78rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.03em;
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+.map-timeline.is-playing #timeline-label-end {
+  color: var(--text-primary);
+}
+
+.timeline-track-wrap {
+  position: relative;
+  flex: 1;
+  height: 28px;
+}
+
+.timeline-track,
+.timeline-fill {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 3px;
+  border-radius: 2px;
+  pointer-events: none;
+}
+
+.timeline-track {
+  left: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.timeline-fill {
+  background: rgba(255, 255, 255, 0.85);
+  transition: left 0.15s ease, width 0.15s ease;
+}
+
+/* Two stacked native ranges make the dual slider: the inputs ignore pointer
+   events, their thumbs re-enable them, so each thumb is draggable while the
+   track underneath stays inert. */
+.timeline-range {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  background: none;
+  -webkit-appearance: none;
+  appearance: none;
+  pointer-events: none;
+}
+
+.timeline-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: none;
+  cursor: grab;
+  pointer-events: auto;
+  transition: transform 0.12s ease;
+}
+
+.timeline-range::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+.timeline-range::-webkit-slider-thumb:active {
+  cursor: grabbing;
+}
+
+.timeline-range::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: none;
+  cursor: grab;
+  pointer-events: auto;
+  transition: transform 0.12s ease;
+}
+
+.timeline-range::-moz-range-thumb:hover {
+  transform: scale(1.2);
+}
+
+.timeline-range::-moz-range-track {
+  background: none;
+}
+
+.timeline-range:focus {
+  outline: none;
+}
+
+.timeline-range:focus-visible::-webkit-slider-thumb {
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.35);
+}
+
+.timeline-range:focus-visible::-moz-range-thumb {
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.35);
+}
+
+.map-pin.is-hidden {
+  pointer-events: none;
+}
+
 .map-attribution {
   position: absolute;
   right: 10px;
@@ -602,5 +773,12 @@ body.map-page .avatar {
   .site-nav {
     gap: 22px;
     margin-top: 18px;
+  }
+
+  /* Keep the timeline pill clear of the attribution line. */
+  .map-timeline {
+    bottom: 30px;
+    gap: 9px;
+    padding: 8px 12px;
   }
 }
