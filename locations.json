@@ -103,6 +103,10 @@
     "lat": 48.61749,
     "lng": -113.76089
   },
+  "Grand Marais, Minnesota": {
+    "lat": 47.75047,
+    "lng": -90.33468
+  },
   "Grand Teton National Park": {
     "lat": 43.81057,
     "lng": -110.64879
@@ -122,6 +126,10 @@
   "Indianapolis": {
     "lat": 39.76833,
     "lng": -86.15835
+  },
+  "Isle Royale National Park": {
+    "lat": 48.00738,
+    "lng": -88.82899
   },
   "Jungfrau, Switzerland": {
     "lat": 46.53677,
@@ -206,6 +214,10 @@
   "Theodore Roosevelt National Park": {
     "lat": 46.95848,
     "lng": -103.46501
+  },
+  "Voyageurs National Park": {
+    "lat": 48.46555,
+    "lng": -92.8854
   },
   "Yellowstone National Park": {
     "lat": 44.62009,

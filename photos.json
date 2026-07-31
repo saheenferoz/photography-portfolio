@@ -7,10 +7,31 @@
   "gridColumns": 4,
   "photos": [
     {
+      "src": "photos/2026-07-29_Isle_Royale_National_Park.jpg",
+      "caption": "",
+      "location": "Isle Royale National Park",
+      "date": "2026-07-29",
+      "map": ""
+    },
+    {
+      "src": "photos/2026-07-28_Grand_Marais,_Minnesota.jpg",
+      "caption": "",
+      "location": "Grand Marais, Minnesota",
+      "date": "2026-07-28",
+      "map": ""
+    },
+    {
       "src": "photos/2026-07-28_Split_Rock_Lighthouse,_Minnesota.jpg",
       "caption": "",
       "location": "Split Rock Lighthouse, Minnesota",
       "date": "2026-07-28",
+      "map": ""
+    },
+    {
+      "src": "photos/2026-07-26_Voyageurs_National_Park.jpg",
+      "caption": "",
+      "location": "Voyageurs National Park",
+      "date": "2026-07-26",
       "map": ""
     },
     {
