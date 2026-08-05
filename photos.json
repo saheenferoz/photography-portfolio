@@ -7,6 +7,13 @@
   "gridColumns": 4,
   "photos": [
     {
+      "src": "photos/2026-08-02_Minneapolis.JPG",
+      "caption": "",
+      "location": "Minneapolis",
+      "date": "2026-08-02",
+      "map": ""
+    },
+    {
       "src": "photos/2026-08-01_Guttenberg,_Iowa.jpg",
       "caption": "",
       "location": "Guttenberg, Iowa",
