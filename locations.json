@@ -187,6 +187,10 @@
     "lat": 10.08887,
     "lng": 77.05953
   },
+  "Ohiopyle State Park": {
+    "lat": 39.86708,
+    "lng": -79.42948
+  },
   "Palisade Head, Minnesota": {
     "lat": 47.32056,
     "lng": -91.21059
@@ -194,6 +198,10 @@
   "Petrified Forest National Park": {
     "lat": 34.97448,
     "lng": -109.70799
+  },
+  "Pikes Peak": {
+    "lat": 38.8404,
+    "lng": -105.04395
   },
   "Pittsburgh": {
     "lat": 40.4407,
