@@ -7,6 +7,20 @@
   "gridColumns": 4,
   "photos": [
     {
+      "src": "photos/2026-08-14_Cherry_Springs_State_Park.JPG",
+      "caption": "",
+      "location": "Cherry Springs State Park",
+      "date": "2026-08-14",
+      "map": ""
+    },
+    {
+      "src": "photos/2026-08-14_Steamtown_National_Historic_Site.jpg",
+      "caption": "",
+      "location": "Steamtown National Historic Site",
+      "date": "2026-08-14",
+      "map": ""
+    },
+    {
       "src": "photos/2026-08-02_Minneapolis.JPG",
       "caption": "",
       "location": "Minneapolis",

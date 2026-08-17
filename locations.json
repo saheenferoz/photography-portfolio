@@ -63,6 +63,10 @@
     "lat": 43.01674,
     "lng": -89.81486
   },
+  "Cherry Springs State Park": {
+    "lat": 41.66276,
+    "lng": -77.8222
+  },
   "Chicago": {
     "lat": 41.87556,
     "lng": -87.62442
@@ -234,6 +238,10 @@
   "Split Rock Lighthouse, Minnesota": {
     "lat": 47.2001,
     "lng": -91.36702
+  },
+  "Steamtown National Historic Site": {
+    "lat": 41.40796,
+    "lng": -75.67155
   },
   "Switzerland": {
     "lat": 46.79856,
