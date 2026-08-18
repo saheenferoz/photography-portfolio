@@ -3,6 +3,10 @@
     "lat": 44.35631,
     "lng": -68.21548
   },
+  "Agate Fossil Beds National Monument, Nebraska": {
+    "lat": 42.42229,
+    "lng": -103.759
+  },
   "Alabama": {
     "lat": 33.25888,
     "lng": -86.82953
@@ -10,6 +14,10 @@
   "Alappuzha": {
     "lat": 9.50034,
     "lng": 76.41234
+  },
+  "Apostle Islands National Lakeshore, Wisconsin": {
+    "lat": 46.9375,
+    "lng": -90.58242
   },
   "Arches National Park": {
     "lat": 38.72653,
@@ -35,9 +43,17 @@
     "lat": 35.02713,
     "lng": -111.01838
   },
+  "Bayfield, Wisconsin": {
+    "lat": 46.47102,
+    "lng": -91.19832
+  },
   "Big Sur": {
     "lat": 36.1437,
     "lng": -121.56459
+  },
+  "Birmingham, Alabama": {
+    "lat": 33.52068,
+    "lng": -86.80243
   },
   "Black Canyon Of The Gunnison National Park": {
     "lat": 38.57981,
@@ -51,6 +67,10 @@
     "lat": 42.35883,
     "lng": -71.05783
   },
+  "Brooklyn Bridge, New York": {
+    "lat": 40.70622,
+    "lng": -73.99702
+  },
   "Bryce Canyon National Park": {
     "lat": 37.57079,
     "lng": -112.18559
@@ -59,17 +79,45 @@
     "lat": 38.06703,
     "lng": -111.15526
   },
+  "Cascade Falls, Minnesota": {
+    "lat": 47.70856,
+    "lng": -90.5238
+  },
   "Cave of the Mounds": {
     "lat": 43.01674,
     "lng": -89.81486
+  },
+  "Central Park, New York": {
+    "lat": 40.78277,
+    "lng": -73.96536
+  },
+  "Centralia, Pennsylvania": {
+    "lat": 40.80423,
+    "lng": -76.34088
   },
   "Cherry Springs State Park": {
     "lat": 41.66276,
     "lng": -77.8222
   },
+  "Chesapeake Bay Bridge, Maryland": {
+    "lat": 38.99614,
+    "lng": -76.38926
+  },
   "Chicago": {
     "lat": 41.87556,
     "lng": -87.62442
+  },
+  "Chimney Rock, Nebraska": {
+    "lat": 41.70385,
+    "lng": -103.34823
+  },
+  "Cincinnati, Ohio": {
+    "lat": 39.10128,
+    "lng": -84.51274
+  },
+  "Circuit of the Americas, Texas": {
+    "lat": 30.13563,
+    "lng": -97.63662
   },
   "Cleveland": {
     "lat": 41.49966,
@@ -79,25 +127,69 @@
     "lat": 38.83396,
     "lng": -104.82535
   },
+  "Columbus, Ohio": {
+    "lat": 39.96226,
+    "lng": -83.00071
+  },
   "Crater Lake National Park": {
     "lat": 42.93169,
     "lng": -122.12789
+  },
+  "Crazy Horse Memorial, South Dakota": {
+    "lat": 43.83629,
+    "lng": -103.62305
+  },
+  "Custer State Park, South Dakota": {
+    "lat": 43.74298,
+    "lng": -103.41871
+  },
+  "Custer, South Dakota": {
+    "lat": 43.67265,
+    "lng": -103.51016
   },
   "Dayton, Ohio": {
     "lat": 39.75895,
     "lng": -84.19161
   },
+  "Deadwood, South Dakota": {
+    "lat": 44.37438,
+    "lng": -103.72907
+  },
   "Death Valley National Park": {
     "lat": 36.47024,
     "lng": -117.08839
+  },
+  "Decorah, Iowa": {
+    "lat": 43.30416,
+    "lng": -91.78591
+  },
+  "Delaware Water Gap National Recreation Area, Pennsylvania": {
+    "lat": 41.13844,
+    "lng": -74.91102
+  },
+  "Denver, Colorado": {
+    "lat": 39.73924,
+    "lng": -104.98486
+  },
+  "Devil's Tower National Monument, Wyoming": {
+    "lat": 44.5898,
+    "lng": -104.71516
   },
   "Devil's Tower, Wyoming": {
     "lat": 44.59051,
     "lng": -104.7151
   },
+  "Flatirons, Colorado": {
+    "lat": 39.98881,
+    "lng": -105.09313
+  },
   "Fujikawaguchiko, Japan": {
     "lat": 35.50107,
     "lng": 138.7653
+  },
+  "Garden of the Gods, Colorado": {
+    "lat": 38.87438,
+    "lng": -104.88241
   },
   "Gettysburg": {
     "lat": 39.8309,
@@ -107,13 +199,25 @@
     "lat": 48.61749,
     "lng": -113.76089
   },
+  "Gooseberry Falls, Minnesota": {
+    "lat": 47.14512,
+    "lng": -91.47476
+  },
   "Grand Marais, Minnesota": {
     "lat": 47.75047,
     "lng": -90.33468
   },
+  "Grand Portage, Minnesota": {
+    "lat": 47.96378,
+    "lng": -89.68481
+  },
   "Grand Teton National Park": {
     "lat": 43.81057,
     "lng": -110.64879
+  },
+  "Gravelly Point, Washington DC": {
+    "lat": 38.8675,
+    "lng": -77.03913
   },
   "Great Sand Dunes National Park": {
     "lat": 37.79119,
@@ -127,6 +231,30 @@
     "lat": 42.78582,
     "lng": -91.09957
   },
+  "Harrisburg, Pennsylvania": {
+    "lat": 40.26631,
+    "lng": -76.88611
+  },
+  "Hoboken, New Jersey": {
+    "lat": 40.74331,
+    "lng": -74.03238
+  },
+  "Hot Springs National Park, Arkansas": {
+    "lat": 34.52907,
+    "lng": -93.03014
+  },
+  "Houston, Texas": {
+    "lat": 29.75894,
+    "lng": -95.3677
+  },
+  "Hudson Yards, New York": {
+    "lat": 40.75591,
+    "lng": -74.00053
+  },
+  "Hudson-Meng Bison Bonebed, Nebraska": {
+    "lat": 42.82861,
+    "lng": -103.6015
+  },
   "Idukki Reservoir": {
     "lat": 9.7752,
     "lng": 77.05278
@@ -135,9 +263,21 @@
     "lat": 39.76833,
     "lng": -86.15835
   },
+  "International Falls, Minnesota": {
+    "lat": 48.60103,
+    "lng": -93.41059
+  },
+  "Intrepid Museum, New York": {
+    "lat": 40.7646,
+    "lng": -73.9996
+  },
   "Isle Royale National Park": {
     "lat": 48.00738,
     "lng": -88.82899
+  },
+  "Judge C.R. Magney State Park, Minnesota": {
+    "lat": 47.85107,
+    "lng": -90.06394
   },
   "Jungfrau, Switzerland": {
     "lat": 46.53677,
@@ -159,9 +299,21 @@
     "lat": 40.49378,
     "lng": -121.40446
   },
+  "Liberty Science Center, New Jersey": {
+    "lat": 40.70818,
+    "lng": -74.05469
+  },
+  "Lower Manhattan, New York": {
+    "lat": 40.71355,
+    "lng": -74.00543
+  },
   "Madison Wisconsin": {
     "lat": 43.07305,
     "lng": -89.40123
+  },
+  "Madison, Wisconsin": {
+    "lat": 43.07469,
+    "lng": -89.38417
   },
   "Manali": {
     "lat": 32.24546,
@@ -175,13 +327,37 @@
     "lat": 42.11857,
     "lng": -90.77609
   },
+  "Medora, North Dakota": {
+    "lat": 46.9139,
+    "lng": -103.52435
+  },
+  "Memphis, Tennessee": {
+    "lat": 35.14603,
+    "lng": -90.05178
+  },
   "Mesa Verde National Park": {
     "lat": 37.25378,
     "lng": -108.4556
   },
+  "Midtown, New York": {
+    "lat": 40.75512,
+    "lng": -73.98478
+  },
   "Minneapolis": {
     "lat": 44.9773,
     "lng": -93.26547
+  },
+  "Minnesota, United States": {
+    "lat": 45.98966,
+    "lng": -94.61133
+  },
+  "Mississippi, United States": {
+    "lat": 32.97153,
+    "lng": -89.73485
+  },
+  "Mobile, Alabama": {
+    "lat": 30.69135,
+    "lng": -88.04375
   },
   "Mt. Rushmore": {
     "lat": 43.88086,
@@ -190,6 +366,26 @@
   "Munnar Hill Station": {
     "lat": 10.08887,
     "lng": 77.05953
+  },
+  "National Mall, Washington DC": {
+    "lat": 38.88984,
+    "lng": -77.01972
+  },
+  "National Museum of the Marine Corps, Washington DC": {
+    "lat": 38.53928,
+    "lng": -77.34245
+  },
+  "National Museum of the United States Army, Washington DC": {
+    "lat": 38.72239,
+    "lng": -77.17003
+  },
+  "Needles Highway, South Dakota": {
+    "lat": 43.84333,
+    "lng": -103.56206
+  },
+  "New Orleans, Louisiana": {
+    "lat": 29.95614,
+    "lng": -90.07339
   },
   "Ohiopyle State Park": {
     "lat": 39.86708,
@@ -207,9 +403,17 @@
     "lat": 38.8404,
     "lng": -105.04395
   },
+  "Pine Creek Gorge, Pennsylvania": {
+    "lat": 41.72563,
+    "lng": -77.42828
+  },
   "Pittsburgh": {
     "lat": 40.4407,
     "lng": -80.00257
+  },
+  "Rapid City, South Dakota": {
+    "lat": 44.0806,
+    "lng": -103.22802
   },
   "Redwood National Park": {
     "lat": 41.76807,
@@ -223,9 +427,17 @@
     "lat": 32.16838,
     "lng": -110.61835
   },
+  "San Francisco, California": {
+    "lat": 37.78794,
+    "lng": -122.40752
+  },
   "Scotts Bluff National Monument": {
     "lat": 41.83388,
     "lng": -103.70567
+  },
+  "Scranton, Pennsylvania": {
+    "lat": 41.40869,
+    "lng": -75.66213
   },
   "Shovel Point, Minnesota": {
     "lat": 47.33953,
@@ -235,9 +447,29 @@
     "lat": 40.2762,
     "lng": -105.6689
   },
+  "Smithsonian National Postal Museum, Washington DC": {
+    "lat": 38.89807,
+    "lng": -77.00821
+  },
+  "South Dakota, United States": {
+    "lat": 44.64718,
+    "lng": -100.34876
+  },
   "Split Rock Lighthouse, Minnesota": {
     "lat": 47.2001,
     "lng": -91.36702
+  },
+  "Staten Island Ferry, New York": {
+    "lat": 40.64243,
+    "lng": -74.07459
+  },
+  "Staten Island, New York": {
+    "lat": 40.58346,
+    "lng": -74.1496
+  },
+  "Statue of Liberty, New York": {
+    "lat": 40.68925,
+    "lng": -74.04455
   },
   "Steamtown National Historic Site": {
     "lat": 41.40796,
@@ -247,13 +479,33 @@
     "lat": 46.79856,
     "lng": 8.23197
   },
+  "Temperance River State Park, Minnesota": {
+    "lat": 47.56448,
+    "lng": -90.89764
+  },
   "Theodore Roosevelt National Park": {
     "lat": 46.95848,
     "lng": -103.46501
   },
+  "Toadstool Geological Park and Campground, Nebraska": {
+    "lat": 42.85649,
+    "lng": -103.58288
+  },
+  "Vanderbilt Mansion National Historic Site, New York": {
+    "lat": 41.79779,
+    "lng": -73.94217
+  },
   "Voyageurs National Park": {
     "lat": 48.46555,
     "lng": -92.8854
+  },
+  "Washburn, Wisconsin": {
+    "lat": 45.89263,
+    "lng": -91.79717
+  },
+  "Wind Cave National Park, South Dakota": {
+    "lat": 43.57887,
+    "lng": -103.47085
   },
   "Yellowstone National Park": {
     "lat": 44.62009,

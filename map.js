@@ -1,20 +1,25 @@
 (function () {
   var PIN_RADIUS = 14;
   var MIN_ZOOM = 1;
-  var MAX_ZOOM = 40;
+  // High enough to fully separate pins a few km apart (e.g. different sights
+  // across a city); pins under ~1km apart are merged at the data level
+  // instead, since no reasonable zoom pulls those apart on a world map.
+  var MAX_ZOOM = 200;
 
   var mapWrap = document.getElementById("map");
   var tooltip = document.getElementById("map-tooltip");
 
-  var lightbox = document.getElementById("lightbox");
-  var lightboxImg = document.getElementById("lightbox-img");
-  var lightboxCaption = document.getElementById("lightbox-caption");
-  var lightboxLocationText = document.getElementById("lightbox-location-text");
-  var lightboxLocation = document.getElementById("lightbox-location");
-  var lightboxDate = document.getElementById("lightbox-date");
-  var closeBtn = document.getElementById("lightbox-close");
-  var prevBtn = document.getElementById("lightbox-prev");
-  var nextBtn = document.getElementById("lightbox-next");
+  var lightbox = LogCard.createLightbox();
+  var thumbSrcFor = LogCard.thumbSrcFor;
+
+  var modeToggle = document.querySelector(".map-mode");
+  var modePhotosBtn = document.getElementById("mode-photos");
+  var modeLogsBtn = document.getElementById("mode-logs");
+  var panel = document.getElementById("log-panel");
+  var panelTitle = document.getElementById("log-panel-title");
+  var panelSubtitle = document.getElementById("log-panel-subtitle");
+  var panelBody = document.getElementById("log-panel-body");
+  var panelCloseBtn = document.getElementById("log-panel-close");
 
   var timelineEl = document.getElementById("map-timeline");
   var playBtn = document.getElementById("timeline-play");
@@ -24,11 +29,17 @@
   var labelStartEl = document.getElementById("timeline-label-start");
   var labelEndEl = document.getElementById("timeline-label-end");
 
-  // Photos for the currently open pin; lightbox nav cycles within these only.
-  var activePhotos = [];
-  var currentIndex = 0;
-  var lightboxLoadId = 0;
+  // "photos" shows one thumbnail pin per photographed place; "logs" shows a
+  // marker per logged place, whose click opens the log panel instead.
+  var mode = "photos";
+  var photoPins = [];
+  var logPins = [];
+  var photoIndex = new Map();
+  var world = null;
   var lastFocusedPin = null;
+  var timelineAvailable = false;
+  // Survives the redraw when switching modes so the view does not jump home.
+  var currentTransform = null;
 
   // Year-range filter state; pinFilterFn is (re)created by each drawMap call.
   var minYear = null;
@@ -38,16 +49,6 @@
   var playTimeout = null;
   var playRaf = null;
   var pinFilterFn = null;
-
-  function formatDate(dateStr) {
-    if (!dateStr) return "";
-    var d = new Date(dateStr + "T00:00:00");
-    return d.toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    });
-  }
 
   function photoYear(photo) {
     var y = photo.date ? parseInt(photo.date.slice(0, 4), 10) : NaN;
@@ -60,23 +61,6 @@
     var y = photoYear(photo);
     if (y === null) return true;
     return y >= selStartYear && y <= selEndYear;
-  }
-
-  function mapUrlFor(photo) {
-    if (photo.map) return photo.map;
-    return (
-      "https://www.google.com/maps/search/?api=1&query=" +
-      encodeURIComponent(photo.location)
-    );
-  }
-
-  function thumbSrcFor(photo) {
-    if (photo.thumb) return photo.thumb;
-    var s = photo.src;
-    if (s.indexOf("photos/") === 0) {
-      return "photos/thumbs/" + s.slice("photos/".length);
-    }
-    return s;
   }
 
   function renderProfile(profile) {
@@ -108,89 +92,37 @@
     return Array.from(byName.values());
   }
 
-  /* ---- Lightbox (same DOM/CSS as the gallery, scoped to one pin's photos) ---- */
+  /* ---- Log panel ---- */
 
-  function openLightbox(photosForPin, pinNode) {
-    activePhotos = photosForPin;
-    currentIndex = 0;
-    lastFocusedPin = pinNode || null;
-    updateLightboxContent();
-    lightbox.classList.add("active");
-    document.body.classList.add("lightbox-open");
-    closeBtn.focus();
+  function openPanel(pin, node) {
+    lastFocusedPin = node || null;
+    panelTitle.textContent = LogCard.groupTitle(pin.group);
+    panelSubtitle.textContent = LogCard.groupSubtitle(pin.group);
+
+    panelBody.innerHTML = "";
+    var thumbs = LogCard.renderThumbs(pin.group, photoIndex, function (photos, i, el) {
+      if (lightbox) lightbox.open(photos, i, el);
+    });
+    if (thumbs) panelBody.appendChild(thumbs);
+    panelBody.appendChild(LogCard.renderEntries(pin.group.entries));
+
+    panel.classList.add("is-open");
+    panelCloseBtn.focus();
   }
 
-  function closeLightbox() {
-    lightbox.classList.remove("active");
-    document.body.classList.remove("lightbox-open");
+  function closePanel() {
+    if (!panel.classList.contains("is-open")) return;
+    panel.classList.remove("is-open");
     if (lastFocusedPin) lastFocusedPin.focus();
+    lastFocusedPin = null;
   }
 
-  function navigate(direction) {
-    currentIndex =
-      (currentIndex + direction + activePhotos.length) % activePhotos.length;
-    updateLightboxContent();
-  }
-
-  function updateLightboxContent() {
-    var loadId = ++lightboxLoadId;
-    function stale() {
-      return loadId !== lightboxLoadId;
-    }
-
-    var photo = activePhotos[currentIndex];
-    var fullSrc = photo.src;
-    var thumb = thumbSrcFor(photo);
-
-    lightboxImg.alt = photo.caption || "";
-
-    if (thumb !== fullSrc) {
-      lightboxImg.src = thumb;
-      var hi = new Image();
-      hi.onload = function () {
-        if (stale()) return;
-        lightboxImg.src = fullSrc;
-      };
-      hi.onerror = function () {
-        if (stale()) return;
-        lightboxImg.src = fullSrc;
-      };
-      hi.src = fullSrc;
-    } else {
-      lightboxImg.src = fullSrc;
-    }
-
-    var captionText = (photo.caption || "").trim();
-    lightboxCaption.textContent = captionText;
-    lightboxCaption.classList.toggle("is-empty", !captionText);
-
-    if (photo.location) {
-      lightboxLocation.style.display = "inline-flex";
-      lightboxLocation.href = mapUrlFor(photo);
-      lightboxLocationText.textContent = photo.location;
-    } else {
-      lightboxLocation.style.display = "none";
-    }
-
-    lightboxDate.textContent = formatDate(photo.date);
-
-    prevBtn.style.display = activePhotos.length > 1 ? "block" : "none";
-    nextBtn.style.display = activePhotos.length > 1 ? "block" : "none";
-  }
-
-  closeBtn.addEventListener("click", closeLightbox);
-  prevBtn.addEventListener("click", function () { navigate(-1); });
-  nextBtn.addEventListener("click", function () { navigate(1); });
-
-  lightbox.addEventListener("click", function (e) {
-    if (e.target === lightbox) closeLightbox();
-  });
+  panelCloseBtn.addEventListener("click", closePanel);
 
   document.addEventListener("keydown", function (e) {
-    if (!lightbox.classList.contains("active")) return;
-    if (e.key === "Escape") closeLightbox();
-    if (e.key === "ArrowLeft") navigate(-1);
-    if (e.key === "ArrowRight") navigate(1);
+    // The lightbox opens on top of the panel and owns Escape while it is up.
+    if (e.key !== "Escape" || (lightbox && lightbox.isOpen())) return;
+    closePanel();
   });
 
   /* ---- Tooltip ---- */
@@ -320,6 +252,12 @@
     playbackEndYear = null;
   }
 
+  /** Log entries carry no dates, so the year filter only applies to photo mode. */
+  function syncTimelineVisibility() {
+    timelineEl.style.display =
+      timelineAvailable && mode === "photos" ? "" : "none";
+  }
+
   function initTimeline(photos) {
     var years = [];
     photos.forEach(function (p) {
@@ -327,15 +265,17 @@
       if (y !== null) years.push(y);
     });
     if (!years.length) {
-      timelineEl.style.display = "none";
+      syncTimelineVisibility();
       return;
     }
     minYear = Math.min.apply(null, years);
     maxYear = Math.max.apply(null, years);
     if (minYear === maxYear) {
-      timelineEl.style.display = "none";
+      syncTimelineVisibility();
       return;
     }
+    timelineAvailable = true;
+    syncTimelineVisibility();
     selStartYear = minYear;
     selEndYear = maxYear;
 
@@ -378,8 +318,19 @@
     });
   }
 
-  function drawMap(world, pins, animate) {
-    animate = animate && !prefersReducedMotion();
+  /** Log markers grow with how much is logged there, but stay small enough
+      that neighbouring places stay distinguishable. */
+  function logPinRadius(count) {
+    return Math.min(11, 5 + Math.sqrt(count) * 2.2);
+  }
+
+  function drawMap(options) {
+    options = options || {};
+    var reduced = prefersReducedMotion();
+    var animatePins = !!options.animatePins && !reduced;
+    var animateWireframe = !!options.animateWireframe && !reduced;
+    var isLogMode = mode === "logs";
+    var pins = isLogMode ? logPins : photoPins;
     mapWrap.innerHTML = "";
 
     var width = mapWrap.clientWidth;
@@ -418,7 +369,7 @@
       .attr("class", "map-borders")
       .attr("d", path(countries));
 
-    if (animate) {
+    if (animateWireframe) {
       wireframe
         .attr("opacity", 0)
         .transition()
@@ -452,90 +403,117 @@
         .text(photos.length > 99 ? "99+" : String(photos.length));
     }
 
+    // Pins wait out the wireframe fade on first load; on a mode switch the
+    // wireframe is already up, so they pop straight away.
+    var popDelay = animateWireframe ? 500 : 0;
+
+    // Toggling modes rebuilds the SVG, so carry the zoom over or the view snaps
+    // back to the whole world. Known before the pins are laid out because their
+    // counter-scale depends on it.
+    var restoreTransform = options.preserveTransform ? currentTransform : null;
+    var currentK = restoreTransform ? restoreTransform.k : 1;
+
     pins.forEach(function (pin, i) {
       var p = projection([pin.lng, pin.lat]);
       if (!p) return;
       pin.x = p[0];
       pin.y = p[1];
 
-      var clipId = "pin-clip-" + i;
-      defs
-        .append("clipPath")
-        .attr("id", clipId)
-        .append("circle")
-        .attr("r", PIN_RADIUS);
-
-      pin.visiblePhotos = pin.photos.filter(photoInRange);
-      pin.visible = pin.visiblePhotos.length > 0;
+      if (isLogMode) {
+        pin.visible = true;
+      } else {
+        pin.visiblePhotos = pin.photos.filter(photoInRange);
+        pin.visible = pin.visiblePhotos.length > 0;
+      }
 
       var g = pinLayer
         .append("g")
-        .attr("class", "map-pin")
+        .attr("class", isLogMode ? "map-pin map-log-pin" : "map-pin")
         .classed("is-hidden", !pin.visible)
         .attr(
           "transform",
-          "translate(" + pin.x + "," + pin.y + ")" +
-            (!pin.visible || animate ? " scale(0)" : "")
+          !pin.visible || animatePins
+            ? "translate(" + pin.x + "," + pin.y + ") scale(0)"
+            : pinTransform(pin)
         )
         .attr("role", "button")
         .attr("tabindex", pin.visible ? 0 : -1);
 
-      if (animate && pin.visible) {
+      if (animatePins && pin.visible) {
         g.transition()
-          .delay(500 + pin.popRank * 45)
+          .delay(popDelay + pin.popRank * 45)
           .duration(550)
           .ease(d3.easeBackOut.overshoot(2.2))
-          .attr("transform", "translate(" + pin.x + "," + pin.y + ") scale(1)");
+          .attr("transform", pinTransform(pin));
       }
 
-      var newestThumb = thumbSrcFor(pin.visiblePhotos[0] || pin.photos[0]);
-      var image = g
-        .append("image")
-        .attr("href", newestThumb)
-        .attr("x", -PIN_RADIUS)
-        .attr("y", -PIN_RADIUS)
-        .attr("width", PIN_RADIUS * 2)
-        .attr("height", PIN_RADIUS * 2)
-        .attr("preserveAspectRatio", "xMidYMid slice")
-        .attr("clip-path", "url(#" + clipId + ")");
+      if (isLogMode) {
+        var radius = logPinRadius(pin.group.entries.length);
+        g.attr("aria-label", pin.label);
+        g.append("circle")
+          .attr("class", "map-log-dot")
+          .attr("r", radius * 0.55);
+        g.append("circle").attr("class", "map-pin-ring").attr("r", radius);
+      } else {
+        var clipId = "pin-clip-" + i;
+        defs
+          .append("clipPath")
+          .attr("id", clipId)
+          .append("circle")
+          .attr("r", PIN_RADIUS);
 
-      image.node().addEventListener("error", function () {
-        // Thumb missing: fall back to the full-size photo.
-        var full = (pin.visiblePhotos[0] || pin.photos[0]).src;
-        if (image.attr("href") !== full) image.attr("href", full);
-      });
+        var newestThumb = thumbSrcFor(pin.visiblePhotos[0] || pin.photos[0]);
+        var image = g
+          .append("image")
+          .attr("href", newestThumb)
+          .attr("x", -PIN_RADIUS)
+          .attr("y", -PIN_RADIUS)
+          .attr("width", PIN_RADIUS * 2)
+          .attr("height", PIN_RADIUS * 2)
+          .attr("preserveAspectRatio", "xMidYMid slice")
+          .attr("clip-path", "url(#" + clipId + ")");
 
-      g.append("circle")
-        .attr("class", "map-pin-ring")
-        .attr("r", PIN_RADIUS);
+        image.node().addEventListener("error", function () {
+          // Thumb missing: fall back to the full-size photo.
+          var full = (pin.visiblePhotos[0] || pin.photos[0]).src;
+          if (image.attr("href") !== full) image.attr("href", full);
+        });
 
-      var badge = g.append("g").attr("class", "map-pin-badge");
-      badge
-        .append("circle")
-        .attr("cx", PIN_RADIUS * 0.75)
-        .attr("cy", -PIN_RADIUS * 0.75)
-        .attr("r", 7.5);
-      badge
-        .append("text")
-        .attr("x", PIN_RADIUS * 0.75)
-        .attr("y", -PIN_RADIUS * 0.75);
-      updatePinAppearance(g, pin);
+        g.append("circle")
+          .attr("class", "map-pin-ring")
+          .attr("r", PIN_RADIUS);
+
+        var badge = g.append("g").attr("class", "map-pin-badge");
+        badge
+          .append("circle")
+          .attr("cx", PIN_RADIUS * 0.75)
+          .attr("cy", -PIN_RADIUS * 0.75)
+          .attr("r", 7.5);
+        badge
+          .append("text")
+          .attr("x", PIN_RADIUS * 0.75)
+          .attr("y", -PIN_RADIUS * 0.75);
+        updatePinAppearance(g, pin);
+      }
 
       var node = g.node();
       node.__pin__ = pin;
-      node.addEventListener("click", function () {
+
+      function activate() {
         hideTooltip();
-        openLightbox(pin.visiblePhotos, node);
-      });
+        if (isLogMode) openPanel(pin, node);
+        else if (lightbox) lightbox.open(pin.visiblePhotos, 0, node);
+      }
+
+      node.addEventListener("click", activate);
       node.addEventListener("keydown", function (e) {
         if (e.key === "Enter" || e.key === " ") {
           e.preventDefault();
-          hideTooltip();
-          openLightbox(pin.visiblePhotos, node);
+          activate();
         }
       });
       node.addEventListener("pointerenter", function (e) {
-        showTooltip(pin.name, e.clientX, e.clientY);
+        showTooltip(pin.label || pin.name, e.clientX, e.clientY);
       });
       node.addEventListener("pointermove", function (e) {
         moveTooltip(e.clientX, e.clientY);
@@ -547,7 +525,6 @@
        constant screen size and dense clusters separate as you zoom in.
        Filtered-out pins keep scale(0). interrupt() cancels any still-running
        pop transitions so they can't overwrite the zoom-adjusted transforms. */
-    var currentK = 1;
 
     function pinTransform(pin) {
       return (
@@ -632,7 +609,8 @@
       return appearing.length;
     }
 
-    pinFilterFn = applyYearFilter;
+    // Log pins carry no photos, so the year filter has nothing to act on.
+    pinFilterFn = isLogMode ? null : applyYearFilter;
 
     var zoom = d3
       .zoom()
@@ -642,6 +620,7 @@
         [width, height],
       ])
       .on("zoom", function (event) {
+        currentTransform = event.transform;
         root.attr("transform", event.transform);
         applyPinScale(event.transform.k);
         hideTooltip();
@@ -649,33 +628,96 @@
 
     svg.call(zoom);
 
-    if (!animate) applyPinScale(1);
+    if (restoreTransform) {
+      // Seed d3-zoom's stored state rather than replaying the transform, which
+      // would fire the handler and interrupt the pins mid-pop.
+      svg.node().__zoom = restoreTransform;
+      root.attr("transform", restoreTransform);
+    }
+
+    if (!animatePins) applyPinScale(currentK);
   }
+
+  /* ---- Mode toggle ---- */
+
+  /** One marker per geocoded log location; entries whose location never
+      geocoded are dropped here but still show on the logs page. */
+  function buildLogPins(entries, locations) {
+    var pins = [];
+    LogCard.groupByLocation(entries).forEach(function (group) {
+      var coords = locations[group.location];
+      if (!coords) return;
+      var count = group.entries.length;
+      pins.push({
+        name: LogCard.groupTitle(group),
+        label:
+          LogCard.groupTitle(group) +
+          " — " +
+          count +
+          (count === 1 ? " entry" : " entries"),
+        lat: coords.lat,
+        lng: coords.lng,
+        group: group,
+        popRank: pins.length,
+      });
+    });
+    return pins;
+  }
+
+  function setMode(next) {
+    if (next === mode) return;
+    mode = next;
+    closePanel();
+    stopPlayback(true);
+    hideTooltip();
+    syncTimelineVisibility();
+
+    modePhotosBtn.classList.toggle("is-active", mode === "photos");
+    modeLogsBtn.classList.toggle("is-active", mode === "logs");
+    modePhotosBtn.setAttribute("aria-pressed", String(mode === "photos"));
+    modeLogsBtn.setAttribute("aria-pressed", String(mode === "logs"));
+    mapWrap.setAttribute(
+      "aria-label",
+      mode === "logs" ? "World map of logged places" : "World map of photo locations"
+    );
+
+    drawMap({ animatePins: true, preserveTransform: true });
+  }
+
+  modePhotosBtn.addEventListener("click", function () { setMode("photos"); });
+  modeLogsBtn.addEventListener("click", function () { setMode("logs"); });
 
   /* ---- Boot ---- */
 
   Promise.all([
     fetch("photos.json").then(function (r) { return r.json(); }),
     fetch("locations.json").then(function (r) { return r.json(); }),
-    fetch("vendor/countries-110m.json").then(function (r) { return r.json(); }),
+    fetch("vendor/countries-50m.json").then(function (r) { return r.json(); }),
+    // Logs are additive: a missing logs.json should not take the map down.
+    fetch("logs.json")
+      .then(function (r) { return r.json(); })
+      .catch(function () { return { entries: [] }; }),
   ])
     .then(function (results) {
       var data = results[0];
       var locations = results[1];
-      var world = results[2];
+      world = results[2];
 
       renderProfile(data.profile);
 
-      var pins = groupByLocation(data.photos, locations);
-      computePopOrder(pins);
+      photoIndex = LogCard.photosByLocation(data.photos);
+      photoPins = groupByLocation(data.photos, locations);
+      logPins = buildLogPins(results[3].entries || [], locations);
+      if (!logPins.length) modeToggle.style.display = "none";
+      computePopOrder(photoPins);
       initTimeline(data.photos);
-      drawMap(world, pins, true);
+      drawMap({ animatePins: true, animateWireframe: true });
 
       var resizeTimer = null;
       window.addEventListener("resize", function () {
         clearTimeout(resizeTimer);
         resizeTimer = setTimeout(function () {
-          drawMap(world, pins, false);
+          drawMap({});
         }, 150);
       });
     })

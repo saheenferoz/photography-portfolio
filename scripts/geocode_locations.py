@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """
-Geocode photo locations for the map page.
+Geocode photo and travel-log locations for the map page.
 
-Reads unique `location` values from photos.json, skips ones already present
-in locations.json, looks up the rest via the free Nominatim (OpenStreetMap)
-API, and rewrites locations.json sorted by name.
+Reads unique `location` values from photos.json and logs.json, skips ones
+already present in locations.json, looks up the rest via the free Nominatim
+(OpenStreetMap) API, and rewrites locations.json sorted by name.
 
 Failed lookups are logged and skipped (exit code stays 0) so the sync
 workflow never breaks; fix those by hand-editing locations.json.
@@ -52,15 +52,24 @@ def geocode(query: str) -> dict[str, float] | None:
     }
 
 
+def location_names(path: Path, list_key: str, required: bool) -> set[str]:
+    if not path.is_file():
+        if required:
+            sys.exit(f"{path.name}: not found")
+        return set()
+    records = json.loads(path.read_text(encoding="utf-8")).get(list_key)
+    if not isinstance(records, list):
+        sys.exit(f"{path.name}: missing or invalid {list_key!r} array")
+    return {
+        r["location"].strip()
+        for r in records
+        if isinstance(r, dict) and isinstance(r.get("location"), str) and r["location"].strip()
+    }
+
+
 def main() -> None:
     root = repo_root()
-    photos_path = root / "photos.json"
     locations_path = root / "locations.json"
-
-    data = json.loads(photos_path.read_text(encoding="utf-8"))
-    photos = data.get("photos")
-    if not isinstance(photos, list):
-        sys.exit("photos.json: missing or invalid 'photos' array")
 
     known: dict = {}
     if locations_path.is_file():
@@ -68,11 +77,8 @@ def main() -> None:
         if not isinstance(known, dict):
             sys.exit("locations.json: expected a JSON object")
 
-    wanted = {
-        p["location"].strip()
-        for p in photos
-        if isinstance(p, dict) and isinstance(p.get("location"), str) and p["location"].strip()
-    }
+    wanted = location_names(root / "photos.json", "photos", required=True)
+    wanted |= location_names(root / "logs.json", "entries", required=False)
     missing = sorted(wanted - set(known))
 
     failed = 0

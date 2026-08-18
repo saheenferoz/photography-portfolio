@@ -24,12 +24,17 @@
     <nav class="site-nav" aria-label="Site">
       <a class="site-nav-link is-active" href="./" aria-current="page">Map</a>
       <a class="site-nav-link" href="gallery.html">Gallery</a>
+      <a class="site-nav-link" href="logs.html">Logs</a>
     </nav>
   </header>
 
   <main class="map-main">
     <div class="map-wrap" id="map" aria-label="World map of photo locations"></div>
     <div class="map-tooltip" id="map-tooltip" role="status" aria-hidden="true"></div>
+    <div class="map-mode" role="group" aria-label="Map contents">
+      <button class="map-mode-btn is-active" id="mode-photos" type="button" aria-pressed="true">Photos</button>
+      <button class="map-mode-btn" id="mode-logs" type="button" aria-pressed="false">Logs</button>
+    </div>
     <div class="map-timeline" id="map-timeline" role="group" aria-label="Filter pins by year">
       <button class="timeline-play" id="timeline-play" type="button" aria-label="Play timeline">
         <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
@@ -48,6 +53,13 @@
       Geocoding © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors
     </p>
   </main>
+
+  <aside class="log-panel" id="log-panel" aria-labelledby="log-panel-title">
+    <button class="log-panel-close" id="log-panel-close" aria-label="Close log">&times;</button>
+    <h2 class="log-panel-title" id="log-panel-title"></h2>
+    <p class="log-panel-subtitle" id="log-panel-subtitle"></p>
+    <div class="log-panel-body" id="log-panel-body"></div>
+  </aside>
 
   <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
     <button class="lightbox-close" id="lightbox-close" aria-label="Close">&times;</button>
@@ -70,6 +82,7 @@
 
   <script src="vendor/d3.v7.min.js"></script>
   <script src="vendor/topojson-client.min.js"></script>
+  <script src="logs-card.js"></script>
   <script src="map.js"></script>
 </body>
 </html>

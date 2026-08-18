@@ -1,8 +1,11 @@
 # After you push a new image into photos/ with the usual filename pattern,
 # this workflow adds a photos.json row (date/location parsed from the name),
-# writes the matching file under photos/thumbs/, sorts the list, geocodes any
-# new locations into locations.json (for the map page), and pushes.
+# writes the matching file under photos/thumbs/, sorts the list, rebuilds
+# logs.json from the YAML files under logs/, geocodes any new photo or log
+# locations into locations.json (for the map page), and pushes.
 # Commit subject includes [skip ci] so this job does not re-trigger itself.
+# A validation failure in build_logs.py aborts the job before anything is
+# committed, so a bad logs/*.yaml never ships.
 
 name: Sync photo thumbnails and JSON
 
@@ -12,6 +15,8 @@ on:
     paths:
       - "photos/**"
       - "photos.json"
+      - "logs/**"
+      - "logs.json"
       - ".github/workflows/sync-photos.yml"
       - "scripts/**"
 
@@ -29,10 +34,13 @@ jobs:
           python-version: "3.12"
 
       - name: Install dependencies
-        run: pip install pillow
+        run: pip install pillow pyyaml
 
       - name: Sync thumbnails and photos.json
         run: python scripts/sync_photos.py
+
+      - name: Validate logs YAML and build logs.json
+        run: python scripts/build_logs.py
 
       - name: Geocode new locations
         run: python scripts/geocode_locations.py
@@ -41,10 +49,10 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add photos.json photos/thumbs locations.json
+          git add photos.json photos/thumbs locations.json logs.json
           if git diff --staged --quiet; then
             echo "Nothing to commit."
             exit 0
           fi
-          git commit -m "chore: sync photo thumbnails and photos.json [skip ci]"
+          git commit -m "chore: sync photo thumbnails and JSON data [skip ci]"
           git push
