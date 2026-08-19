@@ -3,9 +3,21 @@
     "lat": 44.35631,
     "lng": -68.21548
   },
+  "Agastya Mala, Kerala": {
+    "lat": 8.65,
+    "lng": 77.2167
+  },
   "Agate Fossil Beds National Monument, Nebraska": {
     "lat": 42.42229,
     "lng": -103.759
+  },
+  "Agra, Uttar Pradesh": {
+    "lat": 27.17526,
+    "lng": 78.00982
+  },
+  "Ahmedabad, Gujarat": {
+    "lat": 23.02154,
+    "lng": 72.58006
   },
   "Alabama": {
     "lat": 33.25888,
@@ -14,6 +26,14 @@
   "Alappuzha": {
     "lat": 9.50034,
     "lng": 76.41234
+  },
+  "Anjuna Beach, Goa": {
+    "lat": 15.5761,
+    "lng": 73.74018
+  },
+  "Ann Arbor, Michigan": {
+    "lat": 42.28137,
+    "lng": -83.74846
   },
   "Apostle Islands National Lakeshore, Wisconsin": {
     "lat": 46.9375,
@@ -31,6 +51,14 @@
     "lat": 8.61667,
     "lng": 77.35
   },
+  "Ashtamudi Lake, Kerala": {
+    "lat": 8.94782,
+    "lng": 76.57028
+  },
+  "Athirappilly Falls, Thrissur, Kerala": {
+    "lat": 10.28472,
+    "lng": 76.56861
+  },
   "Atlanta, Georgia": {
     "lat": 33.75447,
     "lng": -84.38982
@@ -43,6 +71,10 @@
     "lat": 43.52711,
     "lng": -102.36166
   },
+  "Baga Beach, Goa": {
+    "lat": 15.55737,
+    "lng": 73.75098
+  },
   "Barringer Crater": {
     "lat": 35.02713,
     "lng": -111.01838
@@ -51,6 +83,10 @@
     "lat": 46.47102,
     "lng": -91.19832
   },
+  "Bhopal, Madhya Pradesh": {
+    "lat": 23.25849,
+    "lng": 77.40199
+  },
   "Big Sur": {
     "lat": 36.1437,
     "lng": -121.56459
@@ -58,6 +94,10 @@
   "Birmingham, Alabama": {
     "lat": 33.52068,
     "lng": -86.80243
+  },
+  "Biscayne National Park, Florida": {
+    "lat": 25.50312,
+    "lng": -80.23485
   },
   "Black Canyon Of The Gunnison National Park": {
     "lat": 38.57981,
@@ -75,6 +115,10 @@
     "lat": 42.35883,
     "lng": -71.05783
   },
+  "Brimore Estate, Kerala": {
+    "lat": 8.75694,
+    "lng": 77.18889
+  },
   "Brooklyn Bridge, New York": {
     "lat": 40.70622,
     "lng": -73.99702
@@ -86,6 +130,14 @@
   "Burney, California": {
     "lat": 40.88841,
     "lng": -121.67278
+  },
+  "Butterfly Beach, Goa": {
+    "lat": 15.01947,
+    "lng": 74.00163
+  },
+  "Calangute Beach, Goa": {
+    "lat": 15.54249,
+    "lng": 73.75556
   },
   "Canyonlands National Park, Utah": {
     "lat": 38.23326,
@@ -115,6 +167,14 @@
     "lat": 40.80423,
     "lng": -76.34088
   },
+  "Chapora Fort, Goa": {
+    "lat": 15.60595,
+    "lng": 73.73528
+  },
+  "Chennai, Tamil Nadu": {
+    "lat": 13.08369,
+    "lng": 80.27019
+  },
   "Cherry Springs State Park": {
     "lat": 41.66276,
     "lng": -77.8222
@@ -130,6 +190,10 @@
   "Chimney Rock, Nebraska": {
     "lat": 41.70385,
     "lng": -103.34823
+  },
+  "Chitteeppara, Kerala": {
+    "lat": 8.64302,
+    "lng": 77.07167
   },
   "Cincinnati, Ohio": {
     "lat": 39.10128,
@@ -154,6 +218,10 @@
   "Congaree National Park, South Carolina": {
     "lat": 33.79416,
     "lng": -80.76365
+  },
+  "Courtallam Five Falls, Tamil Nadu": {
+    "lat": 8.93262,
+    "lng": 77.24684
   },
   "Crater Lake National Park": {
     "lat": 42.93169,
@@ -195,9 +263,17 @@
     "lat": 41.13844,
     "lng": -74.91102
   },
+  "Delta Beach, Karnataka": {
+    "lat": 13.44582,
+    "lng": 74.69389
+  },
   "Denver, Colorado": {
     "lat": 39.73924,
     "lng": -104.98486
+  },
+  "Detroit, Michigan": {
+    "lat": 42.33155,
+    "lng": -83.04664
   },
   "Devil's Tower National Monument, Wyoming": {
     "lat": 44.5898,
@@ -210,6 +286,10 @@
   "Driftwood Beach, Georgia": {
     "lat": 31.11088,
     "lng": -81.40594
+  },
+  "Everglades National Park, Florida": {
+    "lat": 25.36794,
+    "lng": -80.87831
   },
   "Flatirons, Colorado": {
     "lat": 39.98881,
@@ -279,6 +359,10 @@
     "lat": 40.26631,
     "lng": -76.88611
   },
+  "Hartford, Connecticut": {
+    "lat": 41.76458,
+    "lng": -72.69085
+  },
   "Hoboken, New Jersey": {
     "lat": 40.74331,
     "lng": -74.03238
@@ -307,6 +391,14 @@
     "lat": 9.7752,
     "lng": 77.05278
   },
+  "India Gate, Delhi": {
+    "lat": 28.61293,
+    "lng": 77.22949
+  },
+  "Indiana Dunes National Park, Indiana": {
+    "lat": 41.61527,
+    "lng": -87.20726
+  },
   "Indianapolis": {
     "lat": 39.76833,
     "lng": -86.15835
@@ -331,6 +423,26 @@
     "lat": 46.53677,
     "lng": 7.96259
   },
+  "Kanniyakumari, Tamil Nadu": {
+    "lat": 8.32798,
+    "lng": 77.35412
+  },
+  "Kappil, Thiruvananthapuram, Kerala": {
+    "lat": 8.77956,
+    "lng": 76.67929
+  },
+  "Key West, Florida": {
+    "lat": 24.55483,
+    "lng": -81.80207
+  },
+  "Kodaikanal, Tamil Nadu": {
+    "lat": 10.23371,
+    "lng": 77.49197
+  },
+  "Kollam Beach, Kerala": {
+    "lat": 8.87445,
+    "lng": 76.59145
+  },
   "Kolukkumalai": {
     "lat": 10.08265,
     "lng": 77.22177
@@ -339,9 +451,21 @@
     "lat": 8.3951,
     "lng": 76.97299
   },
+  "Kovalam, Kerala": {
+    "lat": 8.39026,
+    "lng": 76.97852
+  },
+  "Kozhikode, Kerala": {
+    "lat": 11.24506,
+    "lng": 75.77547
+  },
   "Kudremukh": {
     "lat": 13.21907,
     "lng": 75.25103
+  },
+  "Kudukkathu Para, Kerala": {
+    "lat": 8.88729,
+    "lng": 76.98214
   },
   "Las Vegas, Nevada": {
     "lat": 36.16743,
@@ -363,6 +487,10 @@
     "lat": 40.71355,
     "lng": -74.00543
   },
+  "Mackinaw City, Michigan": {
+    "lat": 45.7839,
+    "lng": -84.72783
+  },
   "Madison Wisconsin": {
     "lat": 43.07305,
     "lng": -89.40123
@@ -370,6 +498,14 @@
   "Madison, Wisconsin": {
     "lat": 43.07469,
     "lng": -89.38417
+  },
+  "Malappuram, Kerala": {
+    "lat": 11.10657,
+    "lng": 76.11017
+  },
+  "Malpe Beach, Karnataka": {
+    "lat": 13.36201,
+    "lng": 74.69786
   },
   "Mammoth Cave National Park, Kentucky": {
     "lat": 37.18417,
@@ -379,6 +515,14 @@
     "lat": 32.24546,
     "lng": 77.18729
   },
+  "Mangalore, Karnataka": {
+    "lat": 12.86981,
+    "lng": 74.84301
+  },
+  "Manipal, Karnataka": {
+    "lat": 13.35197,
+    "lng": 74.78703
+  },
   "Manjolai": {
     "lat": 8.65861,
     "lng": 77.39306
@@ -386,6 +530,10 @@
   "Maquoketa Caves State Park, Iowa": {
     "lat": 42.11857,
     "lng": -90.77609
+  },
+  "Mayyanad Beach, Kerala": {
+    "lat": 8.85608,
+    "lng": 76.61647
   },
   "Medora, North Dakota": {
     "lat": 46.9139,
@@ -403,9 +551,17 @@
     "lat": 35.02713,
     "lng": -111.01838
   },
+  "Miami, Florida": {
+    "lat": 25.77416,
+    "lng": -80.1936
+  },
   "Midtown, New York": {
     "lat": 40.75512,
     "lng": -73.98478
+  },
+  "Milwaukee, Wisconsin": {
+    "lat": 43.03865,
+    "lng": -87.90908
   },
   "Minneapolis": {
     "lat": 44.9773,
@@ -431,9 +587,21 @@
     "lat": 43.88086,
     "lng": -103.45382
   },
+  "Mumbai, Maharashtra": {
+    "lat": 19.055,
+    "lng": 72.8692
+  },
   "Munnar Hill Station": {
     "lat": 10.08887,
     "lng": 77.05953
+  },
+  "Muthala Pozhi Perumathura, Kerala": {
+    "lat": 8.63393,
+    "lng": 76.78594
+  },
+  "Nagercoil, Tamil Nadu": {
+    "lat": 8.18399,
+    "lng": 77.43154
   },
   "National Mall, Washington DC": {
     "lat": 38.88984,
@@ -451,17 +619,37 @@
     "lat": 43.84333,
     "lng": -103.56206
   },
+  "New Castle, Delaware": {
+    "lat": 39.61599,
+    "lng": -75.66296
+  },
   "New Orleans, Louisiana": {
     "lat": 29.95614,
     "lng": -90.07339
+  },
+  "New River Gorge National Park & Preserve, West Virginia": {
+    "lat": 37.8967,
+    "lng": -81.043
+  },
+  "Niagara Falls, New York": {
+    "lat": 43.08484,
+    "lng": -79.07018
   },
   "Ohiopyle State Park": {
     "lat": 39.86708,
     "lng": -79.42948
   },
+  "Ooty, Tamil Nadu": {
+    "lat": 11.41268,
+    "lng": 76.70305
+  },
   "Palisade Head, Minnesota": {
     "lat": 47.32056,
     "lng": -91.21059
+  },
+  "Paravur Beach, Kollam, Kerala": {
+    "lat": 8.811,
+    "lng": 76.669
   },
   "Petrified Forest National Park": {
     "lat": 34.97448,
@@ -483,9 +671,25 @@
     "lat": 40.4407,
     "lng": -80.00257
   },
+  "Ponmudi Hill Station, Kerala": {
+    "lat": 8.76689,
+    "lng": 77.10948
+  },
+  "Poovar, Kerala": {
+    "lat": 8.31874,
+    "lng": 77.07065
+  },
   "Presque Isle State Park, Pennsylvania": {
     "lat": 42.14281,
     "lng": -80.13593
+  },
+  "Providence, Rhode Island": {
+    "lat": 41.82399,
+    "lng": -71.41283
+  },
+  "Qutb Minar, Delhi": {
+    "lat": 28.52441,
+    "lng": 77.18545
   },
   "Raleigh, North Carolina": {
     "lat": 35.7804,
@@ -494,6 +698,10 @@
   "Rapid City, South Dakota": {
     "lat": 44.0806,
     "lng": -103.22802
+  },
+  "Red Fort, Delhi": {
+    "lat": 28.65608,
+    "lng": 77.2408
   },
   "Redwood National Park": {
     "lat": 41.76807,
@@ -519,6 +727,10 @@
     "lat": 37.33617,
     "lng": -121.89059
   },
+  "Sandy Point State Park, Maryland": {
+    "lat": 39.01936,
+    "lng": -76.40549
+  },
   "Savannah, Georgia": {
     "lat": 32.07901,
     "lng": -81.09213
@@ -543,6 +755,10 @@
     "lat": 38.47197,
     "lng": -78.4637
   },
+  "Shendurney Wildlife Sanctuary, Kerala": {
+    "lat": 8.86055,
+    "lng": 77.21381
+  },
   "Shovel Point, Minnesota": {
     "lat": 47.33953,
     "lng": -91.18487
@@ -550,6 +766,10 @@
   "Sky Pond, Rocky Mountain National Park": {
     "lat": 40.2762,
     "lng": -105.6689
+  },
+  "Sleeping Bear Dunes National Lakeshore, Michigan": {
+    "lat": 44.93094,
+    "lng": -85.89838
   },
   "Smithsonian National Postal Museum, Washington DC": {
     "lat": 38.89807,
@@ -587,6 +807,14 @@
     "lat": 47.56448,
     "lng": -90.89764
   },
+  "Tenkasi, Tamil Nadu": {
+    "lat": 9.09339,
+    "lng": 77.47584
+  },
+  "Thenmala, Kerala": {
+    "lat": 8.96527,
+    "lng": 77.06996
+  },
   "Theodore Roosevelt National Park": {
     "lat": 46.95848,
     "lng": -103.46501
@@ -595,13 +823,37 @@
     "lat": 42.85649,
     "lng": -103.58288
   },
+  "Top Station, Munnar, Kerala": {
+    "lat": 10.1234,
+    "lng": 77.2451
+  },
+  "Trivandrum City, Kerala": {
+    "lat": 8.4834,
+    "lng": 76.94746
+  },
   "Tucson, Arizona": {
     "lat": 32.22288,
     "lng": -110.97485
   },
+  "Udupi, Karnataka": {
+    "lat": 13.52698,
+    "lng": 74.87319
+  },
+  "Vagamon, Kerala": {
+    "lat": 9.6886,
+    "lng": 76.90686
+  },
   "Vanderbilt Mansion National Historic Site, New York": {
     "lat": 41.79779,
     "lng": -73.94217
+  },
+  "Varkala Beach, Kerala": {
+    "lat": 8.73326,
+    "lng": 76.70531
+  },
+  "Vellayani Lake, Kerala": {
+    "lat": 8.42535,
+    "lng": 76.99393
   },
   "Voyageurs National Park": {
     "lat": 48.46555,

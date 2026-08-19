@@ -161,6 +161,31 @@ regions:
     - food: BlueFin Sushi Bar
   - area: Black Canyon of the Gunnison National Park
   - area: Mesa Verde National Park
+- region: Connecticut
+  areas:
+  - area: Hartford
+- region: Delaware
+  areas:
+  - area: New Castle
+    places:
+    - food: Jessop's Tavern & Colonial Restaurant
+    - place: New Castle Battery Park
+- region: Florida
+  areas:
+  - area: Miami
+    places:
+    - place: Miami Beach
+  - area: Biscayne National Park
+  - area: Everglades National Park
+    places:
+    - trail: Anhinga Trail
+  - area: Key West
+    places:
+    - drive: U.S. Route 1
+    - place: Smathers Beach
+    - place: Clarence S. Higgs Memorial Beach
+    - place: Fort Zachary Taylor Historic State Park Beach
+    - place: The Key West Butterfly and Nature Conservatory
 - region: Georgia
   areas:
   - area: Atlanta
@@ -168,6 +193,26 @@ regions:
     places:
     - place: Tybee Island
   - area: Driftwood Beach
+- region: Illinois
+  areas:
+  - area: Chicago
+    places:
+    - place: Magnificent Mile
+    - place: Cloud Gate (the Bean)
+    - place: Millennium Park
+    - place: Grant Park
+    - place: Navy Pier
+    - place: Riverwalk
+    - place: Shedd Aquarium
+- region: Indiana
+  areas:
+  - area: Indiana Dunes National Park
+  - area: Indianapolis
+    places:
+    - place: White River State Park
+    - place: Soldiers & Sailors Monument
+    - event: Indy 500
+    - event: NASCAR
 - region: Iowa
   areas:
   - area: Guttenberg
@@ -203,6 +248,34 @@ regions:
   - area: Acadia National Park
     places:
     - trail: The Precipice
+- region: Maryland
+  areas:
+  - area: Chesapeake Bay Bridge
+  - area: Sandy Point State Park
+- region: Massachusetts
+  areas:
+  - area: Boston
+    places:
+    - place: Massachusetts Institute of Technology
+    - place: Harvard University
+- region: Michigan
+  areas:
+  - area: Detroit
+    places:
+    - place: Henry Ford Museum of American Innovation
+  - area: Ann Arbor
+    places:
+    - place: University of Michigan
+  - area: Sleeping Bear Dunes National Lakeshore
+  - area: Mackinaw City
+    places:
+    - place: Mackinac Bridge
+    - food: Audie's Restaurant
+    - place: Castle Rock
+  - area: Isle Royale National Park
+    places:
+    - trail: Grace Creek Overlook
+    - place: Rock of Ages Lighthouse
 - region: Minnesota
   areas:
   - area: Cascade Falls
@@ -347,6 +420,7 @@ regions:
     - place: Battery Park
     - place: The Oculus
     - place: World Trade Center
+  - area: Niagara Falls
 - region: North Carolina
   areas:
   - area: Raleigh
@@ -416,6 +490,44 @@ regions:
     - place: Puttshack (Mini Golf)
     - place: Kennywood Amusement Park
     - drive: US-30 Lincoln Highway
+    - food: Dancing Crab Thai Noodle House
+    - food: Tocayo Taqueria
+    - food: Burgatory
+    - food: Tàko Torta
+    - food: Pusadees Garden
+    - food: Pamela's Diner
+    - food: Udipi Cafe
+    - food: Niki's Thai Kitchen
+    - food: Oishi Bento
+    - food: Salem's Market & Grill
+    - food: Porch at Sienna
+    - food: Ali Baba
+    - food: Taj Mahal
+    - food: Mola Sushi
+    - food: Senyai Thai Kitchen
+    - food: Alta Via Pizzeria
+    - food: The Melting Pot
+    - food: Mi Empanada
+    - food: Fish nor Fowl
+    - food: Sushi Atarashi
+    - food: Ironborn Pizza
+    - food: Mercurio's Pizza
+    - food: Noodlehead
+    - food: Lorelei
+    - food: Bird on the Run
+    - food: Chengdu Gourmet
+    - food: Cafe 33
+    - food: Speckled Egg
+    - food: Fet Fisk
+    - food: Kyuramen
+    - food: Page's Ice Cream
+    - food: Tiger Suger - Bubble Tea
+    - food: Mango Mango
+    - food: Treats and Beans
+    - food: T-Swirl Crepe
+    - food: Kyo Matcha
+    - food: Tsaocaa - Bubble Tea
+    - food: Cheesecake factory
   - area: Harrisburg
     places:
     - food: Nalan Indian Cuisine
@@ -430,6 +542,9 @@ regions:
     - place: Steamtown National Historic Site
       notes:
       - Big Boy 4012
+- region: Rhode Island
+  areas:
+  - area: Providence
 - region: South Carolina
   areas:
   - area: Congaree National Park
@@ -553,6 +668,12 @@ regions:
     - place: The White House
     - place: Martin Luther King, Jr. Memorial
     - place: International Spy Museum
+- region: West Virginia
+  areas:
+  - area: New River Gorge National Park & Preserve
+    places:
+    - place: New River Gorge Bridge Overlook
+    - place: Thurmond Historic Town
 - region: Wisconsin
   areas:
   - area: Washburn
@@ -595,6 +716,7 @@ regions:
     - place: Devil's Island
       notes:
       - Can kayak here through the caves
+  - area: Milwaukee
 - region: Wyoming
   areas:
   - area: Yellowstone National Park

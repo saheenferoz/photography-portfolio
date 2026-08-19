@@ -1,0 +1,159 @@
+country: India
+regions:
+- region: Delhi
+  areas:
+  - area: Red Fort
+  - area: Qutb Minar
+  - area: India Gate
+- region: Goa
+  areas:
+  - area: Chapora Fort
+  - area: Baga Beach
+  - area: Calangute Beach
+  - area: Butterfly Beach
+  - area: Anjuna Beach
+- region: Gujarat
+  areas:
+  - area: Ahmedabad
+    places:
+    - place: CEPT University
+    - place: Sabarmati Riverfront Flower Park
+- region: Himachal Pradesh
+  areas:
+  - area: Manali
+    places:
+    - place: Rohtang Pass
+    - place: Atal Tunnel
+    - place: Sissu Waterfall
+- region: Karnataka
+  areas:
+  - area: Manipal
+    places:
+    - place: Manipal Academy of Higher Education
+    - food: Eye of the Tiger
+    - food: Basil Cafe
+    - food: Egg Factory
+    - food: Sizzler Ranch
+    - food: Saiba Restaurant
+    - food: Sultan's Shawarma
+  - area: Udupi
+    places:
+    - food: Woodlands Restaurant
+  - area: Malpe Beach
+  - area: Mangalore
+  - area: Delta Beach
+- region: Kerala
+  areas:
+  - area: Kozhikode
+    places:
+    - food: Rahmath
+    - food: Mandi House
+    - food: Pasta by latin street
+    - food: Mozon
+    - food: Grillax (veal chops)
+    - food: Paragon
+    - food: Sign leban
+    - food: Bun boy
+    - food: Eee kudukka (kulukki sarbat)
+    - place: Kozhikode Beach
+  - area: Malappuram
+    places:
+    - food: Chef Lebanon
+    - food: Sign leban
+    - food: Mouzy banana avil milk
+  - area: Kollam Beach
+  - area: Mayyanad Beach
+  - area: Paravur Beach
+    location: Paravur Beach, Kollam, Kerala
+  - area: Kappil Beach
+    location: Kappil, Thiruvananthapuram, Kerala
+  - area: Ashtamudi Lake
+    places:
+    - place: Monroe Island
+  - area: Kudukkathu Para
+  - area: Trivandrum City
+    places:
+    - place: Valiathura Beach
+    - place: Veli Beach
+    - activity: Trivandrum Zoo
+    - activity: KSST Museum & Priyadarsini Planetarium
+    - food: Nef Nef Rolls
+    - food: Tomato
+    - food: FUEL
+    - food: Cricket Shack
+    - food: Le Arabia
+    - food: Thakkaaram
+    - food: Paragon
+    - food: Cafe Hive
+    - food: BBQ Nation
+    - food: Entree
+    - food: All Spice
+    - food: Zam Zam
+  - area: Kovalam
+    places:
+    - place: Vizhinjam Light House
+    - place: Azhimala Beach
+    - place: Kovalam Beach
+  - area: Poovar
+  - area: Vellayani Lake
+  - area: Muthala Pozhi Perumathura
+  - area: Varkala Beach
+  - area: Thenmala
+    places:
+    - place: Rosemala
+  - area: Shendurney Wildlife Sanctuary
+  - area: Agasthyamalai
+    location: Agastya Mala, Kerala
+  - area: Ponmudi Hill Station
+  - area: Chitteeppara
+  - area: Brimore
+    location: Brimore Estate, Kerala
+  - area: Athirappilly Water Falls
+    location: Athirappilly Falls, Thrissur, Kerala
+  - area: Munnar Hill Station
+  - area: Idukki Reservoir
+    places:
+    - place: Anchuruli Tunnel
+    - place: Idukki Dam
+  - area: Uluppuni Top Station
+    location: Top Station, Munnar, Kerala
+  - area: Vagamon
+- region: Madhya Pradesh
+  areas:
+  - area: Bhopal
+    places:
+    - place: Van Vihar National Park
+    - place: Madhya Pradesh Tribal Museum
+- region: Maharashtra
+  areas:
+  - area: Mumbai
+    places:
+    - place: Marine Drive
+    - place: Coastal Road
+    - place: Bandra-Worli Sea Link Bridge
+    - place: Worli Beach
+    - place: Taj Hotel
+    - place: Gateway of India
+    - place: Chhatrapati Shivaji Maharaj Vastu Sangrahalaya
+    - place: Haji Ali Dargah
+- region: Tamil Nadu
+  areas:
+  - area: Manjolai
+    places:
+    - place: Kuthirai Vetti Watch Tower
+  - area: Chennai
+  - area: Kanniyakumari
+    places:
+    - place: Vivekananda Rock Memorial
+  - area: Nagercoil
+  - area: Courtallam Five Falls
+  - area: Tenkasi
+    places:
+    - food: Border Rahmath Parotta Stall
+  - area: Kodaikanal
+  - area: Ooty
+- region: Uttar Pradesh
+  areas:
+  - area: Agra
+    places:
+    - place: Taj Mahal

@@ -1,6 +1,879 @@
 {
   "entries": [
     {
+      "id": "delhi-red-fort",
+      "country": "India",
+      "region": "Delhi",
+      "area": "Red Fort",
+      "type": "sight",
+      "name": "Red Fort",
+      "location": "Red Fort, Delhi"
+    },
+    {
+      "id": "delhi-qutb-minar",
+      "country": "India",
+      "region": "Delhi",
+      "area": "Qutb Minar",
+      "type": "sight",
+      "name": "Qutb Minar",
+      "location": "Qutb Minar, Delhi"
+    },
+    {
+      "id": "delhi-india-gate",
+      "country": "India",
+      "region": "Delhi",
+      "area": "India Gate",
+      "type": "sight",
+      "name": "India Gate",
+      "location": "India Gate, Delhi"
+    },
+    {
+      "id": "goa-chapora-fort",
+      "country": "India",
+      "region": "Goa",
+      "area": "Chapora Fort",
+      "type": "sight",
+      "name": "Chapora Fort",
+      "location": "Chapora Fort, Goa"
+    },
+    {
+      "id": "goa-baga-beach",
+      "country": "India",
+      "region": "Goa",
+      "area": "Baga Beach",
+      "type": "sight",
+      "name": "Baga Beach",
+      "location": "Baga Beach, Goa"
+    },
+    {
+      "id": "goa-calangute-beach",
+      "country": "India",
+      "region": "Goa",
+      "area": "Calangute Beach",
+      "type": "sight",
+      "name": "Calangute Beach",
+      "location": "Calangute Beach, Goa"
+    },
+    {
+      "id": "goa-butterfly-beach",
+      "country": "India",
+      "region": "Goa",
+      "area": "Butterfly Beach",
+      "type": "sight",
+      "name": "Butterfly Beach",
+      "location": "Butterfly Beach, Goa"
+    },
+    {
+      "id": "goa-anjuna-beach",
+      "country": "India",
+      "region": "Goa",
+      "area": "Anjuna Beach",
+      "type": "sight",
+      "name": "Anjuna Beach",
+      "location": "Anjuna Beach, Goa"
+    },
+    {
+      "id": "gujarat-ahmedabad-cept-university",
+      "country": "India",
+      "region": "Gujarat",
+      "area": "Ahmedabad",
+      "type": "sight",
+      "name": "CEPT University",
+      "location": "Ahmedabad, Gujarat"
+    },
+    {
+      "id": "gujarat-ahmedabad-sabarmati-riverfront-flower-park",
+      "country": "India",
+      "region": "Gujarat",
+      "area": "Ahmedabad",
+      "type": "sight",
+      "name": "Sabarmati Riverfront Flower Park",
+      "location": "Ahmedabad, Gujarat"
+    },
+    {
+      "id": "himachal-pradesh-manali-rohtang-pass",
+      "country": "India",
+      "region": "Himachal Pradesh",
+      "area": "Manali",
+      "type": "sight",
+      "name": "Rohtang Pass",
+      "location": "Manali"
+    },
+    {
+      "id": "himachal-pradesh-manali-atal-tunnel",
+      "country": "India",
+      "region": "Himachal Pradesh",
+      "area": "Manali",
+      "type": "sight",
+      "name": "Atal Tunnel",
+      "location": "Manali"
+    },
+    {
+      "id": "himachal-pradesh-manali-sissu-waterfall",
+      "country": "India",
+      "region": "Himachal Pradesh",
+      "area": "Manali",
+      "type": "sight",
+      "name": "Sissu Waterfall",
+      "location": "Manali"
+    },
+    {
+      "id": "karnataka-manipal-manipal-academy-of-higher-education",
+      "country": "India",
+      "region": "Karnataka",
+      "area": "Manipal",
+      "type": "sight",
+      "name": "Manipal Academy of Higher Education",
+      "location": "Manipal, Karnataka"
+    },
+    {
+      "id": "karnataka-manipal-eye-of-the-tiger",
+      "country": "India",
+      "region": "Karnataka",
+      "area": "Manipal",
+      "type": "food",
+      "name": "Eye of the Tiger",
+      "location": "Manipal, Karnataka"
+    },
+    {
+      "id": "karnataka-manipal-basil-cafe",
+      "country": "India",
+      "region": "Karnataka",
+      "area": "Manipal",
+      "type": "food",
+      "name": "Basil Cafe",
+      "location": "Manipal, Karnataka"
+    },
+    {
+      "id": "karnataka-manipal-egg-factory",
+      "country": "India",
+      "region": "Karnataka",
+      "area": "Manipal",
+      "type": "food",
+      "name": "Egg Factory",
+      "location": "Manipal, Karnataka"
+    },
+    {
+      "id": "karnataka-manipal-sizzler-ranch",
+      "country": "India",
+      "region": "Karnataka",
+      "area": "Manipal",
+      "type": "food",
+      "name": "Sizzler Ranch",
+      "location": "Manipal, Karnataka"
+    },
+    {
+      "id": "karnataka-manipal-saiba-restaurant",
+      "country": "India",
+      "region": "Karnataka",
+      "area": "Manipal",
+      "type": "food",
+      "name": "Saiba Restaurant",
+      "location": "Manipal, Karnataka"
+    },
+    {
+      "id": "karnataka-manipal-sultan-s-shawarma",
+      "country": "India",
+      "region": "Karnataka",
+      "area": "Manipal",
+      "type": "food",
+      "name": "Sultan's Shawarma",
+      "location": "Manipal, Karnataka"
+    },
+    {
+      "id": "karnataka-udupi-woodlands-restaurant",
+      "country": "India",
+      "region": "Karnataka",
+      "area": "Udupi",
+      "type": "food",
+      "name": "Woodlands Restaurant",
+      "location": "Udupi, Karnataka"
+    },
+    {
+      "id": "karnataka-malpe-beach",
+      "country": "India",
+      "region": "Karnataka",
+      "area": "Malpe Beach",
+      "type": "sight",
+      "name": "Malpe Beach",
+      "location": "Malpe Beach, Karnataka"
+    },
+    {
+      "id": "karnataka-mangalore",
+      "country": "India",
+      "region": "Karnataka",
+      "area": "Mangalore",
+      "type": "sight",
+      "name": "Mangalore",
+      "location": "Mangalore, Karnataka"
+    },
+    {
+      "id": "karnataka-delta-beach",
+      "country": "India",
+      "region": "Karnataka",
+      "area": "Delta Beach",
+      "type": "sight",
+      "name": "Delta Beach",
+      "location": "Delta Beach, Karnataka"
+    },
+    {
+      "id": "kerala-kozhikode-rahmath",
+      "country": "India",
+      "region": "Kerala",
+      "area": "Kozhikode",
+      "type": "food",
+      "name": "Rahmath",
+      "location": "Kozhikode, Kerala"
+    },
+    {
+      "id": "kerala-kozhikode-mandi-house",
+      "country": "India",
+      "region": "Kerala",
+      "area": "Kozhikode",
+      "type": "food",
+      "name": "Mandi House",
+      "location": "Kozhikode, Kerala"
+    },
+    {
+      "id": "kerala-kozhikode-pasta-by-latin-street",
+      "country": "India",
+      "region": "Kerala",
+      "area": "Kozhikode",
+      "type": "food",
+      "name": "Pasta by latin street",
+      "location": "Kozhikode, Kerala"
+    },
+    {
+      "id": "kerala-kozhikode-mozon",
+      "country": "India",
+      "region": "Kerala",
+      "area": "Kozhikode",
+      "type": "food",
+      "name": "Mozon",
+      "location": "Kozhikode, Kerala"
+    },
+    {
+      "id": "kerala-kozhikode-grillax-veal-chops",
+      "country": "India",
+      "region": "Kerala",
+      "area": "Kozhikode",
+      "type": "food",
+      "name": "Grillax (veal chops)",
+      "location": "Kozhikode, Kerala"
+    },
+    {
+      "id": "kerala-kozhikode-paragon",
+      "country": "India",
+      "region": "Kerala",
+      "area": "Kozhikode",
+      "type": "food",
+      "name": "Paragon",
+      "location": "Kozhikode, Kerala"
+    },
+    {
+      "id": "kerala-kozhikode-sign-leban",
+      "country": "India",
+      "region": "Kerala",
+      "area": "Kozhikode",
+      "type": "food",
+      "name": "Sign leban",
+      "location": "Kozhikode, Kerala"
+    },
+    {
+      "id": "kerala-kozhikode-bun-boy",
+      "country": "India",
+      "region": "Kerala",
+      "area": "Kozhikode",
+      "type": "food",
+      "name": "Bun boy",
+      "location": "Kozhikode, Kerala"
+    },
+    {
+      "id": "kerala-kozhikode-eee-kudukka-kulukki-sarbat",
+      "country": "India",
+      "region": "Kerala",
+      "area": "Kozhikode",
+      "type": "food",
+      "name": "Eee kudukka (kulukki sarbat)",
+      "location": "Kozhikode, Kerala"
+    },
+    {
+      "id": "kerala-kozhikode-kozhikode-beach",
+      "country": "India",
+      "region": "Kerala",
+      "area": "Kozhikode",
+      "type": "sight",
+      "name": "Kozhikode Beach",
+      "location": "Kozhikode, Kerala"
+    },
+    {
+      "id": "kerala-malappuram-chef-lebanon",
+      "country": "India",
+      "region": "Kerala",
+      "area": "Malappuram",
+      "type": "food",
+      "name": "Chef Lebanon",
+      "location": "Malappuram, Kerala"
+    },
+    {
+      "id": "kerala-malappuram-sign-leban",
+      "country": "India",
+      "region": "Kerala",
+      "area": "Malappuram",
+      "type": "food",
+      "name": "Sign leban",
+      "location": "Malappuram, Kerala"
+    },
+    {
+      "id": "kerala-malappuram-mouzy-banana-avil-milk",
+      "country": "India",
+      "region": "Kerala",
+      "area": "Malappuram",
+      "type": "food",
+      "name": "Mouzy banana avil milk",
+      "location": "Malappuram, Kerala"
+    },
+    {
+      "id": "kerala-kollam-beach",
+      "country": "India",
+      "region": "Kerala",
+      "area": "Kollam Beach",
+      "type": "sight",
+      "name": "Kollam Beach",
+      "location": "Kollam Beach, Kerala"
+    },
+    {
+      "id": "kerala-mayyanad-beach",
+      "country": "India",
+      "region": "Kerala",
+      "area": "Mayyanad Beach",
+      "type": "sight",
+      "name": "Mayyanad Beach",
+      "location": "Mayyanad Beach, Kerala"
+    },
+    {
+      "id": "kerala-paravur-beach",
+      "country": "India",
+      "region": "Kerala",
+      "area": "Paravur Beach",
+      "type": "sight",
+      "name": "Paravur Beach",
+      "location": "Paravur Beach, Kollam, Kerala"
+    },
+    {
+      "id": "kerala-kappil-beach",
+      "country": "India",
+      "region": "Kerala",
+      "area": "Kappil Beach",
+      "type": "sight",
+      "name": "Kappil Beach",
+      "location": "Kappil, Thiruvananthapuram, Kerala"
+    },
+    {
+      "id": "kerala-ashtamudi-lake-monroe-island",
+      "country": "India",
+      "region": "Kerala",
+      "area": "Ashtamudi Lake",
+      "type": "sight",
+      "name": "Monroe Island",
+      "location": "Ashtamudi Lake, Kerala"
+    },
+    {
+      "id": "kerala-kudukkathu-para",
+      "country": "India",
+      "region": "Kerala",
+      "area": "Kudukkathu Para",
+      "type": "sight",
+      "name": "Kudukkathu Para",
+      "location": "Kudukkathu Para, Kerala"
+    },
+    {
+      "id": "kerala-trivandrum-city-valiathura-beach",
+      "country": "India",
+      "region": "Kerala",
+      "area": "Trivandrum City",
+      "type": "sight",
+      "name": "Valiathura Beach",
+      "location": "Trivandrum City, Kerala"
+    },
+    {
+      "id": "kerala-trivandrum-city-veli-beach",
+      "country": "India",
+      "region": "Kerala",
+      "area": "Trivandrum City",
+      "type": "sight",
+      "name": "Veli Beach",
+      "location": "Trivandrum City, Kerala"
+    },
+    {
+      "id": "kerala-trivandrum-city-trivandrum-zoo",
+      "country": "India",
+      "region": "Kerala",
+      "area": "Trivandrum City",
+      "type": "activity",
+      "name": "Trivandrum Zoo",
+      "location": "Trivandrum City, Kerala"
+    },
+    {
+      "id": "kerala-trivandrum-city-ksst-museum-priyadarsini-planetarium",
+      "country": "India",
+      "region": "Kerala",
+      "area": "Trivandrum City",
+      "type": "activity",
+      "name": "KSST Museum & Priyadarsini Planetarium",
+      "location": "Trivandrum City, Kerala"
+    },
+    {
+      "id": "kerala-trivandrum-city-nef-nef-rolls",
+      "country": "India",
+      "region": "Kerala",
+      "area": "Trivandrum City",
+      "type": "food",
+      "name": "Nef Nef Rolls",
+      "location": "Trivandrum City, Kerala"
+    },
+    {
+      "id": "kerala-trivandrum-city-tomato",
+      "country": "India",
+      "region": "Kerala",
+      "area": "Trivandrum City",
+      "type": "food",
+      "name": "Tomato",
+      "location": "Trivandrum City, Kerala"
+    },
+    {
+      "id": "kerala-trivandrum-city-fuel",
+      "country": "India",
+      "region": "Kerala",
+      "area": "Trivandrum City",
+      "type": "food",
+      "name": "FUEL",
+      "location": "Trivandrum City, Kerala"
+    },
+    {
+      "id": "kerala-trivandrum-city-cricket-shack",
+      "country": "India",
+      "region": "Kerala",
+      "area": "Trivandrum City",
+      "type": "food",
+      "name": "Cricket Shack",
+      "location": "Trivandrum City, Kerala"
+    },
+    {
+      "id": "kerala-trivandrum-city-le-arabia",
+      "country": "India",
+      "region": "Kerala",
+      "area": "Trivandrum City",
+      "type": "food",
+      "name": "Le Arabia",
+      "location": "Trivandrum City, Kerala"
+    },
+    {
+      "id": "kerala-trivandrum-city-thakkaaram",
+      "country": "India",
+      "region": "Kerala",
+      "area": "Trivandrum City",
+      "type": "food",
+      "name": "Thakkaaram",
+      "location": "Trivandrum City, Kerala"
+    },
+    {
+      "id": "kerala-trivandrum-city-paragon",
+      "country": "India",
+      "region": "Kerala",
+      "area": "Trivandrum City",
+      "type": "food",
+      "name": "Paragon",
+      "location": "Trivandrum City, Kerala"
+    },
+    {
+      "id": "kerala-trivandrum-city-cafe-hive",
+      "country": "India",
+      "region": "Kerala",
+      "area": "Trivandrum City",
+      "type": "food",
+      "name": "Cafe Hive",
+      "location": "Trivandrum City, Kerala"
+    },
+    {
+      "id": "kerala-trivandrum-city-bbq-nation",
+      "country": "India",
+      "region": "Kerala",
+      "area": "Trivandrum City",
+      "type": "food",
+      "name": "BBQ Nation",
+      "location": "Trivandrum City, Kerala"
+    },
+    {
+      "id": "kerala-trivandrum-city-entree",
+      "country": "India",
+      "region": "Kerala",
+      "area": "Trivandrum City",
+      "type": "food",
+      "name": "Entree",
+      "location": "Trivandrum City, Kerala"
+    },
+    {
+      "id": "kerala-trivandrum-city-all-spice",
+      "country": "India",
+      "region": "Kerala",
+      "area": "Trivandrum City",
+      "type": "food",
+      "name": "All Spice",
+      "location": "Trivandrum City, Kerala"
+    },
+    {
+      "id": "kerala-trivandrum-city-zam-zam",
+      "country": "India",
+      "region": "Kerala",
+      "area": "Trivandrum City",
+      "type": "food",
+      "name": "Zam Zam",
+      "location": "Trivandrum City, Kerala"
+    },
+    {
+      "id": "kerala-kovalam-vizhinjam-light-house",
+      "country": "India",
+      "region": "Kerala",
+      "area": "Kovalam",
+      "type": "sight",
+      "name": "Vizhinjam Light House",
+      "location": "Kovalam, Kerala"
+    },
+    {
+      "id": "kerala-kovalam-azhimala-beach",
+      "country": "India",
+      "region": "Kerala",
+      "area": "Kovalam",
+      "type": "sight",
+      "name": "Azhimala Beach",
+      "location": "Kovalam, Kerala"
+    },
+    {
+      "id": "kerala-kovalam-kovalam-beach",
+      "country": "India",
+      "region": "Kerala",
+      "area": "Kovalam",
+      "type": "sight",
+      "name": "Kovalam Beach",
+      "location": "Kovalam Beach"
+    },
+    {
+      "id": "kerala-poovar",
+      "country": "India",
+      "region": "Kerala",
+      "area": "Poovar",
+      "type": "sight",
+      "name": "Poovar",
+      "location": "Poovar, Kerala"
+    },
+    {
+      "id": "kerala-vellayani-lake",
+      "country": "India",
+      "region": "Kerala",
+      "area": "Vellayani Lake",
+      "type": "sight",
+      "name": "Vellayani Lake",
+      "location": "Vellayani Lake, Kerala"
+    },
+    {
+      "id": "kerala-muthala-pozhi-perumathura",
+      "country": "India",
+      "region": "Kerala",
+      "area": "Muthala Pozhi Perumathura",
+      "type": "sight",
+      "name": "Muthala Pozhi Perumathura",
+      "location": "Muthala Pozhi Perumathura, Kerala"
+    },
+    {
+      "id": "kerala-varkala-beach",
+      "country": "India",
+      "region": "Kerala",
+      "area": "Varkala Beach",
+      "type": "sight",
+      "name": "Varkala Beach",
+      "location": "Varkala Beach, Kerala"
+    },
+    {
+      "id": "kerala-thenmala-rosemala",
+      "country": "India",
+      "region": "Kerala",
+      "area": "Thenmala",
+      "type": "sight",
+      "name": "Rosemala",
+      "location": "Thenmala, Kerala"
+    },
+    {
+      "id": "kerala-shendurney-wildlife-sanctuary",
+      "country": "India",
+      "region": "Kerala",
+      "area": "Shendurney Wildlife Sanctuary",
+      "type": "sight",
+      "name": "Shendurney Wildlife Sanctuary",
+      "location": "Shendurney Wildlife Sanctuary, Kerala"
+    },
+    {
+      "id": "kerala-agasthyamalai",
+      "country": "India",
+      "region": "Kerala",
+      "area": "Agasthyamalai",
+      "type": "sight",
+      "name": "Agasthyamalai",
+      "location": "Agastya Mala, Kerala"
+    },
+    {
+      "id": "kerala-ponmudi-hill-station",
+      "country": "India",
+      "region": "Kerala",
+      "area": "Ponmudi Hill Station",
+      "type": "sight",
+      "name": "Ponmudi Hill Station",
+      "location": "Ponmudi Hill Station, Kerala"
+    },
+    {
+      "id": "kerala-chitteeppara",
+      "country": "India",
+      "region": "Kerala",
+      "area": "Chitteeppara",
+      "type": "sight",
+      "name": "Chitteeppara",
+      "location": "Chitteeppara, Kerala"
+    },
+    {
+      "id": "kerala-brimore",
+      "country": "India",
+      "region": "Kerala",
+      "area": "Brimore",
+      "type": "sight",
+      "name": "Brimore",
+      "location": "Brimore Estate, Kerala"
+    },
+    {
+      "id": "kerala-athirappilly-water-falls",
+      "country": "India",
+      "region": "Kerala",
+      "area": "Athirappilly Water Falls",
+      "type": "sight",
+      "name": "Athirappilly Water Falls",
+      "location": "Athirappilly Falls, Thrissur, Kerala"
+    },
+    {
+      "id": "kerala-munnar-hill-station",
+      "country": "India",
+      "region": "Kerala",
+      "area": "Munnar Hill Station",
+      "type": "sight",
+      "name": "Munnar Hill Station",
+      "location": "Munnar Hill Station"
+    },
+    {
+      "id": "kerala-idukki-reservoir-anchuruli-tunnel",
+      "country": "India",
+      "region": "Kerala",
+      "area": "Idukki Reservoir",
+      "type": "sight",
+      "name": "Anchuruli Tunnel",
+      "location": "Idukki Reservoir"
+    },
+    {
+      "id": "kerala-idukki-reservoir-idukki-dam",
+      "country": "India",
+      "region": "Kerala",
+      "area": "Idukki Reservoir",
+      "type": "sight",
+      "name": "Idukki Dam",
+      "location": "Idukki Reservoir"
+    },
+    {
+      "id": "kerala-uluppuni-top-station",
+      "country": "India",
+      "region": "Kerala",
+      "area": "Uluppuni Top Station",
+      "type": "sight",
+      "name": "Uluppuni Top Station",
+      "location": "Top Station, Munnar, Kerala"
+    },
+    {
+      "id": "kerala-vagamon",
+      "country": "India",
+      "region": "Kerala",
+      "area": "Vagamon",
+      "type": "sight",
+      "name": "Vagamon",
+      "location": "Vagamon, Kerala"
+    },
+    {
+      "id": "madhya-pradesh-bhopal-van-vihar-national-park",
+      "country": "India",
+      "region": "Madhya Pradesh",
+      "area": "Bhopal",
+      "type": "sight",
+      "name": "Van Vihar National Park",
+      "location": "Bhopal, Madhya Pradesh"
+    },
+    {
+      "id": "madhya-pradesh-bhopal-madhya-pradesh-tribal-museum",
+      "country": "India",
+      "region": "Madhya Pradesh",
+      "area": "Bhopal",
+      "type": "sight",
+      "name": "Madhya Pradesh Tribal Museum",
+      "location": "Bhopal, Madhya Pradesh"
+    },
+    {
+      "id": "maharashtra-mumbai-marine-drive",
+      "country": "India",
+      "region": "Maharashtra",
+      "area": "Mumbai",
+      "type": "sight",
+      "name": "Marine Drive",
+      "location": "Mumbai, Maharashtra"
+    },
+    {
+      "id": "maharashtra-mumbai-coastal-road",
+      "country": "India",
+      "region": "Maharashtra",
+      "area": "Mumbai",
+      "type": "sight",
+      "name": "Coastal Road",
+      "location": "Mumbai, Maharashtra"
+    },
+    {
+      "id": "maharashtra-mumbai-bandra-worli-sea-link-bridge",
+      "country": "India",
+      "region": "Maharashtra",
+      "area": "Mumbai",
+      "type": "sight",
+      "name": "Bandra-Worli Sea Link Bridge",
+      "location": "Mumbai, Maharashtra"
+    },
+    {
+      "id": "maharashtra-mumbai-worli-beach",
+      "country": "India",
+      "region": "Maharashtra",
+      "area": "Mumbai",
+      "type": "sight",
+      "name": "Worli Beach",
+      "location": "Mumbai, Maharashtra"
+    },
+    {
+      "id": "maharashtra-mumbai-taj-hotel",
+      "country": "India",
+      "region": "Maharashtra",
+      "area": "Mumbai",
+      "type": "sight",
+      "name": "Taj Hotel",
+      "location": "Mumbai, Maharashtra"
+    },
+    {
+      "id": "maharashtra-mumbai-gateway-of-india",
+      "country": "India",
+      "region": "Maharashtra",
+      "area": "Mumbai",
+      "type": "sight",
+      "name": "Gateway of India",
+      "location": "Mumbai, Maharashtra"
+    },
+    {
+      "id": "maharashtra-mumbai-chhatrapati-shivaji-maharaj-vastu-sangrahalaya",
+      "country": "India",
+      "region": "Maharashtra",
+      "area": "Mumbai",
+      "type": "sight",
+      "name": "Chhatrapati Shivaji Maharaj Vastu Sangrahalaya",
+      "location": "Mumbai, Maharashtra"
+    },
+    {
+      "id": "maharashtra-mumbai-haji-ali-dargah",
+      "country": "India",
+      "region": "Maharashtra",
+      "area": "Mumbai",
+      "type": "sight",
+      "name": "Haji Ali Dargah",
+      "location": "Mumbai, Maharashtra"
+    },
+    {
+      "id": "tamil-nadu-manjolai-kuthirai-vetti-watch-tower",
+      "country": "India",
+      "region": "Tamil Nadu",
+      "area": "Manjolai",
+      "type": "sight",
+      "name": "Kuthirai Vetti Watch Tower",
+      "location": "Manjolai"
+    },
+    {
+      "id": "tamil-nadu-chennai",
+      "country": "India",
+      "region": "Tamil Nadu",
+      "area": "Chennai",
+      "type": "sight",
+      "name": "Chennai",
+      "location": "Chennai, Tamil Nadu"
+    },
+    {
+      "id": "tamil-nadu-kanniyakumari-vivekananda-rock-memorial",
+      "country": "India",
+      "region": "Tamil Nadu",
+      "area": "Kanniyakumari",
+      "type": "sight",
+      "name": "Vivekananda Rock Memorial",
+      "location": "Kanniyakumari, Tamil Nadu"
+    },
+    {
+      "id": "tamil-nadu-nagercoil",
+      "country": "India",
+      "region": "Tamil Nadu",
+      "area": "Nagercoil",
+      "type": "sight",
+      "name": "Nagercoil",
+      "location": "Nagercoil, Tamil Nadu"
+    },
+    {
+      "id": "tamil-nadu-courtallam-five-falls",
+      "country": "India",
+      "region": "Tamil Nadu",
+      "area": "Courtallam Five Falls",
+      "type": "sight",
+      "name": "Courtallam Five Falls",
+      "location": "Courtallam Five Falls, Tamil Nadu"
+    },
+    {
+      "id": "tamil-nadu-tenkasi-border-rahmath-parotta-stall",
+      "country": "India",
+      "region": "Tamil Nadu",
+      "area": "Tenkasi",
+      "type": "food",
+      "name": "Border Rahmath Parotta Stall",
+      "location": "Tenkasi, Tamil Nadu"
+    },
+    {
+      "id": "tamil-nadu-kodaikanal",
+      "country": "India",
+      "region": "Tamil Nadu",
+      "area": "Kodaikanal",
+      "type": "sight",
+      "name": "Kodaikanal",
+      "location": "Kodaikanal, Tamil Nadu"
+    },
+    {
+      "id": "tamil-nadu-ooty",
+      "country": "India",
+      "region": "Tamil Nadu",
+      "area": "Ooty",
+      "type": "sight",
+      "name": "Ooty",
+      "location": "Ooty, Tamil Nadu"
+    },
+    {
+      "id": "uttar-pradesh-agra-taj-mahal",
+      "country": "India",
+      "region": "Uttar Pradesh",
+      "area": "Agra",
+      "type": "sight",
+      "name": "Taj Mahal",
+      "location": "Agra, Uttar Pradesh"
+    },
+    {
       "id": "alabama-mobile-uss-alabama",
       "country": "United States",
       "region": "Alabama",
@@ -640,6 +1513,105 @@
       "location": "Mesa Verde National Park"
     },
     {
+      "id": "connecticut-hartford",
+      "country": "United States",
+      "region": "Connecticut",
+      "area": "Hartford",
+      "type": "sight",
+      "name": "Hartford",
+      "location": "Hartford, Connecticut"
+    },
+    {
+      "id": "delaware-new-castle-jessop-s-tavern-colonial-restaurant",
+      "country": "United States",
+      "region": "Delaware",
+      "area": "New Castle",
+      "type": "food",
+      "name": "Jessop's Tavern & Colonial Restaurant",
+      "location": "New Castle, Delaware"
+    },
+    {
+      "id": "delaware-new-castle-new-castle-battery-park",
+      "country": "United States",
+      "region": "Delaware",
+      "area": "New Castle",
+      "type": "sight",
+      "name": "New Castle Battery Park",
+      "location": "New Castle, Delaware"
+    },
+    {
+      "id": "florida-miami-miami-beach",
+      "country": "United States",
+      "region": "Florida",
+      "area": "Miami",
+      "type": "sight",
+      "name": "Miami Beach",
+      "location": "Miami, Florida"
+    },
+    {
+      "id": "florida-biscayne-national-park",
+      "country": "United States",
+      "region": "Florida",
+      "area": "Biscayne National Park",
+      "type": "sight",
+      "name": "Biscayne National Park",
+      "location": "Biscayne National Park, Florida"
+    },
+    {
+      "id": "florida-everglades-national-park-anhinga-trail",
+      "country": "United States",
+      "region": "Florida",
+      "area": "Everglades National Park",
+      "type": "trail",
+      "name": "Anhinga Trail",
+      "location": "Everglades National Park, Florida"
+    },
+    {
+      "id": "florida-key-west-u-s-route-1",
+      "country": "United States",
+      "region": "Florida",
+      "area": "Key West",
+      "type": "drive",
+      "name": "U.S. Route 1",
+      "location": "Key West, Florida"
+    },
+    {
+      "id": "florida-key-west-smathers-beach",
+      "country": "United States",
+      "region": "Florida",
+      "area": "Key West",
+      "type": "sight",
+      "name": "Smathers Beach",
+      "location": "Key West, Florida"
+    },
+    {
+      "id": "florida-key-west-clarence-s-higgs-memorial-beach",
+      "country": "United States",
+      "region": "Florida",
+      "area": "Key West",
+      "type": "sight",
+      "name": "Clarence S. Higgs Memorial Beach",
+      "location": "Key West, Florida"
+    },
+    {
+      "id": "florida-key-west-fort-zachary-taylor-historic-state-park-beach",
+      "country": "United States",
+      "region": "Florida",
+      "area": "Key West",
+      "type": "sight",
+      "name": "Fort Zachary Taylor Historic State Park Beach",
+      "location": "Key West, Florida"
+    },
+    {
+      "id": "florida-key-west-the-key-west-butterfly-and-nature-conservatory",
+      "country": "United States",
+      "region": "Florida",
+      "area": "Key West",
+      "type": "sight",
+      "name": "The Key West Butterfly and Nature Conservatory",
+      "location": "Key West, Florida"
+    },
+    {
       "id": "georgia-atlanta",
       "country": "United States",
       "region": "Georgia",
@@ -665,6 +1637,114 @@
       "type": "sight",
       "name": "Driftwood Beach",
       "location": "Driftwood Beach, Georgia"
+    },
+    {
+      "id": "illinois-chicago-magnificent-mile",
+      "country": "United States",
+      "region": "Illinois",
+      "area": "Chicago",
+      "type": "sight",
+      "name": "Magnificent Mile",
+      "location": "Chicago"
+    },
+    {
+      "id": "illinois-chicago-cloud-gate-the-bean",
+      "country": "United States",
+      "region": "Illinois",
+      "area": "Chicago",
+      "type": "sight",
+      "name": "Cloud Gate (the Bean)",
+      "location": "Chicago"
+    },
+    {
+      "id": "illinois-chicago-millennium-park",
+      "country": "United States",
+      "region": "Illinois",
+      "area": "Chicago",
+      "type": "sight",
+      "name": "Millennium Park",
+      "location": "Chicago"
+    },
+    {
+      "id": "illinois-chicago-grant-park",
+      "country": "United States",
+      "region": "Illinois",
+      "area": "Chicago",
+      "type": "sight",
+      "name": "Grant Park",
+      "location": "Chicago"
+    },
+    {
+      "id": "illinois-chicago-navy-pier",
+      "country": "United States",
+      "region": "Illinois",
+      "area": "Chicago",
+      "type": "sight",
+      "name": "Navy Pier",
+      "location": "Chicago"
+    },
+    {
+      "id": "illinois-chicago-riverwalk",
+      "country": "United States",
+      "region": "Illinois",
+      "area": "Chicago",
+      "type": "sight",
+      "name": "Riverwalk",
+      "location": "Chicago"
+    },
+    {
+      "id": "illinois-chicago-shedd-aquarium",
+      "country": "United States",
+      "region": "Illinois",
+      "area": "Chicago",
+      "type": "sight",
+      "name": "Shedd Aquarium",
+      "location": "Chicago"
+    },
+    {
+      "id": "indiana-indiana-dunes-national-park",
+      "country": "United States",
+      "region": "Indiana",
+      "area": "Indiana Dunes National Park",
+      "type": "sight",
+      "name": "Indiana Dunes National Park",
+      "location": "Indiana Dunes National Park, Indiana"
+    },
+    {
+      "id": "indiana-indianapolis-white-river-state-park",
+      "country": "United States",
+      "region": "Indiana",
+      "area": "Indianapolis",
+      "type": "sight",
+      "name": "White River State Park",
+      "location": "Indianapolis"
+    },
+    {
+      "id": "indiana-indianapolis-soldiers-sailors-monument",
+      "country": "United States",
+      "region": "Indiana",
+      "area": "Indianapolis",
+      "type": "sight",
+      "name": "Soldiers & Sailors Monument",
+      "location": "Indianapolis"
+    },
+    {
+      "id": "indiana-indianapolis-indy-500",
+      "country": "United States",
+      "region": "Indiana",
+      "area": "Indianapolis",
+      "type": "event",
+      "name": "Indy 500",
+      "location": "Indianapolis"
+    },
+    {
+      "id": "indiana-indianapolis-nascar",
+      "country": "United States",
+      "region": "Indiana",
+      "area": "Indianapolis",
+      "type": "event",
+      "name": "NASCAR",
+      "location": "Indianapolis"
     },
     {
       "id": "iowa-guttenberg",
@@ -777,6 +1857,114 @@
       "type": "trail",
       "name": "The Precipice",
       "location": "Acadia National Park"
+    },
+    {
+      "id": "maryland-chesapeake-bay-bridge",
+      "country": "United States",
+      "region": "Maryland",
+      "area": "Chesapeake Bay Bridge",
+      "type": "sight",
+      "name": "Chesapeake Bay Bridge",
+      "location": "Chesapeake Bay Bridge, Maryland"
+    },
+    {
+      "id": "maryland-sandy-point-state-park",
+      "country": "United States",
+      "region": "Maryland",
+      "area": "Sandy Point State Park",
+      "type": "sight",
+      "name": "Sandy Point State Park",
+      "location": "Sandy Point State Park, Maryland"
+    },
+    {
+      "id": "massachusetts-boston-massachusetts-institute-of-technology",
+      "country": "United States",
+      "region": "Massachusetts",
+      "area": "Boston",
+      "type": "sight",
+      "name": "Massachusetts Institute of Technology",
+      "location": "Boston"
+    },
+    {
+      "id": "massachusetts-boston-harvard-university",
+      "country": "United States",
+      "region": "Massachusetts",
+      "area": "Boston",
+      "type": "sight",
+      "name": "Harvard University",
+      "location": "Boston"
+    },
+    {
+      "id": "michigan-detroit-henry-ford-museum-of-american-innovation",
+      "country": "United States",
+      "region": "Michigan",
+      "area": "Detroit",
+      "type": "sight",
+      "name": "Henry Ford Museum of American Innovation",
+      "location": "Detroit, Michigan"
+    },
+    {
+      "id": "michigan-ann-arbor-university-of-michigan",
+      "country": "United States",
+      "region": "Michigan",
+      "area": "Ann Arbor",
+      "type": "sight",
+      "name": "University of Michigan",
+      "location": "Ann Arbor, Michigan"
+    },
+    {
+      "id": "michigan-sleeping-bear-dunes-national-lakeshore",
+      "country": "United States",
+      "region": "Michigan",
+      "area": "Sleeping Bear Dunes National Lakeshore",
+      "type": "sight",
+      "name": "Sleeping Bear Dunes National Lakeshore",
+      "location": "Sleeping Bear Dunes National Lakeshore, Michigan"
+    },
+    {
+      "id": "michigan-mackinaw-city-mackinac-bridge",
+      "country": "United States",
+      "region": "Michigan",
+      "area": "Mackinaw City",
+      "type": "sight",
+      "name": "Mackinac Bridge",
+      "location": "Mackinaw City, Michigan"
+    },
+    {
+      "id": "michigan-mackinaw-city-audie-s-restaurant",
+      "country": "United States",
+      "region": "Michigan",
+      "area": "Mackinaw City",
+      "type": "food",
+      "name": "Audie's Restaurant",
+      "location": "Mackinaw City, Michigan"
+    },
+    {
+      "id": "michigan-mackinaw-city-castle-rock",
+      "country": "United States",
+      "region": "Michigan",
+      "area": "Mackinaw City",
+      "type": "sight",
+      "name": "Castle Rock",
+      "location": "Mackinaw City, Michigan"
+    },
+    {
+      "id": "michigan-isle-royale-national-park-grace-creek-overlook",
+      "country": "United States",
+      "region": "Michigan",
+      "area": "Isle Royale National Park",
+      "type": "trail",
+      "name": "Grace Creek Overlook",
+      "location": "Isle Royale National Park"
+    },
+    {
+      "id": "michigan-isle-royale-national-park-rock-of-ages-lighthouse",
+      "country": "United States",
+      "region": "Michigan",
+      "area": "Isle Royale National Park",
+      "type": "sight",
+      "name": "Rock of Ages Lighthouse",
+      "location": "Isle Royale National Park"
     },
     {
       "id": "minnesota-cascade-falls",
@@ -1335,6 +2523,15 @@
       "location": "Lower Manhattan, New York"
     },
     {
+      "id": "new-york-niagara-falls",
+      "country": "United States",
+      "region": "New York",
+      "area": "Niagara Falls",
+      "type": "sight",
+      "name": "Niagara Falls",
+      "location": "Niagara Falls, New York"
+    },
+    {
       "id": "north-carolina-raleigh",
       "country": "United States",
       "region": "North Carolina",
@@ -1686,6 +2883,348 @@
       "location": "Pittsburgh"
     },
     {
+      "id": "pennsylvania-pittsburgh-dancing-crab-thai-noodle-house",
+      "country": "United States",
+      "region": "Pennsylvania",
+      "area": "Pittsburgh",
+      "type": "food",
+      "name": "Dancing Crab Thai Noodle House",
+      "location": "Pittsburgh"
+    },
+    {
+      "id": "pennsylvania-pittsburgh-tocayo-taqueria",
+      "country": "United States",
+      "region": "Pennsylvania",
+      "area": "Pittsburgh",
+      "type": "food",
+      "name": "Tocayo Taqueria",
+      "location": "Pittsburgh"
+    },
+    {
+      "id": "pennsylvania-pittsburgh-burgatory",
+      "country": "United States",
+      "region": "Pennsylvania",
+      "area": "Pittsburgh",
+      "type": "food",
+      "name": "Burgatory",
+      "location": "Pittsburgh"
+    },
+    {
+      "id": "pennsylvania-pittsburgh-t-ko-torta",
+      "country": "United States",
+      "region": "Pennsylvania",
+      "area": "Pittsburgh",
+      "type": "food",
+      "name": "Tàko Torta",
+      "location": "Pittsburgh"
+    },
+    {
+      "id": "pennsylvania-pittsburgh-pusadees-garden",
+      "country": "United States",
+      "region": "Pennsylvania",
+      "area": "Pittsburgh",
+      "type": "food",
+      "name": "Pusadees Garden",
+      "location": "Pittsburgh"
+    },
+    {
+      "id": "pennsylvania-pittsburgh-pamela-s-diner",
+      "country": "United States",
+      "region": "Pennsylvania",
+      "area": "Pittsburgh",
+      "type": "food",
+      "name": "Pamela's Diner",
+      "location": "Pittsburgh"
+    },
+    {
+      "id": "pennsylvania-pittsburgh-udipi-cafe",
+      "country": "United States",
+      "region": "Pennsylvania",
+      "area": "Pittsburgh",
+      "type": "food",
+      "name": "Udipi Cafe",
+      "location": "Pittsburgh"
+    },
+    {
+      "id": "pennsylvania-pittsburgh-niki-s-thai-kitchen",
+      "country": "United States",
+      "region": "Pennsylvania",
+      "area": "Pittsburgh",
+      "type": "food",
+      "name": "Niki's Thai Kitchen",
+      "location": "Pittsburgh"
+    },
+    {
+      "id": "pennsylvania-pittsburgh-oishi-bento",
+      "country": "United States",
+      "region": "Pennsylvania",
+      "area": "Pittsburgh",
+      "type": "food",
+      "name": "Oishi Bento",
+      "location": "Pittsburgh"
+    },
+    {
+      "id": "pennsylvania-pittsburgh-salem-s-market-grill",
+      "country": "United States",
+      "region": "Pennsylvania",
+      "area": "Pittsburgh",
+      "type": "food",
+      "name": "Salem's Market & Grill",
+      "location": "Pittsburgh"
+    },
+    {
+      "id": "pennsylvania-pittsburgh-porch-at-sienna",
+      "country": "United States",
+      "region": "Pennsylvania",
+      "area": "Pittsburgh",
+      "type": "food",
+      "name": "Porch at Sienna",
+      "location": "Pittsburgh"
+    },
+    {
+      "id": "pennsylvania-pittsburgh-ali-baba",
+      "country": "United States",
+      "region": "Pennsylvania",
+      "area": "Pittsburgh",
+      "type": "food",
+      "name": "Ali Baba",
+      "location": "Pittsburgh"
+    },
+    {
+      "id": "pennsylvania-pittsburgh-taj-mahal",
+      "country": "United States",
+      "region": "Pennsylvania",
+      "area": "Pittsburgh",
+      "type": "food",
+      "name": "Taj Mahal",
+      "location": "Pittsburgh"
+    },
+    {
+      "id": "pennsylvania-pittsburgh-mola-sushi",
+      "country": "United States",
+      "region": "Pennsylvania",
+      "area": "Pittsburgh",
+      "type": "food",
+      "name": "Mola Sushi",
+      "location": "Pittsburgh"
+    },
+    {
+      "id": "pennsylvania-pittsburgh-senyai-thai-kitchen",
+      "country": "United States",
+      "region": "Pennsylvania",
+      "area": "Pittsburgh",
+      "type": "food",
+      "name": "Senyai Thai Kitchen",
+      "location": "Pittsburgh"
+    },
+    {
+      "id": "pennsylvania-pittsburgh-alta-via-pizzeria",
+      "country": "United States",
+      "region": "Pennsylvania",
+      "area": "Pittsburgh",
+      "type": "food",
+      "name": "Alta Via Pizzeria",
+      "location": "Pittsburgh"
+    },
+    {
+      "id": "pennsylvania-pittsburgh-the-melting-pot",
+      "country": "United States",
+      "region": "Pennsylvania",
+      "area": "Pittsburgh",
+      "type": "food",
+      "name": "The Melting Pot",
+      "location": "Pittsburgh"
+    },
+    {
+      "id": "pennsylvania-pittsburgh-mi-empanada",
+      "country": "United States",
+      "region": "Pennsylvania",
+      "area": "Pittsburgh",
+      "type": "food",
+      "name": "Mi Empanada",
+      "location": "Pittsburgh"
+    },
+    {
+      "id": "pennsylvania-pittsburgh-fish-nor-fowl",
+      "country": "United States",
+      "region": "Pennsylvania",
+      "area": "Pittsburgh",
+      "type": "food",
+      "name": "Fish nor Fowl",
+      "location": "Pittsburgh"
+    },
+    {
+      "id": "pennsylvania-pittsburgh-sushi-atarashi",
+      "country": "United States",
+      "region": "Pennsylvania",
+      "area": "Pittsburgh",
+      "type": "food",
+      "name": "Sushi Atarashi",
+      "location": "Pittsburgh"
+    },
+    {
+      "id": "pennsylvania-pittsburgh-ironborn-pizza",
+      "country": "United States",
+      "region": "Pennsylvania",
+      "area": "Pittsburgh",
+      "type": "food",
+      "name": "Ironborn Pizza",
+      "location": "Pittsburgh"
+    },
+    {
+      "id": "pennsylvania-pittsburgh-mercurio-s-pizza",
+      "country": "United States",
+      "region": "Pennsylvania",
+      "area": "Pittsburgh",
+      "type": "food",
+      "name": "Mercurio's Pizza",
+      "location": "Pittsburgh"
+    },
+    {
+      "id": "pennsylvania-pittsburgh-noodlehead",
+      "country": "United States",
+      "region": "Pennsylvania",
+      "area": "Pittsburgh",
+      "type": "food",
+      "name": "Noodlehead",
+      "location": "Pittsburgh"
+    },
+    {
+      "id": "pennsylvania-pittsburgh-lorelei",
+      "country": "United States",
+      "region": "Pennsylvania",
+      "area": "Pittsburgh",
+      "type": "food",
+      "name": "Lorelei",
+      "location": "Pittsburgh"
+    },
+    {
+      "id": "pennsylvania-pittsburgh-bird-on-the-run",
+      "country": "United States",
+      "region": "Pennsylvania",
+      "area": "Pittsburgh",
+      "type": "food",
+      "name": "Bird on the Run",
+      "location": "Pittsburgh"
+    },
+    {
+      "id": "pennsylvania-pittsburgh-chengdu-gourmet",
+      "country": "United States",
+      "region": "Pennsylvania",
+      "area": "Pittsburgh",
+      "type": "food",
+      "name": "Chengdu Gourmet",
+      "location": "Pittsburgh"
+    },
+    {
+      "id": "pennsylvania-pittsburgh-cafe-33",
+      "country": "United States",
+      "region": "Pennsylvania",
+      "area": "Pittsburgh",
+      "type": "food",
+      "name": "Cafe 33",
+      "location": "Pittsburgh"
+    },
+    {
+      "id": "pennsylvania-pittsburgh-speckled-egg",
+      "country": "United States",
+      "region": "Pennsylvania",
+      "area": "Pittsburgh",
+      "type": "food",
+      "name": "Speckled Egg",
+      "location": "Pittsburgh"
+    },
+    {
+      "id": "pennsylvania-pittsburgh-fet-fisk",
+      "country": "United States",
+      "region": "Pennsylvania",
+      "area": "Pittsburgh",
+      "type": "food",
+      "name": "Fet Fisk",
+      "location": "Pittsburgh"
+    },
+    {
+      "id": "pennsylvania-pittsburgh-kyuramen",
+      "country": "United States",
+      "region": "Pennsylvania",
+      "area": "Pittsburgh",
+      "type": "food",
+      "name": "Kyuramen",
+      "location": "Pittsburgh"
+    },
+    {
+      "id": "pennsylvania-pittsburgh-page-s-ice-cream",
+      "country": "United States",
+      "region": "Pennsylvania",
+      "area": "Pittsburgh",
+      "type": "food",
+      "name": "Page's Ice Cream",
+      "location": "Pittsburgh"
+    },
+    {
+      "id": "pennsylvania-pittsburgh-tiger-suger-bubble-tea",
+      "country": "United States",
+      "region": "Pennsylvania",
+      "area": "Pittsburgh",
+      "type": "food",
+      "name": "Tiger Suger - Bubble Tea",
+      "location": "Pittsburgh"
+    },
+    {
+      "id": "pennsylvania-pittsburgh-mango-mango",
+      "country": "United States",
+      "region": "Pennsylvania",
+      "area": "Pittsburgh",
+      "type": "food",
+      "name": "Mango Mango",
+      "location": "Pittsburgh"
+    },
+    {
+      "id": "pennsylvania-pittsburgh-treats-and-beans",
+      "country": "United States",
+      "region": "Pennsylvania",
+      "area": "Pittsburgh",
+      "type": "food",
+      "name": "Treats and Beans",
+      "location": "Pittsburgh"
+    },
+    {
+      "id": "pennsylvania-pittsburgh-t-swirl-crepe",
+      "country": "United States",
+      "region": "Pennsylvania",
+      "area": "Pittsburgh",
+      "type": "food",
+      "name": "T-Swirl Crepe",
+      "location": "Pittsburgh"
+    },
+    {
+      "id": "pennsylvania-pittsburgh-kyo-matcha",
+      "country": "United States",
+      "region": "Pennsylvania",
+      "area": "Pittsburgh",
+      "type": "food",
+      "name": "Kyo Matcha",
+      "location": "Pittsburgh"
+    },
+    {
+      "id": "pennsylvania-pittsburgh-tsaocaa-bubble-tea",
+      "country": "United States",
+      "region": "Pennsylvania",
+      "area": "Pittsburgh",
+      "type": "food",
+      "name": "Tsaocaa - Bubble Tea",
+      "location": "Pittsburgh"
+    },
+    {
+      "id": "pennsylvania-pittsburgh-cheesecake-factory",
+      "country": "United States",
+      "region": "Pennsylvania",
+      "area": "Pittsburgh",
+      "type": "food",
+      "name": "Cheesecake factory",
+      "location": "Pittsburgh"
+    },
+    {
       "id": "pennsylvania-harrisburg-nalan-indian-cuisine",
       "country": "United States",
       "region": "Pennsylvania",
@@ -1723,6 +3262,15 @@
       "notes": [
         "Big Boy 4012"
       ]
+    },
+    {
+      "id": "rhode-island-providence",
+      "country": "United States",
+      "region": "Rhode Island",
+      "area": "Providence",
+      "type": "sight",
+      "name": "Providence",
+      "location": "Providence, Rhode Island"
     },
     {
       "id": "south-carolina-congaree-national-park",
@@ -2259,6 +3807,24 @@
       "location": "National Mall, Washington DC"
     },
     {
+      "id": "west-virginia-new-river-gorge-national-park-preserve-new-river-gorge-bridge-overlook",
+      "country": "United States",
+      "region": "West Virginia",
+      "area": "New River Gorge National Park & Preserve",
+      "type": "sight",
+      "name": "New River Gorge Bridge Overlook",
+      "location": "New River Gorge National Park & Preserve, West Virginia"
+    },
+    {
+      "id": "west-virginia-new-river-gorge-national-park-preserve-thurmond-historic-town",
+      "country": "United States",
+      "region": "West Virginia",
+      "area": "New River Gorge National Park & Preserve",
+      "type": "sight",
+      "name": "Thurmond Historic Town",
+      "location": "New River Gorge National Park & Preserve, West Virginia"
+    },
+    {
       "id": "wisconsin-washburn",
       "country": "United States",
       "region": "Wisconsin",
@@ -2465,6 +4031,15 @@
       "notes": [
         "Can kayak here through the caves"
       ]
+    },
+    {
+      "id": "wisconsin-milwaukee",
+      "country": "United States",
+      "region": "Wisconsin",
+      "area": "Milwaukee",
+      "type": "sight",
+      "name": "Milwaukee",
+      "location": "Milwaukee, Wisconsin"
     },
     {
       "id": "wyoming-yellowstone-national-park-grand-prismatic-spring",
