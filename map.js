@@ -96,7 +96,8 @@
 
   function openPanel(pin, node) {
     lastFocusedPin = node || null;
-    panelTitle.textContent = LogCard.groupTitle(pin.group);
+    var title = LogCard.groupTitle(pin.group);
+    panelTitle.textContent = title;
     panelSubtitle.textContent = LogCard.groupSubtitle(pin.group);
 
     panelBody.innerHTML = "";
@@ -104,7 +105,7 @@
       if (lightbox) lightbox.open(photos, i, el);
     });
     if (thumbs) panelBody.appendChild(thumbs);
-    panelBody.appendChild(LogCard.renderEntries(pin.group.entries));
+    panelBody.appendChild(LogCard.renderEntries(pin.group.entries, title));
 
     panel.classList.add("is-open");
     panelCloseBtn.focus();

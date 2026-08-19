@@ -31,6 +31,10 @@
     "lat": 8.61667,
     "lng": 77.35
   },
+  "Atlanta, Georgia": {
+    "lat": 33.75447,
+    "lng": -84.38982
+  },
   "Austin, Texas": {
     "lat": 30.27113,
     "lng": -97.7437
@@ -59,6 +63,10 @@
     "lat": 38.57981,
     "lng": -107.7437
   },
+  "Black Canyon of the Gunnison National Park, Colorado": {
+    "lat": 38.57981,
+    "lng": -107.7437
+  },
   "Black Hills, South Dakota": {
     "lat": 43.86928,
     "lng": -103.52649
@@ -75,9 +83,21 @@
     "lat": 37.57079,
     "lng": -112.18559
   },
+  "Burney, California": {
+    "lat": 40.88841,
+    "lng": -121.67278
+  },
+  "Canyonlands National Park, Utah": {
+    "lat": 38.23326,
+    "lng": -109.92066
+  },
   "Capitol Reef National Park": {
     "lat": 38.06703,
     "lng": -111.15526
+  },
+  "Carmel By The Sea, California": {
+    "lat": 36.55527,
+    "lng": -121.92328
   },
   "Cascade Falls, Minnesota": {
     "lat": 47.70856,
@@ -131,6 +151,10 @@
     "lat": 39.96226,
     "lng": -83.00071
   },
+  "Congaree National Park, South Carolina": {
+    "lat": 33.79416,
+    "lng": -80.76365
+  },
   "Crater Lake National Park": {
     "lat": 42.93169,
     "lng": -122.12789
@@ -146,6 +170,10 @@
   "Custer, South Dakota": {
     "lat": 43.67265,
     "lng": -103.51016
+  },
+  "Cuyahoga Valley National Park, Ohio": {
+    "lat": 41.25509,
+    "lng": -81.53764
   },
   "Dayton, Ohio": {
     "lat": 39.75895,
@@ -179,9 +207,21 @@
     "lat": 44.59051,
     "lng": -104.7151
   },
+  "Driftwood Beach, Georgia": {
+    "lat": 31.11088,
+    "lng": -81.40594
+  },
   "Flatirons, Colorado": {
     "lat": 39.98881,
     "lng": -105.09313
+  },
+  "Flight 93 National Memorial, Pennsylvania": {
+    "lat": 40.06177,
+    "lng": -78.89714
+  },
+  "Fremont, California": {
+    "lat": 37.54827,
+    "lng": -121.98857
   },
   "Fujikawaguchiko, Japan": {
     "lat": 35.50107,
@@ -202,6 +242,10 @@
   "Gooseberry Falls, Minnesota": {
     "lat": 47.14512,
     "lng": -91.47476
+  },
+  "Grand Canyon National Park, Arizona": {
+    "lat": 36.30785,
+    "lng": -112.2929
   },
   "Grand Marais, Minnesota": {
     "lat": 47.75047,
@@ -238,6 +282,10 @@
   "Hoboken, New Jersey": {
     "lat": 40.74331,
     "lng": -74.03238
+  },
+  "Hoover Dam, Nevada": {
+    "lat": 36.01572,
+    "lng": -114.73749
   },
   "Hot Springs National Park, Arkansas": {
     "lat": 34.52907,
@@ -295,6 +343,10 @@
     "lat": 13.21907,
     "lng": 75.25103
   },
+  "Las Vegas, Nevada": {
+    "lat": 36.16743,
+    "lng": -115.14841
+  },
   "Lassen Volcanic National Park": {
     "lat": 40.49378,
     "lng": -121.40446
@@ -302,6 +354,10 @@
   "Liberty Science Center, New Jersey": {
     "lat": 40.70818,
     "lng": -74.05469
+  },
+  "Louisville, Kentucky": {
+    "lat": 38.25424,
+    "lng": -85.75941
   },
   "Lower Manhattan, New York": {
     "lat": 40.71355,
@@ -314,6 +370,10 @@
   "Madison, Wisconsin": {
     "lat": 43.07469,
     "lng": -89.38417
+  },
+  "Mammoth Cave National Park, Kentucky": {
+    "lat": 37.18417,
+    "lng": -86.12299
   },
   "Manali": {
     "lat": 32.24546,
@@ -339,6 +399,10 @@
     "lat": 37.25378,
     "lng": -108.4556
   },
+  "Meteor Crater, Arizona": {
+    "lat": 35.02713,
+    "lng": -111.01838
+  },
   "Midtown, New York": {
     "lat": 40.75512,
     "lng": -73.98478
@@ -358,6 +422,10 @@
   "Mobile, Alabama": {
     "lat": 30.69135,
     "lng": -88.04375
+  },
+  "Monterey, California": {
+    "lat": 36.22311,
+    "lng": -121.38774
   },
   "Mt. Rushmore": {
     "lat": 43.88086,
@@ -399,6 +467,10 @@
     "lat": 34.97448,
     "lng": -109.70799
   },
+  "Phoenix, Arizona": {
+    "lat": 33.44844,
+    "lng": -112.07414
+  },
   "Pikes Peak": {
     "lat": 38.8404,
     "lng": -105.04395
@@ -410,6 +482,14 @@
   "Pittsburgh": {
     "lat": 40.4407,
     "lng": -80.00257
+  },
+  "Presque Isle State Park, Pennsylvania": {
+    "lat": 42.14281,
+    "lng": -80.13593
+  },
+  "Raleigh, North Carolina": {
+    "lat": 35.7804,
+    "lng": -78.6391
   },
   "Rapid City, South Dakota": {
     "lat": 44.0806,
@@ -427,9 +507,21 @@
     "lat": 32.16838,
     "lng": -110.61835
   },
+  "Salt Lake City, Utah": {
+    "lat": 40.75962,
+    "lng": -111.8868
+  },
   "San Francisco, California": {
     "lat": 37.78794,
     "lng": -122.40752
+  },
+  "San Jose, California": {
+    "lat": 37.33617,
+    "lng": -121.89059
+  },
+  "Savannah, Georgia": {
+    "lat": 32.07901,
+    "lng": -81.09213
   },
   "Scotts Bluff National Monument": {
     "lat": 41.83388,
@@ -438,6 +530,18 @@
   "Scranton, Pennsylvania": {
     "lat": 41.40869,
     "lng": -75.66213
+  },
+  "Sedona, Arizona": {
+    "lat": 34.86886,
+    "lng": -111.76144
+  },
+  "Sequoia National Park, California": {
+    "lat": 36.49584,
+    "lng": -118.55992
+  },
+  "Shenandoah National Park, Virginia": {
+    "lat": 38.47197,
+    "lng": -78.4637
   },
   "Shovel Point, Minnesota": {
     "lat": 47.33953,
@@ -490,6 +594,10 @@
   "Toadstool Geological Park and Campground, Nebraska": {
     "lat": 42.85649,
     "lng": -103.58288
+  },
+  "Tucson, Arizona": {
+    "lat": 32.22288,
+    "lng": -110.97485
   },
   "Vanderbilt Mansion National Historic Site, New York": {
     "lat": 41.79779,

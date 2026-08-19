@@ -1,10 +1,12 @@
 /* Shared between the logs page and the map's log mode, so a place renders the
    same in a page section and in a map panel. Exposes window.LogCard. */
 (function () {
-  var TYPE_ORDER = ["sight", "trail", "food", "drive", "wildlife", "note"];
+  var TYPE_ORDER = ["sight", "trail", "activity", "event", "food", "drive", "wildlife", "note"];
   var TYPE_LABELS = {
     sight: "Sights",
     trail: "Trails",
+    activity: "Activities",
+    event: "Events",
     food: "Food",
     drive: "Drives",
     wildlife: "Wildlife",
@@ -290,17 +292,17 @@
     return el("span", "log-verdict is-" + verdict, VERDICT_LABELS[verdict]);
   }
 
-  function renderEntry(entry) {
+  function renderEntry(entry, hideName) {
     var li = el("li", "log-entry");
     li.id = entry.id;
 
-    var head = el("div", "log-entry-head");
-    head.appendChild(el("span", "log-entry-name", entry.name));
     var verdict = renderVerdict(entry.verdict);
-    if (verdict) head.appendChild(verdict);
-    li.appendChild(head);
-
-    if (entry.note) li.appendChild(el("p", "log-entry-note", entry.note));
+    if (!hideName || verdict) {
+      var head = el("div", "log-entry-head");
+      if (!hideName) head.appendChild(el("span", "log-entry-name", entry.name));
+      if (verdict) head.appendChild(verdict);
+      li.appendChild(head);
+    }
 
     (entry.notes || []).forEach(function (note) {
       li.appendChild(el("p", "log-entry-note", note));
@@ -315,7 +317,9 @@
         var itemVerdict = renderVerdict(item.verdict);
         if (itemVerdict) itemHead.appendChild(itemVerdict);
         itemLi.appendChild(itemHead);
-        if (item.note) itemLi.appendChild(el("p", "log-item-note", item.note));
+        (item.notes || []).forEach(function (note) {
+          itemLi.appendChild(el("p", "log-item-note", note));
+        });
         list.appendChild(itemLi);
       });
       li.appendChild(list);
@@ -324,11 +328,15 @@
   }
 
   /** Type sections for one group. A lone sights section goes unlabelled, so a
-      plain list reads as places and a label always means food or drives. */
-  function renderEntries(entries) {
+      plain list reads as places and a label always means food or drives.
+      When the group is a single entry that already titled the group (a bare
+      area naming one sight), its name is dropped here to avoid repeating the
+      heading right above it. */
+  function renderEntries(entries, groupTitle) {
     var fragment = document.createDocumentFragment();
     var sections = entriesByType(entries);
     var labelSights = sections.length > 1;
+    var hideName = entries.length === 1 && entries[0].name === groupTitle;
 
     sections.forEach(function (section) {
       // A section rather than a heading, so the label reads correctly in both
@@ -340,7 +348,7 @@
       }
       var list = el("ul", "log-entries");
       section.entries.forEach(function (entry) {
-        list.appendChild(renderEntry(entry));
+        list.appendChild(renderEntry(entry, hideName));
       });
       wrap.appendChild(list);
       fragment.appendChild(wrap);

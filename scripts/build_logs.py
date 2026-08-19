@@ -36,16 +36,31 @@ except ImportError:
 
 SLUG_STRIP_RE = re.compile(r"[^a-z0-9]+")
 
-DEFAULT_TYPE = "sight"
-ALLOWED_TYPES = frozenset({"sight", "food", "drive", "wildlife", "trail", "note"})
+# A place's type comes from which of these keys names it, e.g. `food: Some
+# Cafe` instead of `type: food` + `name: Some Cafe`. `place:` is the plain
+# "sight" case; the others double as the type. Notes are not here -- they
+# aren't places, so they live in their own `notes:` list instead (see
+# ALLOWED_TYPES / _parse_notes below).
+TYPE_KEYS = {
+    "place": "sight",
+    "trail": "trail",
+    "food": "food",
+    "drive": "drive",
+    "wildlife": "wildlife",
+    "activity": "activity",
+    "event": "event",
+}
+ALLOWED_TYPES = frozenset(TYPE_KEYS.values()) | {"note"}
 ALLOWED_VERDICTS = frozenset({"repeat", "fine", "skip"})
 
 COUNTRY_KEYS = frozenset({"country", "regions"})
-REGION_KEYS = frozenset({"name", "places"})
-PLACE_KEYS = frozenset(
-    {"name", "area", "type", "note", "notes", "verdict", "dishes", "location"}
-)
-DISH_KEYS = frozenset({"name", "note", "verdict"})
+REGION_KEYS = frozenset({"region", "areas", "notes"})
+# An area is either a group (has 'places', holding several typed places) or a
+# bare leaf: just 'area' naming a single sight, optionally with the same
+# remark fields a place would have. The two modes can't mix -- see _parse_area.
+AREA_KEYS = frozenset({"area", "location", "places", "notes", "verdict"})
+PLACE_KEYS = frozenset(TYPE_KEYS) | {"notes", "verdict", "dishes", "location"}
+DISH_KEYS = frozenset({"dish", "notes", "verdict"})
 
 
 @dataclass
@@ -55,11 +70,10 @@ class Entry:
     area: str
     type: str
     name: str
-    note: str
     verdict: str
     # Resolution inputs, dropped before serializing.
     region_query: str
-    area_override: str
+    area_location: str
     override: str
     location: str = ""
     id: str = ""
@@ -85,13 +99,18 @@ def slugify(text: str) -> str:
 def resolve_location(entry: Entry, known: set[str]) -> str:
     """Pick the locations.json key this entry belongs to.
 
-    Inside an area, entry names only match keys that already exist -- a new key
-    is never minted from one. That keeps restaurant names away from the geocoder
-    and stops a place from splitting off its own pin away from its area.
+    Every place has an area (a bare sight's area is just its own name; a
+    drive or food with no fixed point uses an area named after the region).
+    A place's own `location` always wins -- it's an explicit, deliberate
+    choice. An area's `location` is the same kind of explicit choice, made
+    once for every place nested under it, and wins over anything implicit.
 
-    A sight listed directly under a region is different: it is usually a
-    standalone landmark, so it earns its own key and gets geocoded. Drives and
-    food stay on the region, since a highway has no single meaningful point.
+    Absent either override, a place's own name may still reuse an existing
+    key (typically one a photo already created) so it joins that pin instead
+    of splitting off. Only after that does the area fall back to its own
+    name (or a default "Area, Region"), so a place can't accidentally pull
+    its whole area's pin somewhere unintended. An area named after its own
+    region is just the region -- no ", Region" suffix to double up on.
 
     A note is a remark, not something to pin -- it never resolves to a
     location and never reaches the geocoder or the map.
@@ -100,20 +119,16 @@ def resolve_location(entry: Entry, known: set[str]) -> str:
         return ""
     if entry.override:
         return entry.override
-    if entry.area_override:
-        return entry.area_override
+    if entry.area_location:
+        return entry.area_location
     for candidate in (entry.name, f"{entry.name}, {entry.region}"):
         if candidate in known:
             return candidate
-    if entry.area:
-        if entry.area in known:
-            return entry.area
-        return f"{entry.area}, {entry.region}"
-    if entry.type == "sight":
-        return f"{entry.name}, {entry.region}"
-    if entry.region in known:
-        return entry.region
-    return entry.region_query
+    if entry.area == entry.region:
+        return entry.region if entry.region in known else entry.region_query
+    if entry.area in known:
+        return entry.area
+    return f"{entry.area}, {entry.region}"
 
 
 def _require_mapping(value: object, where: str) -> dict:
@@ -143,91 +158,164 @@ def _check_keys(mapping: dict, allowed: frozenset[str], where: str) -> None:
         raise ValidationError(f"{where}: unknown field(s) {', '.join(unknown)}")
 
 
+def _parse_verdict(mapping: dict, where: str) -> str:
+    if "verdict" not in mapping:
+        return ""
+    verdict = _require_str(mapping["verdict"], f"{where}.verdict")
+    if verdict not in ALLOWED_VERDICTS:
+        raise ValidationError(
+            f"{where}.verdict: {verdict!r} is not one of {', '.join(sorted(ALLOWED_VERDICTS))}"
+        )
+    return verdict
+
+
+def _parse_remarks(mapping: dict, where: str) -> list[str]:
+    """A `notes:` list of remarks -- always a list, even for one remark, so
+    there's exactly one way to attach a note to anything."""
+    return [
+        _require_str(n, f"{where}.notes[{i}]")
+        for i, n in enumerate(_require_list(mapping.get("notes", []), f"{where}.notes"))
+    ]
+
+
 def _parse_dishes(raw: object, where: str) -> list[dict]:
     dishes: list[dict] = []
     for i, item in enumerate(_require_list(raw, where)):
         dish_where = f"{where}[{i}]"
         mapping = _require_mapping(item, dish_where)
         _check_keys(mapping, DISH_KEYS, dish_where)
-        if "name" not in mapping:
-            raise ValidationError(f"{dish_where}: missing required field 'name'")
+        if "dish" not in mapping:
+            raise ValidationError(f"{dish_where}: missing required field 'dish'")
         dish = {
-            "name": _require_str(mapping["name"], f"{dish_where}.name"),
-            "note": "",
-            "verdict": "",
+            "name": _require_str(mapping["dish"], f"{dish_where}.dish"),
+            "verdict": _parse_verdict(mapping, dish_where),
         }
-        if "note" in mapping:
-            dish["note"] = _require_str(mapping["note"], f"{dish_where}.note", allow_empty=True)
-        if "verdict" in mapping:
-            verdict = _require_str(mapping["verdict"], f"{dish_where}.verdict")
-            if verdict not in ALLOWED_VERDICTS:
-                raise ValidationError(
-                    f"{dish_where}.verdict: {verdict!r} is not one of "
-                    f"{', '.join(sorted(ALLOWED_VERDICTS))}"
-                )
-            dish["verdict"] = verdict
+        notes = _parse_remarks(mapping, dish_where)
+        if notes:
+            dish["notes"] = notes
         dishes.append(dish)
     return dishes
 
 
-def _parse_place(raw: object, country: str, region: str, region_query: str, where: str) -> Entry:
+def _parse_place(
+    raw: object,
+    country: str,
+    region: str,
+    region_query: str,
+    area: str,
+    area_location: str,
+    where: str,
+) -> Entry:
     mapping = _require_mapping(raw, where)
     _check_keys(mapping, PLACE_KEYS, where)
-    if "name" not in mapping:
-        raise ValidationError(f"{where}: missing required field 'name'")
 
-    place_type = DEFAULT_TYPE
-    if "type" in mapping:
-        place_type = _require_str(mapping["type"], f"{where}.type")
-        if place_type not in ALLOWED_TYPES:
-            raise ValidationError(
-                f"{where}.type: {place_type!r} is not one of "
-                f"{', '.join(sorted(ALLOWED_TYPES))}"
-            )
+    present = sorted(set(mapping) & set(TYPE_KEYS))
+    if not present:
+        raise ValidationError(
+            f"{where}: missing one of {', '.join(sorted(TYPE_KEYS))} to name the place"
+        )
+    if len(present) > 1:
+        raise ValidationError(f"{where}: only one of {', '.join(present)} is allowed")
+    type_key = present[0]
+    place_type = TYPE_KEYS[type_key]
+    name = _require_str(mapping[type_key], f"{where}.{type_key}")
 
-    verdict = ""
-    if "verdict" in mapping:
-        verdict = _require_str(mapping["verdict"], f"{where}.verdict")
-        if verdict not in ALLOWED_VERDICTS:
-            raise ValidationError(
-                f"{where}.verdict: {verdict!r} is not one of "
-                f"{', '.join(sorted(ALLOWED_VERDICTS))}"
-            )
-
-    notes: list[str] = []
-    if "notes" in mapping:
-        for i, note in enumerate(_require_list(mapping["notes"], f"{where}.notes")):
-            notes.append(_require_str(note, f"{where}.notes[{i}]"))
+    verdict = _parse_verdict(mapping, where)
+    notes = _parse_remarks(mapping, where)
 
     dishes: list[dict] = []
     if "dishes" in mapping:
         dishes = _parse_dishes(mapping["dishes"], f"{where}.dishes")
         if place_type != "food":
             raise ValidationError(
-                f"{where}: dishes are only allowed when type is 'food' (got {place_type!r})"
+                f"{where}: dishes are only allowed on 'food' (got {type_key!r})"
             )
-
-    if "location" in mapping and place_type == "note":
-        raise ValidationError(f"{where}: a 'note' is never geocoded, so 'location' is not allowed")
 
     return Entry(
         country=country,
         region=region,
-        area=_require_str(mapping["area"], f"{where}.area") if "area" in mapping else "",
+        area=area,
         type=place_type,
-        name=_require_str(mapping["name"], f"{where}.name"),
-        note=_require_str(mapping["note"], f"{where}.note", allow_empty=True)
-        if "note" in mapping
-        else "",
+        name=name,
         verdict=verdict,
         region_query=region_query,
-        area_override="",
+        area_location=area_location,
         override=_require_str(mapping["location"], f"{where}.location")
         if "location" in mapping
         else "",
         items=dishes,
         notes=notes,
     )
+
+
+def _parse_notes(raw: object, country: str, region: str, area: str, where: str) -> list[Entry]:
+    """A `notes:` list holds plain remarks that aren't tied to any place --
+    just the text, no type keyword needed. They never get a location."""
+    entries = []
+    for i, note in enumerate(_require_list(raw, where)):
+        text = _require_str(note, f"{where}[{i}]")
+        entries.append(
+            Entry(
+                country=country,
+                region=region,
+                area=area,
+                type="note",
+                name=text,
+                verdict="",
+                region_query="",
+                area_location="",
+                override="",
+            )
+        )
+    return entries
+
+
+def _parse_area(
+    raw: object, country: str, region: str, region_query: str, where: str
+) -> list[Entry]:
+    mapping = _require_mapping(raw, where)
+    _check_keys(mapping, AREA_KEYS, where)
+    if "area" not in mapping:
+        raise ValidationError(f"{where}: missing required field 'area'")
+    area = _require_str(mapping["area"], f"{where}.area")
+
+    if "places" not in mapping:
+        # A leaf area: no group to speak of, the area name is a single sight.
+        return [
+            Entry(
+                country=country,
+                region=region,
+                area=area,
+                type="sight",
+                name=area,
+                verdict=_parse_verdict(mapping, where),
+                region_query=region_query,
+                area_location="",
+                override=_require_str(mapping["location"], f"{where}.location")
+                if "location" in mapping
+                else "",
+                notes=_parse_remarks(mapping, where),
+            )
+        ]
+
+    if "verdict" in mapping:
+        raise ValidationError(
+            f"{where}.verdict: not allowed on an area with 'places' -- put it on the place instead"
+        )
+
+    area_location = (
+        _require_str(mapping["location"], f"{where}.location") if "location" in mapping else ""
+    )
+
+    entries = [
+        _parse_place(
+            place_raw, country, region, region_query, area, area_location, f"{where}.places[{j}]"
+        )
+        for j, place_raw in enumerate(_require_list(mapping["places"], f"{where}.places"))
+    ]
+    if "notes" in mapping:
+        entries.extend(_parse_notes(mapping["notes"], country, region, area, f"{where}.notes"))
+    return entries
 
 
 def parse_country_file(path: Path) -> list[Entry]:
@@ -251,26 +339,26 @@ def parse_country_file(path: Path) -> list[Entry]:
         region_where = f"{where}.regions[{i}]"
         region_map = _require_mapping(region_raw, region_where)
         _check_keys(region_map, REGION_KEYS, region_where)
-        for key in ("name", "places"):
-            if key not in region_map:
-                raise ValidationError(f"{region_where}: missing required field {key!r}")
+        if "region" not in region_map:
+            raise ValidationError(f"{region_where}: missing required field 'region'")
+        if not (region_map.keys() & {"areas", "notes"}):
+            raise ValidationError(f"{region_where}: needs 'areas' and/or 'notes'")
 
-        region = _require_str(region_map["name"], f"{region_where}.name")
+        region = _require_str(region_map["region"], f"{region_where}.region")
         # A region that is also a country (Switzerland) uses its own name as the
         # geocode query; otherwise "Region, Country".
         region_query = region if region == country else f"{region}, {country}"
 
-        for j, place_raw in enumerate(
-            _require_list(region_map["places"], f"{region_where}.places")
+        for k, area_raw in enumerate(
+            _require_list(region_map.get("areas", []), f"{region_where}.areas")
         ):
-            entries.append(
-                _parse_place(
-                    place_raw,
-                    country,
-                    region,
-                    region_query,
-                    f"{region_where}.places[{j}]",
-                )
+            entries.extend(
+                _parse_area(area_raw, country, region, region_query, f"{region_where}.areas[{k}]")
+            )
+
+        if "notes" in region_map:
+            entries.extend(
+                _parse_notes(region_map["notes"], country, region, "", f"{region_where}.notes")
             )
 
     return entries
@@ -301,9 +389,10 @@ def load_entries(logs_dir: Path) -> list[Entry]:
 def assign_ids(entries: list[Entry]) -> None:
     seen: dict[str, int] = {}
     for entry in entries:
-        base = "-".join(
-            slugify(part) for part in (entry.region, entry.area, entry.name) if part
-        )
+        # Skip the area segment when it just repeats the region or the place
+        # itself (a leaf area, or one named after its own region).
+        area = entry.area if entry.area not in (entry.region, entry.name) else ""
+        base = "-".join(slugify(part) for part in (entry.region, area, entry.name) if part)
         seen[base] = seen.get(base, 0) + 1
         entry.id = base if seen[base] == 1 else f"{base}-{seen[base]}"
 
@@ -318,8 +407,6 @@ def serialize(entry: Entry) -> dict:
         "name": entry.name,
         "location": entry.location,
     }
-    if entry.note:
-        out["note"] = entry.note
     if entry.verdict:
         out["verdict"] = entry.verdict
     if entry.items:

@@ -43,7 +43,7 @@
     });
     if (thumbs) wrap.appendChild(thumbs);
 
-    wrap.appendChild(LogCard.renderEntries(group.entries));
+    wrap.appendChild(LogCard.renderEntries(group.entries, group.area));
     return wrap;
   }
 

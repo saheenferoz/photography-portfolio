@@ -1,504 +1,611 @@
 # Travel log for one country. Parsed by scripts/build_logs.py into logs.json.
 #
-# Required: country, regions[].name, regions[].places[].name
-# Optional on a place: area, type (sight|trail|food|drive|wildlife|note; default sight),
-#   note, notes, verdict (repeat|fine|skip), dishes, location
-# Optional on a dish: note, verdict
+# Strict hierarchy: country -> regions[] -> areas[] -> places[]. A region has
+# 'areas' and/or 'notes'; nothing sits directly on a region except those.
 #
-# `location` overrides the geocoded key. Leave it off unless the default
-# (area, or "Name, Region" for a bare sight) is wrong.
-# `note` is a remark rather than a visited place -- it never gets a map pin
-# or a location, and `location` is not allowed on one.
+# An area is either:
+#   - a group: `area: <name>`, `places:` (a list of places, each named by its
+#     type key below), and optionally `location`/`notes`.
+#   - a bare leaf, for a standalone sight with nothing to group: just
+#     `area: <name>` (the sight's name), optionally with `notes`/`verdict`/
+#     `location` -- the same fields a place would have. A drive or food with
+#     no fixed point of its own (a highway, a one-off restaurant) goes in a
+#     group area named after the region itself instead, so it still resolves
+#     to the whole region.
+#
+# A place (inside a group's `places:`) is named by exactly one of these keys,
+# which also sets its type: place (sight, the default), trail, activity,
+# event, food, drive, wildlife. E.g. `food: Some Cafe` instead of
+# `type: food` + `name: Some Cafe`.
+#
+# A remark -- whether a one-off aside or something not tied to any place --
+# always goes in a `notes:` list, never a bare `note:` field. There's exactly
+# one place it can live: on a place/leaf area/dish (about that thing), or on
+# a region/group area (not tied to anything inside it, e.g. a passing
+# observation). The latter never gets a map pin or a location.
+#
+# Optional on a place (or a leaf area): notes (a list of remarks), verdict
+#   (repeat|fine|skip), dishes (food only, `dish:`/notes/verdict each),
+#   location.
+#
+# `location` overrides the geocoded key, on a group area (all its places) or
+# a single place (wins over the area's). Leave it off unless the default
+# (the area's name, or the region for an area named after it) is wrong.
 # Regions are kept alphabetical; run scripts/build_logs.py after editing.
 
 country: United States
 regions:
-- name: Alabama
-  places:
-  - name: USS Alabama
-    area: Mobile
-  - name: Debris Po-Boys & Drinks
-    area: Mobile
-    type: food
-    dishes:
-    - name: Fried chicken thigh po-boy with voodoo fries
-  - name: Barber Vintage Motorsports Museum
-    area: Birmingham
-  - name: Miss Myra's Pit Bar B Q
-    area: Birmingham
-    type: food
-    dishes:
-    - name: White chicken plate with white sauce
-  - name: Moe's Original BBQ
-    area: Birmingham
-    type: food
-    dishes:
-    - name: Chicken fingers with white sauce
-- name: Arkansas
-  places:
-  - name: Hot Springs National Park
-  - name: Arkansas novaculite rock
-    type: note
-- name: California
-  places:
-  - name: Golden Gate Bridge
-    area: San Francisco
-  - name: Golden Gate Park
-    area: San Francisco
-  - name: Golden Gate overlook
-    area: San Francisco
-  - name: Ghirardelli Square
-    area: San Francisco
-  - name: Battery Spencer
-    area: San Francisco
-  - name: Chinatown
-    area: San Francisco
-  - name: Coit Tower
-    area: San Francisco
-  - name: Fisherman's Wharf
-    area: San Francisco
-  - name: Pier 39
-    area: San Francisco
-  - name: Lombard St.
-    area: San Francisco
-  - name: Twin Peaks
-    area: San Francisco
-  - name: Union Square
-    area: San Francisco
-  - name: Aaha Indian Cuisine
-    area: San Francisco
-    type: food
-    dishes:
-    - name: Vijayawada special biryani
-  - name: Zareen's
-    area: San Francisco
-    type: food
-  - name: Nomadic Kitchen
-    area: San Francisco
-    type: food
-  - name: Vesta
-    area: San Francisco
-    type: food
-    note: Pizza
-- name: Colorado
-  places:
-  - name: Pikes Peak
-    note: Famous donuts
-  - name: Garden of the Gods
-    note: Visitor center view with Pikes Peak in the background
-  - name: Flatirons
-  - name: Emerald Lake
-    area: Rocky Mountain National Park
-  - name: Dream Lake
-    area: Rocky Mountain National Park
-  - name: Lake Haiyaha
-    area: Rocky Mountain National Park
-  - name: Nymph Lake
-    area: Rocky Mountain National Park
-  - name: Bear Lake
-    area: Rocky Mountain National Park
-  - name: Sky Pond
-    area: Rocky Mountain National Park
-  - name: High Dune
-    area: Great Sand Dunes National Park
-  - name: Gub Gubs
-    area: Great Sand Dunes National Park
-    type: food
-    dishes:
-    - name: Chicken tikka masala puffs
-  - name: BlueFin Sushi Bar
-    area: Denver
-    type: food
-- name: Iowa
-  places:
-  - name: Rolling cornfields
-    type: note
-  - name: Guttenberg
-  - name: Maquoketa Caves State Park
-    note: Small and big caves, some you need to crawl through; a good place to explore caves fairly safely
-  - name: Winneshiek Raceway
-    area: Decorah
-    note: An unexpected find
+- region: Alabama
+  areas:
+  - area: Mobile
+    places:
+    - place: USS Alabama
+    - food: Debris Po-Boys & Drinks
+      dishes:
+      - dish: Fried chicken thigh po-boy with voodoo fries
+  - area: Birmingham
+    places:
+    - place: Barber Vintage Motorsports Museum
+    - food: Miss Myra's Pit Bar B Q
+      dishes:
+      - dish: White chicken plate with white sauce
+    - food: Moe's Original BBQ
+      dishes:
+      - dish: Chicken fingers with white sauce
+- region: Arizona
+  areas:
+  - area: Grand Canyon National Park
+  - area: Sedona
+    places:
+    - place: Chapel of the Holy Cross
+    - place: Sedona Airport Scenic Lookout
+    - trail: Devil's Bridge Trail via Dry Creek Road
+  - area: Petrified Forest National Park
+    places:
+    - place: The Tepees
+    - trail: Blue Mesa
+    - trail: Jasper Forest
+    - trail: Crystal Forest
+    - trail: Giant Logs
+    - trail: Agate House
+    - trail: Painted Desert Rim
+  - area: Phoenix
+  - area: Tucson
+  - area: Barringer Crater (Meteor Crater Natural Landmark)
+    location: Meteor Crater, Arizona
+  - area: Saguaro National Park
+    places:
+    - drive: Cactus Forest Dr
+    - trail: Wasson Peak
+    - trail: Desert Discovery Nature Trail
+- region: Arkansas
+  areas:
+  - area: Hot Springs National Park
+  notes:
+  - Arkansas novaculite rock
+- region: California
+  areas:
+  - area: San Francisco
+    places:
+    - place: Golden Gate Bridge
+    - place: Golden Gate Park
+    - place: Golden Gate overlook
+    - place: Ghirardelli Square
+    - place: Battery Spencer
+    - place: Chinatown
+    - place: Coit Tower
+    - place: Fisherman's Wharf
+    - place: Pier 39
+    - place: Lombard St.
+    - place: Twin Peaks
+    - place: Union Square
+    - food: Aaha Indian Cuisine
+      dishes:
+      - dish: Vijayawada special biryani
+    - food: Zareen's
+    - food: Nomadic Kitchen
+    - food: Vesta
+      notes:
+      - Pizza
+  - area: Yosemite National Park
+    places:
+    - trail: Half Dome
+    - trail: Nevada and Vernal Falls
+  - area: Sequoia National Park
+    places:
+    - trail: General Sherman Tree
+  - area: Lassen Volcanic National Park
+    places:
+    - trail: Lassen Peak
+    - trail: Cinder Cone
+  - area: Burney
+  - area: Redwood National Park
+    places:
+    - trail: Fern Canyon
+  - area: Big Sur
+    places:
+    - place: Bixby Creek Bridge
+  - area: Monterey
+  - area: Carmel By The Sea
+  - area: Fremont
+    places:
+    - food: Sushi Ken
+      dishes:
+      - dish: Curry Chicken Katsu
+  - area: San Jose
+- region: Colorado
+  areas:
+  - area: Pikes Peak
     notes:
-    - 15th Annual USMTS Nordic Nationals presented by Weis GMC
-  - name: Magpie Cafe & Coffeehouse
-    area: Decorah
-    type: food
-    dishes:
-    - name: Omelette
-- name: Louisiana
-  places:
-  - name: National WWII Museum
-    area: New Orleans
-  - name: French Quarter
-    area: New Orleans
-  - name: Beignets
-    area: New Orleans
-    type: food
-- name: Minnesota
-  places:
-  - name: Cascade Falls
-  - name: Temperance River Falls
+    - Famous donuts
+  - area: Garden of the Gods
+    notes:
+    - Visitor center view with Pikes Peak in the background
+  - area: Flatirons
+  - area: Rocky Mountain National Park
+    places:
+    - place: Emerald Lake
+    - place: Dream Lake
+    - place: Lake Haiyaha
+    - place: Nymph Lake
+    - place: Bear Lake
+    - place: Sky Pond
+  - area: Great Sand Dunes National Park
+    places:
+    - place: High Dune
+    - food: Gub Gubs
+      dishes:
+      - dish: Chicken tikka masala puffs
+  - area: Denver
+    places:
+    - food: BlueFin Sushi Bar
+  - area: Black Canyon of the Gunnison National Park
+  - area: Mesa Verde National Park
+- region: Georgia
+  areas:
+  - area: Atlanta
+  - area: Savannah
+    places:
+    - place: Tybee Island
+  - area: Driftwood Beach
+- region: Iowa
+  areas:
+  - area: Guttenberg
+  - area: Maquoketa Caves State Park
+    notes:
+    - Small and big caves, some you need to crawl through; a good place to explore caves fairly safely
+  - area: Decorah
+    places:
+    - place: Winneshiek Raceway
+      notes:
+      - An unexpected find
+      - 15th Annual USMTS Nordic Nationals presented by Weis GMC
+    - food: Magpie Cafe & Coffeehouse
+      dishes:
+      - dish: Omelette
+  notes:
+  - Rolling cornfields
+- region: Kentucky
+  areas:
+  - area: Mammoth Cave National Park
+    places:
+    - trail: Historic Cave Tour
+  - area: Louisville
+- region: Louisiana
+  areas:
+  - area: New Orleans
+    places:
+    - place: National WWII Museum
+    - place: French Quarter
+    - food: Beignets
+- region: Maine
+  areas:
+  - area: Acadia National Park
+    places:
+    - trail: The Precipice
+- region: Minnesota
+  areas:
+  - area: Cascade Falls
+  - area: Temperance River Falls
     location: Temperance River State Park, Minnesota
-  - name: Palisade Head
-  - name: Split Rock Lighthouse
-  - name: Gooseberry Falls
+  - area: Palisade Head
+  - area: Split Rock Lighthouse
+  - area: Gooseberry Falls
     notes:
     - Not enough water late July. Looks much better in pictures during spring.
-  - name: State Highway 1
-    type: drive
-  - name: Minnesota Highway 61
-    type: drive
-    note: Along the Lake Superior north shore
-  - name: Mall of America
-    area: Minneapolis
-    note: Largest mall in the US
-  - name: Mill City Museum
-    area: Minneapolis
-    note: Old flour mill
-  - name: Historic Stone Arch Bridge
-    area: Minneapolis
-  - name: The Falls Bistro
-    area: International Falls
-    type: food
-    dishes:
-    - name: Walleye strips
-      note: Stronger "fish" aftertaste than I'd like
-      verdict: skip
-  - name: Kettle Falls cruise
-    area: Voyageurs National Park
-  - name: Lakeside campground
-    area: Grand Marais
-  - name: Artist's Point
-    area: Grand Marais
-  - name: The Fisherman's Daughter
-    area: Grand Marais
-    type: food
-    dishes:
-    - name: Fish and chips
-  - name: Blue Water Cafe
-    area: Grand Marais
-    type: food
-    dishes:
-    - name: 'Deluxe omelette: Portage'
-  - name: Shovel Point
-    area: Tettegouche State Park
-  - name: Devil's Kettle
-    area: Judge C.R. Magney State Park
-  - name: Grand Portage National Monument
-    area: Grand Portage
-    note: Used by voyageurs and fur traders; a reconstruction of the old 1800s village
-  - name: Pigeon (High) Falls
-    area: Grand Portage
-    note: Along the Canadian border on the Pigeon River
-- name: Mississippi
-  places:
-  - name: US 90
-    type: drive
-    note: Along the Gulf of Mexico
-  - name: Steve's Marina Restaurant
-    type: food
-    dishes:
-    - name: Fried catfish
-- name: Nebraska
-  places:
-  - name: Chimney Rock
-  - name: Scotts Bluff National Monument
-  - name: Agate Fossil Beds National Monument
-  - name: Hudson-Meng Bison Bonebed
-    note: 'Caution: unpaved roads'
-  - name: Toadstool Geological Park and Campground
-    note: 'Caution: unpaved roads'
-- name: New Jersey
-  places:
-  - name: Hoboken
-  - name: Staten Island
+  - area: Minnesota
+    places:
+    - drive: State Highway 1
+    - drive: Minnesota Highway 61
+      notes:
+      - Along the Lake Superior north shore
+  - area: Minneapolis
+    places:
+    - place: Mall of America
+      notes:
+      - Largest mall in the US
+    - place: Mill City Museum
+      notes:
+      - Old flour mill
+    - place: Historic Stone Arch Bridge
+  - area: International Falls
+    places:
+    - food: The Falls Bistro
+      dishes:
+      - dish: Walleye strips
+        verdict: skip
+        notes:
+        - Stronger "fish" aftertaste than I'd like
+  - area: Voyageurs National Park
+    places:
+    - place: Kettle Falls cruise
+  - area: Grand Marais
+    places:
+    - place: Lakeside campground
+    - place: Artist's Point
+    - food: The Fisherman's Daughter
+      dishes:
+      - dish: Fish and chips
+    - food: Blue Water Cafe
+      dishes:
+      - dish: 'Deluxe omelette: Portage'
+  - area: Tettegouche State Park
+    places:
+    - place: Shovel Point
+  - area: Judge C.R. Magney State Park
+    places:
+    - place: Devil's Kettle
+  - area: Grand Portage
+    places:
+    - place: Grand Portage National Monument
+      notes:
+      - Used by voyageurs and fur traders; a reconstruction of the old 1800s village
+    - place: Pigeon (High) Falls
+      notes:
+      - Along the Canadian border on the Pigeon River
+- region: Mississippi
+  areas:
+  - area: Mississippi
+    places:
+    - drive: US-90
+      notes:
+      - Along the Gulf of Mexico
+    - food: Steve's Marina Restaurant
+      dishes:
+      - dish: Fried catfish
+- region: Montana
+  areas:
+  - area: Glacier National Park
+    places:
+    - trail: Avalanche Lake
+    - trail: Hidden Lake Overlook
+- region: Nebraska
+  areas:
+  - area: Chimney Rock
+  - area: Scotts Bluff National Monument
+  - area: Agate Fossil Beds National Monument
+  - area: Hudson-Meng Bison Bonebed
+    notes:
+    - 'Caution: unpaved roads'
+  - area: Toadstool Geological Park and Campground
+    notes:
+    - 'Caution: unpaved roads'
+- region: Nevada
+  areas:
+  - area: Las Vegas
+    places:
+    - place: The Strip
+    - place: Bellagio Hotel & Casino
+      notes:
+      - Fountain show every 30 minutes
+    - place: Caesars Palace
+    - place: Luxor Hotel & Casino (Pyramid)
+    - place: The Sphere
+  - area: Hoover Dam
+- region: New Jersey
+  areas:
+  - area: Hoboken
+  - area: Staten Island
     location: Staten Island, New York
-  - name: Liberty Science Center
+  - area: Liberty Science Center
     notes:
     - Planetarium
-- name: New York
-  places:
-  - name: Staten Island Ferry
-    note: Free
+- region: New York
+  areas:
+  - area: Staten Island Ferry
     notes:
+    - Free
     - Try to get to the very front of the boat
-  - name: Times Square
-    area: Midtown
-    location: Midtown, New York
-  - name: Statue of Liberty
-  - name: The Vessel
-    area: Hudson Yards
-    location: Hudson Yards, New York
-  - name: The High Line
-    area: Hudson Yards
-    location: Hudson Yards, New York
-  - name: Central Park
-  - name: Battery Park
-    area: Lower Manhattan
-    location: Lower Manhattan, New York
-  - name: The Oculus
-    area: Lower Manhattan
-    location: Lower Manhattan, New York
-  - name: World Trade Center
-    area: Lower Manhattan
-    location: Lower Manhattan, New York
-  - name: The Flatiron Building
-    area: Midtown
-    location: Midtown, New York
-  - name: Intrepid Museum
+  - area: Statue of Liberty
+  - area: Intrepid Museum
     notes:
     - Real space shuttle
-  - name: Empire State Building
-    area: Midtown
-    location: Midtown, New York
-  - name: Chrysler Building
-    area: Midtown
-    location: Midtown, New York
-  - name: Brooklyn Bridge
-  - name: American Museum of Natural History
-    notes:
-    - Where "Night at the Museum" was shot
+  - area: Brooklyn Bridge
+  - area: Vanderbilt Mansion National Historic Site
+  - area: Central Park
     location: Central Park, New York
-  - name: Vanderbilt Mansion National Historic Site
-- name: North Dakota
-  places:
-  - name: North Unit scenic drive
-    area: Theodore Roosevelt National Park
-  - name: Caprock Coulee Trail
-    area: Theodore Roosevelt National Park
-    type: trail
-  - name: South Unit scenic loop
-    area: Theodore Roosevelt National Park
-  - name: Wind Canyon Trail
-    area: Theodore Roosevelt National Park
-    type: trail
-  - name: Farmhouse Cafe
-    area: Medora
-    type: food
-    dishes:
-    - name: Buffalo chicken wrap
-- name: Ohio
-  places:
-  - name: Columbus
-  - name: Cincinnati
-  - name: National Museum of the US Air Force
-    area: Dayton
-  - name: Taza
-    area: Cleveland
-    type: food
-    note: A Lebanese grill
-- name: Pennsylvania
-  places:
-  - name: Gettysburg
-  - name: Centralia
-    note: Cute small town
-  - name: Delaware Water Gap National Recreation Area
-  - name: Cherry Springs State Park
+    places:
+    - place: Central Park
+    - place: American Museum of Natural History
+      notes:
+      - Where "Night at the Museum" was shot
+  - area: Midtown
+    location: Midtown, New York
+    places:
+    - place: Times Square
+    - place: The Flatiron Building
+    - place: Empire State Building
+    - place: Chrysler Building
+  - area: Hudson Yards
+    location: Hudson Yards, New York
+    places:
+    - place: The Vessel
+    - place: The High Line
+  - area: Lower Manhattan
+    location: Lower Manhattan, New York
+    places:
+    - place: Battery Park
+    - place: The Oculus
+    - place: World Trade Center
+- region: North Carolina
+  areas:
+  - area: Raleigh
+- region: North Dakota
+  areas:
+  - area: Theodore Roosevelt National Park
+    places:
+    - place: North Unit scenic drive
+    - trail: Caprock Coulee Trail
+    - place: South Unit scenic loop
+    - trail: Wind Canyon Trail
+  - area: Medora
+    places:
+    - food: Farmhouse Cafe
+      dishes:
+      - dish: Buffalo chicken wrap
+- region: Ohio
+  areas:
+  - area: Columbus
+  - area: Cincinnati
+  - area: Dayton
+    places:
+    - place: National Museum of the US Air Force
+  - area: Cleveland
+    places:
+    - food: Taza
+      notes:
+      - A Lebanese grill
+  - area: Cuyahoga Valley National Park
+    places:
+    - trail: Brandywine Gorge Trail
+    - trail: Ledges Trail
+- region: Oregon
+  areas:
+  - area: Crater Lake National Park
+- region: Pennsylvania
+  areas:
+  - area: Presque Isle State Park
+  - area: Gettysburg
+    notes:
+    - Battle of Gettysburg (American Civil War)
+  - area: Centralia
+    notes:
+    - Cute small town
+  - area: Delaware Water Gap National Recreation Area
+  - area: Cherry Springs State Park
     notes:
     - International Dark Sky spot (Bortle 2)
-  - name: Nalan Indian Cuisine
-    area: Harrisburg
-    type: food
-  - name: Leonard Harrison State Park
-    area: PA Grand Canyon
+  - area: Ohiopyle State Park
+  - area: Flight 93 National Memorial
+  - area: Pittsburgh
+    places:
+    - place: Schenley Park
+    - place: National Aviary
+    - place: Phipps Conservatory and Botanical Gardens
+    - place: Frick Park
+    - place: Market Square
+    - place: Strip District
+    - place: Lawrenceville (Butler Street)
+    - place: Highland Park
+    - place: Carnegie Museum of Natural History
+    - place: Carnegie Science Center
+    - place: Mt. Washington Viewpoint
+    - place: North Shore
+    - place: South Shore
+    - place: Puttery (Mini Golf)
+    - place: Puttshack (Mini Golf)
+    - place: Kennywood Amusement Park
+    - drive: US-30 Lincoln Highway
+  - area: Harrisburg
+    places:
+    - food: Nalan Indian Cuisine
+  - area: PA Grand Canyon
     location: Pine Creek Gorge, Pennsylvania
-  - name: Lackawanna Coal Mine Tour
-    area: Scranton
-  - name: Steamtown National Historic Site
-    area: Scranton
-    notes:
-    - Big Boy 4012
+    places:
+    - place: Leonard Harrison State Park
+  - area: Scranton
     location: Scranton, Pennsylvania
-- name: South Dakota
-  places:
-  - name: Deadwood
-  - name: Crazy Horse Memorial
-  - name: Mt. Rushmore
-  - name: Spearfish Canyon Scenic Byway
-    type: drive
-  - name: Kathmandu Bistro
-    area: Rapid City
-    type: food
-  - name: Natural entrance cave tour
-    area: Wind Cave National Park
-  - name: Bison
-    area: Wind Cave National Park
-    type: wildlife
-  - name: Coyote
-    area: Wind Cave National Park
-    type: wildlife
-  - name: Wildlife Loop Road
-    area: Custer State Park
-  - name: Bison
-    area: Custer State Park
-    type: wildlife
-  - name: Buffalo
-    area: Custer State Park
-    type: wildlife
-  - name: Donkeys
-    area: Custer State Park
-    type: wildlife
-  - name: Prairie dogs
-    area: Custer State Park
-    type: wildlife
-  - name: Sylvan Lake
-    area: Needles Highway
-  - name: Cathedral Spires
-    area: Needles Highway
-  - name: Dockside Grill
-    area: Needles Highway
-    type: food
-  - name: Purple Pie Place
-    area: Custer
-    type: food
-    note: Dessert
-  - name: Scenic drive
-    area: Badlands National Park
-  - name: Window Trail
-    area: Badlands National Park
-    type: trail
-  - name: Door Trail
-    area: Badlands National Park
-    type: trail
-  - name: Notch Trail
-    area: Badlands National Park
-    type: trail
-  - name: Panorama Point
-    area: Badlands National Park
-  - name: Burns Basin Overlook
-    area: Badlands National Park
-- name: Tennessee
-  places:
-  - name: Beale Street
-    area: Memphis
-  - name: Big River Crossing
-    area: Memphis
-  - name: Bass Pro Shops at the Pyramid
-    area: Memphis
-    notes:
-    - Observation deck
-  - name: Wahlburgers
-    area: Memphis
-    type: food
-    dishes:
-    - name: The original chicken sandwich
-- name: Texas
-  places:
-  - name: Buffalo Bayou Park
-    area: Houston
-  - name: Space Center Houston
-    area: Houston
-    notes:
-    - Apollo mission control center
-    - Astronaut training facility
-    - Saturn V rocket
-    - The Moonwalkers show
-  - name: The Original Ninfa's on Navigation
-    area: Houston
-    type: food
-    note: Best Mexican food I've had; one of the first places to introduce fajitas to the US
-  - name: MotoGP 2026
-    area: Austin
+    places:
+    - place: Lackawanna Coal Mine Tour
+    - place: Steamtown National Historic Site
+      notes:
+      - Big Boy 4012
+- region: South Carolina
+  areas:
+  - area: Congaree National Park
+- region: South Dakota
+  areas:
+  - area: Deadwood
+  - area: Crazy Horse Memorial
+  - area: Mt. Rushmore
+  - area: South Dakota
+    places:
+    - drive: Spearfish Canyon Scenic Byway
+  - area: Rapid City
+    places:
+    - food: Kathmandu Bistro
+  - area: Wind Cave National Park
+    places:
+    - place: Natural entrance cave tour
+    - wildlife: Bison
+    - wildlife: Coyote
+  - area: Custer State Park
+    places:
+    - place: Wildlife Loop Road
+    - wildlife: Bison
+    - wildlife: Buffalo
+    - wildlife: Donkeys
+    - wildlife: Prairie dogs
+  - area: Needles Highway
+    places:
+    - place: Sylvan Lake
+    - place: Cathedral Spires
+    - food: Dockside Grill
+  - area: Custer
+    places:
+    - food: Purple Pie Place
+      notes:
+      - Dessert
+  - area: Badlands National Park
+    places:
+    - place: Scenic drive
+    - trail: Window Trail
+    - trail: Door Trail
+    - trail: Notch Trail
+    - place: Panorama Point
+    - place: Burns Basin Overlook
+- region: Tennessee
+  areas:
+  - area: Memphis
+    places:
+    - place: Beale Street
+    - place: Big River Crossing
+    - place: Bass Pro Shops at the Pyramid
+      notes:
+      - Observation deck
+    - food: Wahlburgers
+      dishes:
+      - dish: The original chicken sandwich
+  - area: Great Smoky Mountains National Park
+    places:
+    - trail: Alum Cave
+    - trail: Kuwohi Observation Deck
+- region: Texas
+  areas:
+  - area: Houston
+    places:
+    - place: Buffalo Bayou Park
+    - place: Space Center Houston
+      notes:
+      - Apollo mission control center
+      - Astronaut training facility
+      - Saturn V rocket
+      - The Moonwalkers show
+    - food: The Original Ninfa's on Navigation
+      notes:
+      - Best Mexican food I've had; one of the first places to introduce fajitas to the US
+  - area: Austin
     location: Circuit of the Americas, Texas
-- name: Washington DC
-  places:
-  - name: National Museum of the Marine Corps
-  - name: National Museum of the United States Army
-  - name: Smithsonian's National Air and Space Museum
-    area: National Mall
-    location: National Mall, Washington DC
-  - name: Smithsonian National Museum of Natural History
-    area: National Mall
-    location: National Mall, Washington DC
-  - name: Smithsonian National Museum of American History
-    area: National Mall
-    location: National Mall, Washington DC
-  - name: Smithsonian National Postal Museum
-  - name: Thomas Jefferson Memorial
-    area: National Mall
-    location: National Mall, Washington DC
-  - name: Lincoln Memorial
-    area: National Mall
-    location: National Mall, Washington DC
-  - name: Washington Monument
-    area: National Mall
-    location: National Mall, Washington DC
-  - name: The White House
-    area: National Mall
-    location: National Mall, Washington DC
-  - name: Martin Luther King, Jr. Memorial
-    area: National Mall
-    location: National Mall, Washington DC
-  - name: Gravelly Point
-  - name: International Spy Museum
-    area: National Mall
-    location: National Mall, Washington DC
-  - name: William Preston Lane Jr. Memorial (Chesapeake) Bay Bridge
+    places:
+    - event: MotoGP 2026
+- region: Utah
+  areas:
+  - area: Salt Lake City
+  - area: Arches National Park
+    places:
+    - trail: Delicate Arch
+  - area: Zion National Park
+    places:
+    - trail: Angel's Landing
+    - trail: The Narrows
+  - area: Bryce Canyon National Park
+    places:
+    - trail: Fairyland Loop
+    - trail: Navajo Loop
+  - area: Canyonlands National Park
+    places:
+    - trail: Mesa Arch
+  - area: Capitol Reef National Park
+    places:
+    - trail: Cassidy Arch
+- region: Virginia
+  areas:
+  - area: Shenandoah National Park
+    places:
+    - trail: Old Rag
+- region: Washington DC
+  areas:
+  - area: National Museum of the Marine Corps
+  - area: National Museum of the United States Army
+  - area: Smithsonian National Postal Museum
+  - area: Gravelly Point
+  - area: William Preston Lane Jr. Memorial (Chesapeake) Bay Bridge
     location: Chesapeake Bay Bridge, Maryland
-- name: Wisconsin
-  places:
-  - name: Washburn
-  - name: Memorial Union
-    area: Madison
-  - name: Union South
-    area: Madison
-  - name: Bascom Hill
-    area: Madison
-  - name: Lake Mendota
-    area: Madison
-  - name: Estacion Inka
-    area: Madison
-    type: food
-    dishes:
-    - name: Rotisserie chicken
-    - name: Chicken saltado
-  - name: Mirch Masala
-    area: Madison
-    type: food
-    dishes:
-    - name: Chicken korma
-  - name: Der Rathskeller
-    area: Madison
-    type: food
-  - name: Cheba Hut
-    area: Madison
-    type: food
-  - name: Dotty Dumpling's Dowry
-    area: Madison
-    type: food
-  - name: Paul's Pel'meni
-    area: Madison
-    type: food
-    dishes:
-    - name: Potato dumplings with the works
-  - name: Strada
-    area: Madison
-    type: food
-    dishes:
-    - name: Thai chicken pizza
-  - name: Ginger Root
-    area: Madison
-    type: food
-  - name: Naf Naf
-    area: Madison
-    type: food
-  - name: Sencha Tea Bar
-    area: Madison
-    type: food
-  - name: Lake trout
-    area: Bayfield
-    type: food
-    note: Yet to eat
-  - name: Sea caves
-    area: Apostle Islands National Lakeshore
-  - name: Ice caves
-    area: Apostle Islands National Lakeshore
-    note: Yet to see
-  - name: Devil's Island
-    area: Apostle Islands National Lakeshore
-    note: Can kayak here through the caves
-- name: Wyoming
-  places:
-  - name: Yellowstone National Park
-  - name: Devil's Tower National Monument
+  - area: National Mall
+    location: National Mall, Washington DC
+    places:
+    - place: Smithsonian's National Air and Space Museum
+    - place: Smithsonian National Museum of Natural History
+    - place: Smithsonian National Museum of American History
+    - place: Thomas Jefferson Memorial
+    - place: Lincoln Memorial
+    - place: Washington Monument
+    - place: The White House
+    - place: Martin Luther King, Jr. Memorial
+    - place: International Spy Museum
+- region: Wisconsin
+  areas:
+  - area: Washburn
+  - area: Madison
+    places:
+    - place: Memorial Union
+    - place: Union South
+    - place: Bascom Hill
+    - place: Lake Mendota
+    - food: Estacion Inka
+      dishes:
+      - dish: Rotisserie chicken
+      - dish: Chicken saltado
+    - food: Mirch Masala
+      dishes:
+      - dish: Chicken korma
+    - food: Der Rathskeller
+    - food: Cheba Hut
+    - food: Dotty Dumpling's Dowry
+    - food: Paul's Pel'meni
+      dishes:
+      - dish: Potato dumplings with the works
+    - food: Strada
+      dishes:
+      - dish: Thai chicken pizza
+    - food: Ginger Root
+    - food: Naf Naf
+    - food: Sencha Tea Bar
+  - area: Bayfield
+    places:
+    - food: Lake trout
+      notes:
+      - Yet to eat
+  - area: Apostle Islands National Lakeshore
+    places:
+    - place: Sea caves
+    - place: Ice caves
+      notes:
+      - Yet to see
+    - place: Devil's Island
+      notes:
+      - Can kayak here through the caves
+- region: Wyoming
+  areas:
+  - area: Yellowstone National Park
+    places:
+    - place: Grand Prismatic Spring
+    - place: Old Faithful (Geyser)
+    - trail: Fairy Falls Trail
+  - area: Devil's Tower National Monument
+  - area: Grand Teton National Park
+    places:
+    - place: Snake River Overlook
+    - trail: Cascade Canyon
+    - trail: Inspiration Point via Jenny Lake
+    - trail: Taggart Lake Loop
