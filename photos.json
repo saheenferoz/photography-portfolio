@@ -21,13 +21,6 @@
       "map": ""
     },
     {
-      "src": "photos/2026-08-14_Cherry_Springs_State_Park_2.JPG",
-      "caption": "",
-      "location": "Cherry Springs State Park",
-      "date": "2026-08-14",
-      "map": ""
-    },
-    {
       "src": "photos/2026-08-02_Minneapolis.JPG",
       "caption": "Historic Stone Arch Bridge from atop Washburn A Mill",
       "location": "Minneapolis",
@@ -697,6 +690,13 @@
       "caption": "",
       "location": "Zurich, Switzerland",
       "date": "2019-07-09",
+      "map": ""
+    },
+    {
+      "src": "photos/2019-07-08_Rhine_Falls,_ Switzerland.JPG",
+      "caption": "",
+      "location": "Rhine Falls,  Switzerland",
+      "date": "2019-07-08",
       "map": ""
     },
     {
