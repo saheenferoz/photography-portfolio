@@ -4006,7 +4006,7 @@
       "area": "Apostle Islands National Lakeshore",
       "type": "sight",
       "name": "Sea caves",
-      "location": "Apostle Islands National Lakeshore, Wisconsin"
+      "location": "Apostle Islands National Lakeshore"
     },
     {
       "id": "wisconsin-apostle-islands-national-lakeshore-ice-caves",
@@ -4015,7 +4015,7 @@
       "area": "Apostle Islands National Lakeshore",
       "type": "sight",
       "name": "Ice caves",
-      "location": "Apostle Islands National Lakeshore, Wisconsin",
+      "location": "Apostle Islands National Lakeshore",
       "notes": [
         "Yet to see"
       ]
@@ -4027,7 +4027,7 @@
       "area": "Apostle Islands National Lakeshore",
       "type": "sight",
       "name": "Devil's Island",
-      "location": "Apostle Islands National Lakeshore, Wisconsin",
+      "location": "Apostle Islands National Lakeshore",
       "notes": [
         "Can kayak here through the caves"
       ]
